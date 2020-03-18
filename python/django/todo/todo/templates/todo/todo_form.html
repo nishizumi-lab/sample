@@ -1,0 +1,32 @@
+<!--
+    {％ url 名前 引数 ％} :urls.py の name="..." で指定した名前に対応するパス名を取得
+    {％ if ... ％} ... {％ elif ... ％} ... {％ endif ％} :条件式を記述
+-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 条件分岐：既にデータがある場合は編集 -->
+{% if object %}
+<h1 class="text-white bg-dark">編集</h1>
+
+<!-- それ以外の場合は新規登録 -->
+{% else %}
+<h1 class="text-white bg-dark">新規登録</h1>
+{% endif %}
+<!-- /条件分岐 -->
+
+<form method="post">
+    {% csrf_token %}
+
+    <!-- .as_pで横並び -->
+    <table class="table table-dark">
+        {{ form.as_table }}
+    </table>
+
+    <button class="btn btn-primary" type="submit">登録</button>
+</form>
+<br>
+<a class="btn btn-danger" href="{% url 'todo:list' %}">戻る</a>
+{%endblock%}

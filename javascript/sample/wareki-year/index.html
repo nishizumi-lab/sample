@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test</title>
+<!--外部ファイルに記述-->
+<script type="text/javascript" src="main.js"></script>
+<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
+</head>
+  
+<body onload="init();">
+ 
+ <!-- 年号→西暦 -->
+<form name="toSeireki">
+<select id="nengo" name="nengo">
+    <option value="平成">平成</option>
+</select>
+
+<select id="nengoYear" name="nengoYear">
+    <option value=1>1年</option>
+</select>
+
+<input type="button"  id="toWarekiButton" value="西暦に変換" onclick="ToSeireki();"/>
+</form>
+
+<br>
+ <!-- 西暦→年号 -->
+<form name="toWareki">
+西暦 <select id="seirekiYear" name="seireki">
+    <option value=1931>1931年</option>
+</select>
+
+<input type="button" id="toWarekiButton" value="和暦に変換" onclick="ToWareki();"/>
+</form>
+ <br>
+ 
+<form name="result">
+<textarea　id="result" name = "box" value="ここに結果が表示されます。"/></textarea>
+</form>
+
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+body
+{
+	margin:0px;		/* ページ全体のmargin */
+	padding:0px;		/* ページ全体のpadding */
+
+}
+
+#main
+{
+	margin-top:10px;
+	width:95%;		/* 幅を決定する */
+}
+
+#alert
+{
+	color:#FF6347
+}
+
+
+#result
+{
+	width:95%;
+	margin-top:0px;
+}
+
+#count
+{
+	width:655px;
+	height:50px;
+	margin-top:220px;
+}

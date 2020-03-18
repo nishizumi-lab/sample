@@ -1,0 +1,1 @@
+create table student(id int, class varchar(20), point int, rankId int);

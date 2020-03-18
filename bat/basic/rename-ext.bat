@@ -1,0 +1,1 @@
+ren C:\Users\panzer4\Downloads\畦道十華\*.jfif *.jpg

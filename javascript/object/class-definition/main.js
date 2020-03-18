@@ -1,0 +1,4 @@
+var Kanmusu = function()
+{
+  
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>Canvas フレーム間差分で動体検出</title>
+<script src="main.js"></script>
+</head>
+
+<body style="background:#222">
+  <!-- 実行ボタン -->
+  <button onclick="showVideo()">カメラの起動</button>
+  <button id = "btn">動体検出の開始</button>
+  <br>
+  <!-- 動画 -->
+  <video id="video" width="320" height="240" autoplay ></video>
+  <!-- Canvus -->
+  <canvas id="cv" width="320" height="240"></canvas>
+
+</body>
+</html>

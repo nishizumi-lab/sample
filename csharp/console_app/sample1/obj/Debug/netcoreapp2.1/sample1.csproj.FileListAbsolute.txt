@@ -1,0 +1,11 @@
+C:\github\sample\csharp\console_app\sample1\bin\Debug\netcoreapp2.1\sample1.deps.json
+C:\github\sample\csharp\console_app\sample1\bin\Debug\netcoreapp2.1\sample1.runtimeconfig.json
+C:\github\sample\csharp\console_app\sample1\bin\Debug\netcoreapp2.1\sample1.runtimeconfig.dev.json
+C:\github\sample\csharp\console_app\sample1\bin\Debug\netcoreapp2.1\sample1.dll
+C:\github\sample\csharp\console_app\sample1\bin\Debug\netcoreapp2.1\sample1.pdb
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.csprojAssemblyReference.cache
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.csproj.CoreCompileInputs.cache
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.AssemblyInfoInputs.cache
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.AssemblyInfo.cs
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.dll
+C:\github\sample\csharp\console_app\sample1\obj\Debug\netcoreapp2.1\sample1.pdb

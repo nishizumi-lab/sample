@@ -1,0 +1,22 @@
+<!--
+    {％ url 名前 引数 ％} :urls.py の name="..." で指定した名前に対応するパス名を取得
+    {％ if ... ％} ... {％ elif ... ％} ... {％ endif ％} :条件式を記述
+-->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if object %}
+<h1>ToDoの編集</h1>
+{% else %}
+<h1>ToDoの作成</h1>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }} 
+    <button type="submit">送信</button>
+</form>
+<a href="{% url 'todo:list' %}">戻る</a>
+{%endblock%}

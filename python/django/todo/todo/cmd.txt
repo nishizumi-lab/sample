@@ -1,0 +1,7 @@
+python django startproject mysite
+python manage.py startapp todo 
+
+python manage.py makemigrations
+python manage.py migrate 
+
+python manage.py runserver

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-white bg-dark">削除</h1>
+<table class="table table-dark">
+    <tr>
+        <th>ID</th>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th>タイトル</th>
+        <td>{{ object.title }}</td>
+    </tr>
+    <tr>
+        <th>投稿日時</th>
+        <td>{{ object.created_at }}</td>
+    </tr>
+    <tr>
+        <th>最終更新日時</th>
+        <td>{{ object.updated_at }}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td>{{ object.text }}</td>
+    </tr>
+</table>
+<form action="" method="post">
+    {% csrf_token %}
+    <input  class="btn btn-danger" type="submit"value="削除" />
+</form>
+<a class="btn btn-primary" href="{% url 'todo:list' %}">戻る</a>
+{%endblock%}

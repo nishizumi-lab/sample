@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="./main.js"></script>
+<script type="text/javascript" src="./tripper.js"></script>
+<link rel="stylesheet" href="./main.css" type="text/css"><style class="darkreader darkreader--sync" media="screen"></style>
+
+<title>トリップ作成機</title>
+</head>
+<body cz-shortcut-listen="true">
+
+<div id="main">
+	<table border="0" cellspacing="1" width="100%">
+	<tbody><tr>
+	<div align="center">トリップ作成機</div>
+	</td>
+	</tr>
+	</tbody></table>
+
+	<form>
+	<div id="form_box">
+		<table border="0" id="form_table">
+			<tbody><tr>
+				<td>
+					<input tyupe="text" id="search" onclick="del_value();" class="search_open_style">
+				</td>
+				<td>
+					<select id="place">
+					<option selected="selected">- 検索方法 -</option>
+					<option value="1">前方一致</option>
+					<option value="2">後方一致</option>
+					<option value="3">部分一致</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="button" value="開始" id="start">
+					<input type="button" value="停止" id="stop" disabled="">
+					<input type="reset" value="クリア" id="crear" disabled=""> 
+				</td>
+			</tr>
+		</tbody></table>
+	</div>
+
+	<div id="view_box">
+		<div id="alert">検索待機中</div>
+
+		<div id="move">
+			<div id="view">
+				<input type="text" id="tripkey1"> -&gt; <input type="text" id="trip1"><br>
+				<br>
+				<input type="text" id="tripkey2"> -&gt; <input type="text" id="trip2"><br>
+				<br>
+				<input type="text" id="tripkey3"> -&gt; <input type="text" id="trip3"><br>
+				<br>
+				<input type="text" id="tripkey4"> -&gt; <input type="text" id="trip4"><br>
+				<br>
+				<input type="text" id="tripkey5"> -&gt; <input type="text" id="trip5"><br>
+			</div>
+		</div>
+
+		<div id="result_box">
+			<textarea id="result"></textarea>
+		</div>
+
+		<div id="count"></div>
+	</div>
+	</form>
+</div>
+
+</body></html>

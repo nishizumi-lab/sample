@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content bg-dark"">
+    <h1 class="text-white bg-dark">タスクリスト</h1>
+
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">タスクはありません</h4>
+    {% else %}
+
+    <table class="table table-dark">
+        <tr>
+            <th>タスク</th>
+            <th>登録日</th>
+            <th>アクション</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.content }}</td>
+            <td>{{ task.date_created.date() }}</td>
+            <td>
+                <a class="btn btn-danger" href="/delete/{{task.id}}">削除</a>
+                <a class="btn btn-primary" href="/edit/{{task.id}}">編集</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <form action="/" method="post" class="bg-dark text-white">
+        <input type="text" name="content" id="content" class="form-control bg-dark text-white"　width="50%">
+        <input type="submit" value="新規追加" class="btn btn-success">
+    </form>
+
+</div>
+{% endblock %}

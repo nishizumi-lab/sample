@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function () {
+            $('#submit').on("click", function () {
+                $.ajax({
+                    url: "http://127.0.0.1:5000/rss",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { "rss_url": $("#rss_url").val() },
+                    timeout: 10000,
+                }).done(function (data) {
+                    $("ul").empty();
+                    data.forEach(function (element, index, array) {
+                        $("ul").append('<li><a href="' + element.link + '"  target="_blank">' + element.title + '</a></li>');
+                    })
+                    $('#submit').prop("disabled", false);
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    $('#submit').prop("disabled", false);
+                })
+            });
+
+        });
+    </script>
+    <table border="0">
+        <tr>
+            <td align="right"><b> RSS URL:</b></td>
+            <td><input type="text" name="rss_url" id="rss_url"></td>
+        </tr>
+
+    </table>
+    <input type="button" value="Submit" id="submit" />
+    <div id="list">
+        <ul></ul>
+    </div>
+    <div id="detail"></div>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "count": 3,
+  "address": "sword",
+  "main": null,
+  "sword_data": [
+    {
+      "id": "1",
+      "name": "エクスカリバー",
+      "point": 150
+    },
+    {
+      "id": "2",
+      "name": "グングニル",
+      "point": 120
+    },
+    {
+      "id": "3",
+      "name": "グラム",
+      "point": 100
+    }
+  ]
+}

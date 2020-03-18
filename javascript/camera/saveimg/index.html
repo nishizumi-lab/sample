@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <title>Self Camera</title>
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+  <!-- 実行ボタン -->
+  <input type="button"  value="カメラのキャプチャ" onClick="capCamera()">
+  <input type="button" value="キャンバスにコピー" onclick="video2Cvs()" />
+  <br>
+  <!-- 動画 -->
+  <video id="dispVideo" width="640" height="480" autoplay="1" ></video>
+  <!-- Canvus -->
+  <canvas id="cv"></canvas>
+  <img id="newImg">
+</body>
+</html>

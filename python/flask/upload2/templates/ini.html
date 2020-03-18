@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/ini" method="POST" enctype="multipart/form-data">
+    <input type="file" name="{{input_name}}" />
+    <button type="submit">送信</button>
+</form>
+<p>{{message}}</p>
+<p>{{username}}</p>
+<p>{{password}}</p>
+{% endblock %}
