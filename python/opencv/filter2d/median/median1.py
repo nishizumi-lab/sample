@@ -5,9 +5,11 @@ import numpy as np
 
 def median_filter(src, ksize):
     # 畳み込み演算をしない領域の幅
+    # width of skip
     d = int((ksize-1)/2)
     h, w = src.shape[0], src.shape[1]
 
+    # ndarray of destination
     # 出力画像用の配列（要素は入力画像と同じ）
     dst = src.copy()
 
@@ -19,11 +21,14 @@ def median_filter(src, ksize):
     return dst
 
 
+# load image (grayscale)
 # 入力画像をグレースケールで読み込み
 gray = cv2.imread("C:/github/sample/python/opencv/filter2d/median/input.png", 0)
 
+# Spatial filtering
 # 方法1
 dst = median_filter(gray, ksize=5)
 
+# output
 # 結果を出力
 cv2.imwrite("C:/github/sample/python/opencv/filter2d/median/output.png", dst)
