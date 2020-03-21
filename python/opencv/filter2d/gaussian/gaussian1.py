@@ -42,7 +42,6 @@ kernel = np.array([[1/16, 1/8, 1/16],
 # 方法1
 dst = gaussian_filter(gray, kernel)
     
-    
 # output
 # 結果を出力
 cv2.imwrite("C:/github/sample/python/opencv/filter2d/gaussian/output.png", dst)
