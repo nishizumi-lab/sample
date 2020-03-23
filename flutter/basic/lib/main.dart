@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 //import 'package:basic/ui/load_json_page.dart';
 import 'package:basic/ui/load_json2_page.dart';
 import 'package:basic/ui/load_json_detail_page.dart';
+import 'package:basic/ui/calculator_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Test App',
-      theme: new ThemeData.dark(),
+      //theme: new ThemeData.dark(),
       // home: HomePage(title: 'Home Page'),
       // home:ListviewCardPage(title: 'Test'),
       // home:ListviewListtitlePage(title: 'Test'),
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       //home:PaddingPage(),
       //home:PaddingPage(),
       //home:LoadJsonPage(),
-      home:LoadJson2Page(),
+      //home:LoadJson2Page(),
+      home:CalculatorPage(),
       // ルートを事前に定義
       // ルーティング名称に対して、表示されるページを作成しウィジェットを設定
       routes: <String, WidgetBuilder> {
