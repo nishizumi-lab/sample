@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 //import 'package:basic/ui/load_json_page.dart';
 import 'package:basic/ui/load_json2_page.dart';
 import 'package:basic/ui/load_json_detail_page.dart';
+import 'package:basic/ui/keyboard_number_page.dart';
 import 'package:basic/ui/calculator_page.dart';
 
 void main() => runApp(MyApp());
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       //home:PaddingPage(),
       //home:LoadJsonPage(),
       //home:LoadJson2Page(),
-      home:CalculatorPage(),
+      //home:CalculatorPage(),
+      home:KeyboardNumberPage(),
       // ルートを事前に定義
       // ルーティング名称に対して、表示されるページを作成しウィジェットを設定
       routes: <String, WidgetBuilder> {
