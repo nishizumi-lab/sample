@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from dtw import dtw
 
 x = [1, 2, 3]
-y = [1, 3, 4]
+y = [2, 3, 4]
 SAVE_DIR_PATH = "C:/github/sample/python/dtw/sample1/"
 
 def l2_norm(x, y): return (x - y) ** 2
@@ -24,16 +24,16 @@ print("path:", path)
 """
 dist: 2.0
 cost_matrix:
- [[0. 4. 9.]
- [1. 1. 4.]
- [4. 0. 1.]]
+[[1. 4. 9.]
+ [0. 1. 4.]
+ [1. 0. 1.]]
 
 acc_cost_matrix: 
-[[ 0.  4. 13.]
- [ 1.  1.  5.]
- [ 5.  1.  2.]]
+[[ 1.  5. 14.]
+ [ 1.  2.  6.]
+ [ 2.  1.  2.]]
  
-path: (array([0, 1, 2]), array([0, 1, 2]))
+path: (array([0, 1, 2, 2]), array([0, 0, 1, 2])))
 """
 
 
