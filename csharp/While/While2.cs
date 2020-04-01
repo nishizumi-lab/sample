@@ -8,7 +8,7 @@ namespace Test {
 
             while (true) {
                 Console.WriteLine (i); // 1, 2, 3, 4, 5
-                //
+                // iが5を越えたら抜ける
                 if (i > 5) {
                     break;
                 }
