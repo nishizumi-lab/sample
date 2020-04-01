@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Test {
     class Program {
@@ -6,8 +6,12 @@ namespace Test {
 
             var i = 1;
 
-            while (i <= 5) {
+            while (true) {
                 Console.WriteLine (i); // 1, 2, 3, 4, 5
+                //
+                if (i > 5) {
+                    break;
+                }
                 i++;
             }
         }
