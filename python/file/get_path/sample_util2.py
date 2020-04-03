@@ -27,3 +27,52 @@ for cnt, path in enumerate(paths['file_abs_path']):
     print("filename：", ntpath.splitext(ntpath.basename(path))[0])
     print("----------------")
 
+"""
+----------------
+count： 1
+path： C:/github/sample/python/file/get_path/sample_data/\a.txt
+dirname： C:/github/sample/python/file/get_path/sample_data
+basename： a.txt
+ext： .txt
+ext2： txt
+----------------
+count： 2
+path： C:/github/sample/python/file/get_path/sample_data/\b.txt
+dirname： C:/github/sample/python/file/get_path/sample_data
+basename： b.txt
+ext： .txt
+ext2： txt
+----------------
+path： C:/github/sample/python/file/get_path/sample_data/c\d.txt
+dirname： C:/github/sample/python/file/get_path/sample_data/c
+basename： d.txt
+ext： .txt
+ext2： txt
+----------------
+PS C:\Users\panzer4> & C:/Users/panzer4/AppData/Local/Programs/Python/Python38-32/python.exe c:/github/sample/python/file/get_path/sample_util2.py
+['C:/github/sample/python/file/get_path/sample_data/\\a.txt', 'C:/github/sample/python/file/get_path/sample_data/\\b.txt', 'C:/github/sample/python/file/get_path/sample_data/c\\d.txt']
+count： 1
+path： C:/github/sample/python/file/get_path/sample_data/\a.txt
+dirname： C:/github/sample/python/file/get_path/sample_data
+basename： a.txt
+ext： .txt
+ext2： txt
+filename： a
+----------------
+count： 2
+path： C:/github/sample/python/file/get_path/sample_data/\b.txt
+dirname： C:/github/sample/python/file/get_path/sample_data
+basename： b.txt
+ext： .txt
+ext2： txt
+filename： b
+----------------
+count： 3
+path： C:/github/sample/python/file/get_path/sample_data/c\d.txt
+dirname： C:/github/sample/python/file/get_path/sample_data/c
+basename： d.txt
+ext： .txt
+ext2： txt
+filename： d
+----------------
+"""
