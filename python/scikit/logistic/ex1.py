@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import linear_model
-from sklearn.externals import joblib
+import joblib
 
 # CSVファイルのパス（学習用）
 LOAD_CSV_PATH = "C:/github/sample/python/scikit/logistic/sample_data/input.csv"
