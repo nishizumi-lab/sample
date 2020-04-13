@@ -15,7 +15,7 @@ save_trained_data_path = '/Users/panzer5/github/sample/python/scikit/svm/data/tr
 load_test_data_path = "/Users/panzer5/github/sample/python/scikit/svm/data/test.csv"
 
 # グラフ出力先パス
-save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/data/graph2.png'
+save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/data/graph3.png'
 
 # グラフ画像のサイズ
 fig_size_x = 10
@@ -35,9 +35,7 @@ train_y = train_data['x3'].values
 
 # 学習（SVM）
 # kernel = 'linear','rbf','poly','sigmoid'
-# clf = svm.SVC(gamma=0.1, C=1., kernel='rbf')
-clf = svm.SVC(gamma=0.001, C=100., kernel='rbf')
-
+clf = svm.SVC(gamma=0.01, C=10., kernel='rbf')
 clf.fit(train_X, train_y)
 
 # 学習結果を出力
