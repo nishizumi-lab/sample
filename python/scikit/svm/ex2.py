@@ -78,11 +78,11 @@ plt.rcParams['font.family'] = 'Times New Roman'  # 全体のフォント
 plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
 plt.rcParams['axes.linewidth'] = 1.0    # 軸の太さ
 
-# 格子データで散布図をプロットし、決定境界を描画（y=0: 青、y=1: 赤）
+# 格子データで散布図をプロットし、決定境界を描画（y=0:blue, y=1:red, y=2:green）
 plt.scatter(plot_X.T[0][plot_y <= 0], plot_X.T[1][plot_y <= 0], marker='o', color="blue", alpha=0.2)
 plt.scatter(plot_X.T[0][plot_y > 0], plot_X.T[1][plot_y > 0], marker='o', color="red", alpha=0.2)
 
-# 学習用データを散布図にプロット（y=0: 青、y=1: 赤）
+# 学習用データを散布図にプロット（y=0:blue, y=1:red, y=2:green）
 plt.scatter(train_X.T[0][train_y <= 0], train_X.T[1][train_y <= 0], marker='o', color="blue", alpha=1.0)
 plt.scatter(train_X.T[0][train_y > 0], train_X.T[1][train_y > 0], marker='o', color="red", alpha=1.0)
 
