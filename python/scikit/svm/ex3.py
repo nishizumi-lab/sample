@@ -82,17 +82,17 @@ plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
 plt.rcParams['axes.linewidth'] = 1.0    # 軸の太さ
 
 # 格子データで散布図をプロットし、決定境界を描画（y=0:blue, y=1:red, y=2:green）
-plt.scatter(plot_X.T[0][plot_y == 0], plot_X.T[1][plot_y == 0], marker='o', color="blue", alpha=0.2)
-plt.scatter(plot_X.T[0][plot_y == 1], plot_X.T[1][plot_y == 1], marker='o', color="red", alpha=0.2)
-plt.scatter(plot_X.T[0][plot_y == 2], plot_X.T[1][plot_y == 2], marker='o', color="green", alpha=0.2)
+plt.scatter(plot_X.T[0][plot_y == 0], plot_X.T[1][plot_y == 0], marker='o', color="blue", alpha=0.1)
+plt.scatter(plot_X.T[0][plot_y == 1], plot_X.T[1][plot_y == 1], marker='o', color="red", alpha=0.1)
+plt.scatter(plot_X.T[0][plot_y == 2], plot_X.T[1][plot_y == 2], marker='o', color="green", alpha=0.1)
 
 # 学習用データを散布図にプロット（y=0:blue, y=1:red, y=2:green）
-plt.scatter(train_X.T[0][train_y == 0], train_X.T[1][train_y == 0], marker='o', color="blue", alpha=1.0)
-plt.scatter(train_X.T[0][train_y == 1], train_X.T[1][train_y == 1], marker='o', color="red", alpha=1.0)
-plt.scatter(train_X.T[0][train_y == 2], train_X.T[1][train_y == 2], marker='o', color="green", alpha=1.0)
+plt.scatter(train_X.T[0][train_y == 0], train_X.T[1][train_y == 0], marker='o', label="0", color="blue", alpha=1.0)
+plt.scatter(train_X.T[0][train_y == 1], train_X.T[1][train_y == 1], marker='o', label="1", color="red", alpha=1.0)
+plt.scatter(train_X.T[0][train_y == 2], train_X.T[1][train_y == 2], marker='o', label="2", color="green", alpha=1.0)
 
-#plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
-#plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
+plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
+plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
 plt.xlabel('x1', fontsize=lim_font_size)            # x軸ラベル
 plt.ylabel('x2', fontsize=lim_font_size)            # y軸ラベル
 

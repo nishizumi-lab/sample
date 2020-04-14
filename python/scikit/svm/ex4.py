@@ -150,14 +150,15 @@ class SVM():
         plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
         plt.rcParams['axes.linewidth'] = 1.0    # 軸の太さ
 
+        # 散布図のプロット
         for idx, (class_data, class_color) in enumerate(zip(class_datas, class_colors)):
-
-            # 格子データで散布図をプロットし、決定境界を描画（y=0:blue, y=1:red, y=2:green）
+            # 格子データをプロットし、決定境界を描画
             plt.scatter(plot_X.T[0][plot_y == class_data], plot_X.T[1][plot_y == class_data], marker='o', color=class_color, alpha=0.1)
-            plt.scatter(train_X.T[0][train_y == class_data], train_X.T[1][train_y == class_data], marker='o', color=class_color, alpha=1.0)
+            # 学習用データをプロット
+            plt.scatter(train_X.T[0][train_y == class_data], train_X.T[1][train_y == class_data], marker='o', label=str(class_data), color=class_color, alpha=1.0)
 
-        #plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
-        #plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
+        plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
+        plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
         plt.xlabel(x1_name, fontsize=lim_font_size)            # x軸ラベル
         plt.ylabel(x2_name, fontsize=lim_font_size)            # y軸ラベル
 
