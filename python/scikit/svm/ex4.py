@@ -68,8 +68,8 @@ class SVM():
         # 学習済ファイルのロード
         clf = joblib.load(load_trained_data_path)
 
-        # テスト用データの読み込み
-        test_data = pd.read_csv(load_test_data_path, sep=",")
+        # 入力用データの読み込み
+        test_data = pd.read_csv(load_input_data_path, sep=",")
 
         # 説明変数：x1, x2
         test_X = test_data.loc[:, name_x].values
@@ -77,7 +77,7 @@ class SVM():
         # 正解データ：x3
         test_y = test_data[name_y].values
 
-        # 学習結果の検証（テスト用データx1, x2を入力）
+        # モデルに入力し、予測値を計算
         predicted_y = clf.predict(test_X)
         
         return predicted_y
