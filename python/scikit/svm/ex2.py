@@ -6,16 +6,16 @@ import joblib
 import matplotlib.pyplot as plt
 
 # 入力データのファイルパス
-load_input_data_path = "/Users/panzer5/github/sample/python/scikit/svm/data/train.csv"
+load_input_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex2_data/train.csv"
 
 # 学習済みモデルデータの出力先パス
-save_trained_data_path = '/Users/panzer5/github/sample/python/scikit/svm/data/train.learn'
+save_trained_data_path = '/Users/panzer5/github/sample/python/scikit/svm/ex2_data/train.learn'
 
 # テストデータのファイルパス
-load_test_data_path = "/Users/panzer5/github/sample/python/scikit/svm/data/test.csv"
+load_test_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex2_data/test.csv"
 
 # グラフ出力先パス
-save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/data/graph3.png'
+save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/ex2_data/graph3.png'
 
 # グラフ画像のサイズ
 fig_size_x = 10
