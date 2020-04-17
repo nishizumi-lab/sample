@@ -5,26 +5,18 @@ from sklearn import svm
 import joblib
 import matplotlib.pyplot as plt
 from sklearn import metrics 
+from sklearn.datasets import load_iris # データセットのロード用
+from sklearn.model_selection import train_test_split # データセットの分割用
 
 class SVM():
     # 学習
     def train(self,
-        load_input_data_path,
         save_trained_data_path,
-        name_x,
-        name_y,
+        train_X,
+        train_y,
         gamma,
         C,
         kernel):
-
-        # 学習用のデータを読み込み
-        train_data = pd.read_csv(load_input_data_path, sep=",")
-
-        # 説明変数：x1, x2
-        train_X = train_data.loc[:, name_x].values
-
-        # 目的変数：x3
-        train_y = train_data[name_y].values
 
         # 学習（SVM）
         clf = svm.SVC(gamma=gamma, C=C, kernel=kernel)
@@ -34,21 +26,11 @@ class SVM():
     # 検証
     def test(self,
         load_trained_data_path,
-        load_test_data_path,
-        name_x,
-        name_y):
+        test_X,
+        test_y):
 
         # 学習済ファイルのロード
         clf = joblib.load(load_trained_data_path)
-
-        # テスト用データの読み込み
-        test_data = pd.read_csv(load_test_data_path, sep=",")
-
-        # 説明変数：x1, x2
-        test_X = test_data.loc[:, name_x].values
-
-        # 正解データ：x3
-        test_y = test_data[name_y].values
 
         # 学習結果の検証（テスト用データx1, x2を入力）
         predicted_y = clf.predict(test_X)
@@ -62,20 +44,9 @@ class SVM():
     # 予測
     def predict(self,
         load_trained_data_path,
-        load_input_data_path,
-        name_x,
-        name_y):
+        test_X):
         # 学習済ファイルのロード
         clf = joblib.load(load_trained_data_path)
-
-        # 入力用データの読み込み
-        test_data = pd.read_csv(load_input_data_path, sep=",")
-
-        # 説明変数：x1, x2
-        test_X = test_data.loc[:, name_x].values
-
-        # 正解データ：x3
-        test_y = test_data[name_y].values
 
         # モデルに入力し、予測値を計算
         predicted_y = clf.predict(test_X)
@@ -84,13 +55,12 @@ class SVM():
 
     # 決定境界のプロット
     def plot2d(self,
-        load_input_data_path,
         load_trained_data_path,
         save_graph_img_path,
+        train_X,
+        train_y,
         class_datas, 
         class_colors,
-        name_x,
-        name_y,
         x1_name,
         x2_name,
         x1_0 = None,
@@ -104,17 +74,8 @@ class SVM():
         lim_font_size = 22,   
     ):
 
-        # 学習用のデータのロード
-        train_data = pd.read_csv(load_input_data_path, sep=",")
-
         # 学習済ファイルのロード
         clf = joblib.load(load_trained_data_path)
-
-        # 説明変数：x1, x2
-        train_X = train_data.loc[:, name_x].values
-
-        # 目的変数：x3
-        train_y = train_data[name_y].values
 
         # 学習用データの説明変数の最大値、最小値を計算
         x1_min = train_X.T[0].min()
@@ -137,6 +98,7 @@ class SVM():
         # 境界線プロット用の格子状データを生成
         x1 = np.linspace(x1_0, x1_n, N_x1)
         x2 = np.linspace(x2_0, x2_n, N_x2)
+        
         X1, X2 = np.meshgrid(x1, x2)    
         plot_X = np.c_[X1.ravel(), X2.ravel()]
 
@@ -168,23 +130,11 @@ class SVM():
         plt.close() # バッファ解放
 
 def main():
-    # 入力データのファイルパス
-    LOAD_INPUT_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/svm/ex4_data/train.csv"
-
     # 学習済みモデルデータの出力先パス
-    SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex4_data/train.learn'
-
-    # テストデータのファイルパス
-    LOAD_TEST_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/svm/ex4_data/test.csv"
+    SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/train.learn'
 
     # グラフ出力先パス
-    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex4_data/graph.png'
-
-    # 説明変数の列名
-    NAME_X = ["x1", "x2"]
-
-    # 目的変数の列名
-    NAME_Y = "x3"
+    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/graph.png'
 
     # SVMのパラメータ
     GAMMA = 0.1
@@ -197,11 +147,31 @@ def main():
 
     svm = SVM()
 
+    # 学習用のデータを読み込み(Irisデータセットを利用)
+    iris_dataset = load_iris()
+
+    # 説明変数（学習データ）を抽出
+    X = iris_dataset.data
+
+    # 目的変数：アヤメの品種（'setosa'=0 'versicolor'=1 'virginica'=2）
+    y = iris_dataset.target 
+    
+    X1 = np.vstack((X[:, :1]))  #sepal lengthのみを取得
+    X2 = np.vstack((X[:, 1:2])) #sepal widthのみを取得
+    X3 = np.vstack((X[:, 2:3])) #petal lengthのみを取得
+    X4 = np.vstack((X[:, 3:4])) #petal widthのみを取得
+    
+    # 学習に使用する説明変数を選択
+    #X = np.hstack((X1, X2, X3, X4))
+    X = np.hstack((X1, X2))
+
+    # 説明変数のデータを、学習用データと検証用データに分割
+    train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 0)
+
     # 学習済みモデルの作成
-    svm.train(load_input_data_path = LOAD_INPUT_DATA_PATH,
-            save_trained_data_path = SAVE_TRAINED_DATA_PATH,
-            name_x = NAME_X,
-            name_y = NAME_Y,
+    svm.train(save_trained_data_path = SAVE_TRAINED_DATA_PATH,
+            train_X=train_X,
+            train_y=train_y,
             gamma = GAMMA,
             C = C,
             kernel = KERNEL)
@@ -209,28 +179,24 @@ def main():
     # 学習済みモデルの検証
     svm.test(
         load_trained_data_path = SAVE_TRAINED_DATA_PATH,
-        load_test_data_path = LOAD_TEST_DATA_PATH,
-        name_x = NAME_X,
-        name_y = NAME_Y)
+        test_X=test_X,
+        test_y=test_y)
 
-    # 未知データを入力して予測
-    """
-    svm.test(
+    # 学習済みモデルを使って予測
+    predict_y = svm.predict(
         load_trained_data_path = SAVE_TRAINED_DATA_PATH,
-        load_input_data_path = LOAD_INPUT_DATA_PATH,
-        name_x = NAME_X,
-        name_y = NAME_Y)
-    """
+        test_X=test_X)
 
-    # グラフにプロットして決定境界を可視化
-    svm.plot2d(
-        load_input_data_path = LOAD_INPUT_DATA_PATH,
-        load_trained_data_path = SAVE_TRAINED_DATA_PATH,
+    print("test_X:", test_X)
+    print("predict_y:", predict_y)
+
+    # グラフにプロットして決定境界を可視化(説明変数２つで学習したときのみ利用可能)
+    svm.plot2d(load_trained_data_path = SAVE_TRAINED_DATA_PATH,
         save_graph_img_path = SAVE_GRAPH_IMG_PATH,
+        train_X=train_X,
+        train_y=train_y,
         class_datas = CLASS_DATAS, 
         class_colors = CLASS_COLORS,
-        name_x = NAME_X,
-        name_y = NAME_Y,
         x1_name = "x1",
         x2_name = "x2",
         fig_size_x = 10,
@@ -238,6 +204,21 @@ def main():
         lim_font_size = 25,   
     )
 
+    """
+    Score： 0.9736842105263158
+
+    test_X: [[5.8 2.8 5.1 2.4]
+    [6.  2.2 4.  1. ]
+    [5.5 4.2 1.4 0.2]
+    [7.3 2.9 6.3 1.8]
+    .....
+    [5.2 2.7 3.9 1.4]
+    [5.7 3.8 1.7 0.3]
+    [6.  2.7 5.1 1.6]]
+
+    predict_y: [2 1 0 2 0 2 0 1 1 1 2 1 1 1 1 0 1 1 0 0 2 1 0 0 2 0 0 1 1 0 2 1 0 2 2 1 0
+    2]
+    """
 
 if __name__ == "__main__":
     main()
