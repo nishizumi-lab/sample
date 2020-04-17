@@ -134,7 +134,7 @@ def main():
     SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/train.learn'
 
     # グラフ出力先パス
-    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/graph.png'
+    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/graph_x2_x3.png'
 
     # SVMのパラメータ
     GAMMA = 0.1
@@ -162,8 +162,10 @@ def main():
     X4 = np.vstack((X[:, 3:4])) #petal widthのみを取得
     
     # 学習に使用する説明変数を選択
-    #X = np.hstack((X1, X2, X3, X4))
-    X = np.hstack((X1, X2))
+    X = np.hstack((X1, X2, X3, X4))
+    #X = np.hstack((X1, X2))
+    #X = np.hstack((X2, X3))
+    #X = np.hstack((X3, X4))
 
     # 説明変数のデータを、学習用データと検証用データに分割
     train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 0)
@@ -190,6 +192,7 @@ def main():
     print("test_X:", test_X)
     print("predict_y:", predict_y)
 
+    """
     # グラフにプロットして決定境界を可視化(説明変数２つで学習したときのみ利用可能)
     svm.plot2d(load_trained_data_path = SAVE_TRAINED_DATA_PATH,
         save_graph_img_path = SAVE_GRAPH_IMG_PATH,
@@ -197,12 +200,13 @@ def main():
         train_y=train_y,
         class_datas = CLASS_DATAS, 
         class_colors = CLASS_COLORS,
-        x1_name = "x1",
-        x2_name = "x2",
+        x1_name = "x2",
+        x2_name = "x3",
         fig_size_x = 10,
         fig_size_y = 10,
         lim_font_size = 25,   
     )
+    """
 
     """
     Score： 0.9736842105263158
