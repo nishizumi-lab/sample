@@ -156,10 +156,10 @@ def main():
     # 目的変数：アヤメの品種（'setosa'=0 'versicolor'=1 'virginica'=2）
     y = iris_dataset.target 
     
-    X1 = np.vstack((X[:, :1]))  #sepal lengthのみを取得
-    X2 = np.vstack((X[:, 1:2])) #sepal widthのみを取得
-    X3 = np.vstack((X[:, 2:3])) #petal lengthのみを取得
-    X4 = np.vstack((X[:, 3:4])) #petal widthのみを取得
+    X1 = np.vstack((X[:, :1]))  #sepal length(ガクの長さ)を取得
+    X2 = np.vstack((X[:, 1:2])) #sepal width(ガクの幅)を取得
+    X3 = np.vstack((X[:, 2:3])) #petal length(花弁の長さ)を取得
+    X4 = np.vstack((X[:, 3:4])) #petal width(花弁の幅)を取得
     
     # 学習に使用する説明変数を選択
     X = np.hstack((X1, X2, X3, X4))
@@ -167,8 +167,12 @@ def main():
     #X = np.hstack((X2, X3))
     #X = np.hstack((X3, X4))
 
-    # 説明変数のデータを、学習用データと検証用データに分割
-    train_X, test_X, train_y, test_y = train_test_split(X, y, random_state = 0)
+    # 説明変数のデータを、学習用データと検証用データに分割(学習用80%、検証用20％、シャッフルはしない)
+    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.1, shuffle=True)
+    print("train_X size:", train_X.shape)
+    print("train_y size:", train_y.shape)
+    print("test_X size:", test_X.shape)
+    print("test_y size:", test_y.shape)
 
     # 学習済みモデルの作成
     svm.train(save_trained_data_path = SAVE_TRAINED_DATA_PATH,
@@ -209,19 +213,30 @@ def main():
     """
 
     """
-    Score： 0.9736842105263158
+    train_X size: (135, 4)
+    train_y size: (135,)
+    test_X size: (15, 4)
+    test_y size: (15,)
 
-    test_X: [[5.8 2.8 5.1 2.4]
-    [6.  2.2 4.  1. ]
-    [5.5 4.2 1.4 0.2]
-    [7.3 2.9 6.3 1.8]
-    .....
-    [5.2 2.7 3.9 1.4]
-    [5.7 3.8 1.7 0.3]
-    [6.  2.7 5.1 1.6]]
+    Score： 0.9333333333333333
 
-    predict_y: [2 1 0 2 0 2 0 1 1 1 2 1 1 1 1 0 1 1 0 0 2 1 0 0 2 0 0 1 1 0 2 1 0 2 2 1 0
-    2]
+    test_X: [[7.7 3.  6.1 2.3]
+    [6.3 3.4 5.6 2.4]
+    [6.4 3.1 5.5 1.8]
+    [6.  3.  4.8 1.8]
+    [6.9 3.1 5.4 2.1]
+    [6.7 3.1 5.6 2.4]
+    [6.9 3.1 5.1 2.3]
+    [5.8 2.7 5.1 1.9]
+    [6.8 3.2 5.9 2.3]
+    [6.7 3.3 5.7 2.5]
+    [6.7 3.  5.2 2.3]
+    [6.3 2.5 5.  1.9]
+    [6.5 3.  5.2 2. ]
+    [6.2 3.4 5.4 2.3]
+    [5.9 3.  5.1 1.8]]
+
+    predict_y: [2 2 2 1 2 2 2 2 2 2 2 2 2 2 2]
     """
 
 if __name__ == "__main__":
