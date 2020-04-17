@@ -167,7 +167,7 @@ def main():
     #X = np.hstack((X2, X3))
     #X = np.hstack((X3, X4))
 
-    # 説明変数のデータを、学習用データと検証用データに分割(学習用80%、検証用20％、シャッフルはしない)
+    # 説明変数のデータを、学習用データと検証用データに分割(学習用90%、検証用10％、シャッフルする)
     train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.1, shuffle=True)
     print("train_X size:", train_X.shape)
     print("train_y size:", train_y.shape)
