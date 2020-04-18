@@ -4,18 +4,19 @@ import numpy as np
 from sklearn import svm
 import joblib
 import matplotlib.pyplot as plt
+from sklearn import metrics 
 
 # 入力データのファイルパス
-load_input_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex2_data/train.csv"
+load_input_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex3_data/train.csv"
 
 # 学習済みモデルデータの出力先パス
-save_trained_data_path = '/Users/panzer5/github/sample/python/scikit/svm/ex2_data/train.learn'
+save_trained_data_path = '/Users/panzer5/github/sample/python/scikit/svm/ex3_data/train.learn'
 
 # テストデータのファイルパス
-load_test_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex2_data/test.csv"
+load_test_data_path = "/Users/panzer5/github/sample/python/scikit/svm/ex3_data/test.csv"
 
 # グラフ出力先パス
-save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/ex2_data/graph3.png'
+save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/svm/ex3_data/graph.png'
 
 # グラフ画像のサイズ
 fig_size_x = 10
@@ -34,8 +35,7 @@ train_X = train_data.loc[:, ['x1', 'x2']].values
 train_y = train_data['x3'].values
 
 # 学習（SVM）
-# kernel = 'linear','rbf','poly','sigmoid'
-clf = svm.SVC(gamma=0.01, C=10., kernel='rbf')
+clf = svm.SVC(gamma=0.5, C=1., kernel='rbf')
 clf.fit(train_X, train_y)
 
 # 学習結果を出力
@@ -47,16 +47,23 @@ clf2 = joblib.load(save_trained_data_path)
 # テスト用データの読み込み
 test_data = pd.read_csv(load_test_data_path, sep=",")
 
-# 学習結果の検証（テスト用データx1, x2を入力）
+# 説明変数：x1, x2
 test_X = test_data.loc[:, ['x1', 'x2']].values
-test_y = clf2.predict(test_X)
+
+# 正解データ：x3
+test_y = test_data['x3'].values
+
+# 学習結果の検証（テスト用データx1, x2を入力）
+predicted_y = clf2.predict(test_X)
+
+# 正解データと予測データを比較し、スコアを計算
+score = metrics.accuracy_score(test_y, predicted_y)
 
 # 検証結果の表示
-print("test X：", test_X)
-print("test y：", test_y)
+print("Score：", score)
 
 """
-test_y： [0 1 1 0]
+Score： 1.0
 """
 
 # 境界線プロット用の格子状データを生成
@@ -67,10 +74,6 @@ plot_X = np.c_[X1.ravel(), X2.ravel()]
 
 plot_y = clf2.predict(plot_X)
 
-# 検証結果の表示
-print("plot X：", plot_X)
-print("plot y：", plot_y)
-
 # グラフ設定
 plt.figure(figsize=(fig_size_x, fig_size_y))
 ax = plt.axes()
@@ -78,16 +81,18 @@ plt.rcParams['font.family'] = 'Times New Roman'  # 全体のフォント
 plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
 plt.rcParams['axes.linewidth'] = 1.0    # 軸の太さ
 
-# 格子データで散布図をプロットし、決定境界を描画（y=0:blue, y=1:red）
-plt.scatter(plot_X.T[0][plot_y <= 0], plot_X.T[1][plot_y <= 0], marker='o', color="blue", alpha=0.2)
-plt.scatter(plot_X.T[0][plot_y > 0], plot_X.T[1][plot_y > 0], marker='o', color="red", alpha=0.2)
+# 格子データで散布図をプロットし、決定境界を描画（y=0:blue, y=1:red, y=2:green）
+plt.scatter(plot_X.T[0][plot_y == 0], plot_X.T[1][plot_y == 0], marker='o', color="blue", alpha=0.1)
+plt.scatter(plot_X.T[0][plot_y == 1], plot_X.T[1][plot_y == 1], marker='o', color="red", alpha=0.1)
+plt.scatter(plot_X.T[0][plot_y == 2], plot_X.T[1][plot_y == 2], marker='o', color="green", alpha=0.1)
 
-# 学習用データを散布図にプロット（y=0:blue, y=1:red）
-plt.scatter(train_X.T[0][train_y <= 0], train_X.T[1][train_y <= 0], marker='o', color="blue", alpha=1.0)
-plt.scatter(train_X.T[0][train_y > 0], train_X.T[1][train_y > 0], marker='o', color="red", alpha=1.0)
+# 学習用データを散布図にプロット（y=0:blue, y=1:red, y=2:green）
+plt.scatter(train_X.T[0][train_y == 0], train_X.T[1][train_y == 0], marker='o', label="0", color="blue", alpha=1.0)
+plt.scatter(train_X.T[0][train_y == 1], train_X.T[1][train_y == 1], marker='o', label="1", color="red", alpha=1.0)
+plt.scatter(train_X.T[0][train_y == 2], train_X.T[1][train_y == 2], marker='o', label="2", color="green", alpha=1.0)
 
-#plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
-#plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
+plt.legend(loc=1)           # 凡例の表示（2：位置は第二象限）
+plt.title('SVM TEST', fontsize=lim_font_size)   # グラフタイトル
 plt.xlabel('x1', fontsize=lim_font_size)            # x軸ラベル
 plt.ylabel('x2', fontsize=lim_font_size)            # y軸ラベル
 
