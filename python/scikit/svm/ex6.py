@@ -68,7 +68,7 @@ def main():
 
     svm = SVM()
 
-    # 学習用のデータを読み込み(Irisデータセットを利用)
+    # 学習用のデータを読み込み(Digitsデータセットを利用)
     digits_dataset = datasets.load_digits()
 
     # 説明変数（学習データ：手書き数字の画像データ8*8, 2次元配列）を抽出
