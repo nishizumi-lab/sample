@@ -66,10 +66,6 @@ def main():
     C = 1
     KERNEL = "linear" # 手書き数字画像の場合はrbfだと学習結果が悪い
 
-    # クラスのデータとプロット時に割り当てる色
-    CLASS_DATAS = [0, 1, 2]
-    CLASS_COLORS = ["blue", "red", "green"]
-
     svm = SVM()
 
     # 学習用のデータを読み込み(Irisデータセットを利用)
