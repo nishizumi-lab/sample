@@ -93,9 +93,15 @@ def main():
     print("Score:", score)
 
     """
+    <手書き数字画像を学習した場合>
     test labels: [[0 0 1 1 2 2]]
-    predicted: [[0. 0. 1. 1. 2. 2.]]
-    Score: 1.0
+    predicted: [[0. 0. 1. 0. 2. 2.]]
+    Score: 0.8333333333333334
+    
+    <やかん、土鍋、マグカップ画像を学習した場合>
+    test labels: [[0 0 1 1 2 2]]
+    predicted: [[0. 1. 1. 1. 2. 2.]]
+    Score: 0.8333333333333334
     """
 
 if __name__ == '__main__':
