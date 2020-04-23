@@ -4,53 +4,33 @@ import cv2
 import numpy as np
 
 # generateimage array
-<<<<<<< HEAD
-def create_images_array(load_img_paths, bin_n=32):
-    hists = []
-=======
 def create_images_array(load_img_paths):
     imgs = []
->>>>>>> 3054bdb5370921dda7cec1973aa4618f39c27689
     # 画像群の配列を生成
     for load_img_path in load_img_paths:
         # 画像をロード, グレースケール変換
         # 色反転, 64*64にリサイズ, 1次元配列に変換
         img = cv2.imread(load_img_path)
-<<<<<<< HEAD
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        # ソーベルフィルタで縦・横方向のエッジ画像を生成
-        gx = cv2.Sobel(gray, cv2.CV_32F, 1, 0)
-        gy = cv2.Sobel(gray, cv2.CV_32F, 0, 1)
-        # エッジ勾配の角度と大きさを算出
-        mag, ang = cv2.cartToPolar(gx, gy)
-        # 勾配方向の量子化(16方向)
-        bins = np.int32(bin_n*ang/(2*np.pi))
-        # 勾配方向ヒストグラムを計算
-        hist = np.bincount(bins.ravel(), mag.ravel(), bin_n)
-        hists.append(hist)
-    return np.array(hists, np.float32)
-=======
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.bitwise_not(img)
         img = cv2.resize(img, (64, 64))
         img = img.flatten()
         imgs.append(img)
     return np.array(imgs, np.float32)
->>>>>>> 3054bdb5370921dda7cec1973aa4618f39c27689
 
 def main():
     # 学習用の画像ファイルの格納先（手書き文字画像：0～2の3種類）
-    LOAD_TRAIN_IMG0S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/img0/*'
-    LOAD_TRAIN_IMG1S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/img1/*'
-    LOAD_TRAIN_IMG2S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/img2/*'
+    LOAD_TRAIN_IMG0S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/img0/*'
+    LOAD_TRAIN_IMG1S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/img1/*'
+    LOAD_TRAIN_IMG2S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/img2/*'
 
     # 作成した学習モデルの保存先
-    SAVE_TRAINED_DATA_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/svm_trained_data.xml'
+    SAVE_TRAINED_DATA_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/svm_trained_data.xml'
     
     # 検証用の画像ファイルの格納先（手書き文字画像：0～2の3種類）
-    LOAD_TEST_IMG0S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/test_img0/*'
-    LOAD_TEST_IMG1S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/test_img1/*'
-    LOAD_TEST_IMG2S_PATH = 'C:/github/sample/python/opencv/svm/ex2_data/test_img2/*'
+    LOAD_TEST_IMG0S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/test_img0/*'
+    LOAD_TEST_IMG1S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/test_img1/*'
+    LOAD_TEST_IMG2S_PATH = 'C:/github/sample/python/opencv/svm/ex1_data/test_img2/*'
 
     # 学習用の画像ファイルのパスを取得
     load_img0_paths = glob.glob(LOAD_TRAIN_IMG0S_PATH)
