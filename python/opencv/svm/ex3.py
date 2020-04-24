@@ -26,7 +26,7 @@ def create_images_array(load_img_paths, bin_n=32):
     return np.array(hists, np.float32)
 
 def main():
-    # 学習用の画像ファイルの格納先（手書き文字画像：0～2の3種類）
+    # 学習用の画像ファイルの格納先（0～2の3種類）
     LOAD_TRAIN_IMG0S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/img0/*'
     LOAD_TRAIN_IMG1S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/img1/*'
     LOAD_TRAIN_IMG2S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/img2/*'
@@ -34,7 +34,7 @@ def main():
     # 作成した学習モデルの保存先
     SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/svm_trained_data.xml'
     
-    # 検証用の画像ファイルの格納先（手書き文字画像：0～2の3種類）
+    # 検証用の画像ファイルの格納先（0～2の3種類）
     LOAD_TEST_IMG0S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/test_img0/*'
     LOAD_TEST_IMG1S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/test_img1/*'
     LOAD_TEST_IMG2S_PATH = '/Users/panzer5/github/sample/python/opencv/svm/ex3_data/test_img2/*'
