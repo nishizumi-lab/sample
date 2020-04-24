@@ -6,15 +6,21 @@ import numpy as np
 # 画像配列の作成
 def create_images_array(load_img_paths):
     imgs = []
+    # Hog特徴のパラメータ
+    win_size = (64, 64)
+    block_size = (16, 16)
+    block_stride = (4, 4)
+    cell_size = (4, 4)
+    bins = 9
     # 画像群の配列を生成
     for load_img_path in load_img_paths:
         # 画像をロード, グレースケール変換
         # 色反転, 64*64にリサイズ, 1次元配列に変換
         img = cv2.imread(load_img_path)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img = cv2.bitwise_not(img)
-        img = cv2.resize(img, (64, 64))
-        img = img.flatten()
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.resize(gray, win_size)
+        hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, bins)
+        img = hog.compute(gray)
         imgs.append(img)
     return np.array(imgs, np.float32)
 
@@ -89,8 +95,8 @@ def main():
     """
     <やかん、土鍋、マグカップ画像を学習した場合>
     test labels: [[0 0 1 1 2 2]]
-    predicted: [[0. 0. 2. 1. 2. 1.]]
-    Score: 0.6666666666666666
+    predicted: [[0. 0. 1. 1. 2. 2.]]
+    Score: 1.0
     """
 
 if __name__ == '__main__':

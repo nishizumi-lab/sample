@@ -9,9 +9,10 @@ def create_images_array(load_img_paths, bin_n=32):
     # 画像群の配列を生成
     for load_img_path in load_img_paths:
         # 画像をロード, グレースケール変換
-        # 色反転, 64*64にリサイズ, 1次元配列に変換
+        # 色反転, 64*64にリサイズ, HoG特徴を計算
         img = cv2.imread(load_img_path)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.resize(gray, (64, 64))
         # ソーベルフィルタで縦・横方向のエッジ画像を生成
         gx = cv2.Sobel(gray, cv2.CV_32F, 1, 0)
         gy = cv2.Sobel(gray, cv2.CV_32F, 0, 1)
@@ -99,7 +100,7 @@ def main():
     
     <やかん、土鍋、マグカップ画像を学習した場合>
     test labels: [[0 0 1 1 2 2]]
-    predicted: [[0. 1. 1. 1. 2. 2.]]
+    predicted: [[0. 0. 1. 1. 2. 0.]]
     Score: 0.8333333333333334
     """
 
