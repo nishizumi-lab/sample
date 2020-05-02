@@ -16,17 +16,17 @@ def main():
     # モデル構築
     model = Sequential()
 
-    # 中間層(入力数:input_dim = 2, 出力数:units = 2) 
-    model.add(Dense(activation='sigmoid', input_dim=2, units=2))
+    # 中間層(入力数:input_dim = 2, ユニット数:units = 3) 
+    model.add(Dense(activation='sigmoid', input_dim=2, units=3))
 
-    # 出力層(入力数:input_dim = 2だが、中間層の出力数と同じなので省略可能, 出力数:units = 1) 
+    # 出力層(入力数:input_dim = 3だが、中間層のユニット数と同じなので省略可能, 出力数:units = 1) 
     model.add(Dense(units=1, activation='sigmoid'))
 
     # 単純パーセプトロンをコンパイル（勾配法：RMSprop、損失関数：mean_squared_error、評価関数：accuracy）
     model.compile(loss='mean_squared_error', optimizer=RMSprop(), metrics=['accuracy'])
 
     # 学習（教師データでフィッティング、バッチサイズ：4, エポック数：1000）
-    history = model.fit(train_x, train_y, batch_size=4, epochs=1000)
+    history = model.fit(train_x, train_y, batch_size=4, epochs=3000)
 
     # 検証用データの用意
     test_x = train_x
@@ -52,23 +52,31 @@ if __name__ == '__main__':
     main()
 
     """
-    test_loss: 0.00843189936131239
+    Epoch 2999/3000
+    4/4 [==============================] - 0s 176us/step - loss: 0.0099 - accuracy: 1.0000
+    Epoch 3000/3000
+    4/4 [==============================] - 0s 160us/step - loss: 0.0099 - accuracy: 1.0000
+    test_loss: 0.00986015610396862
     test_acc: 1.0
     test_y: [0. 0. 0. 1.]
-    predict_y: [[-0.12317526]
-    [ 0.12482417]
-    [ 0.04071283]
-    [ 0.9637116 ]]
-    thresholded predict_y: [[0][0][0][1]]
+    predict_y: [[0.00171526]
+    [0.08238249]
+    [0.08376988]
+    [0.8398956 ]]
+    thresholded predict_y: [[0]
+    [0]
+    [0]
+    [1]]
     Model: "sequential_1"
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
-    dense_1 (Dense)              (None, 2)                 6         
+    dense_1 (Dense)              (None, 3)                 9         
     _________________________________________________________________
-    dense_2 (Dense)              (None, 1)                 3         
+    dense_2 (Dense)              (None, 1)                 4         
     =================================================================
-    Total params: 9
-    Trainable params: 9
+    Total params: 13
+    Trainable params: 13
     Non-trainable params: 0
-    """
+    _________________________________________________________________
+        """
