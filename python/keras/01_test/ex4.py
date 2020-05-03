@@ -6,7 +6,7 @@ from keras.optimizers import RMSprop
 import os
 import matplotlib.pyplot as plt
 
-def plot_history(history, save_graph_img_path, fig_size_x, fig_size_y):
+def plot_history(history, save_graph_img_path, fig_size_x, fig_size_y, lim_font_size):
 
 
     acc = history.history['accuracy']
@@ -19,7 +19,7 @@ def plot_history(history, save_graph_img_path, fig_size_x, fig_size_y):
     # グラフ表示
     plt.figure(figsize=(fig_size_x, fig_size_y))
     plt.rcParams['font.family'] = 'Times New Roman'
-    plt.rcParams['font.size'] = 17
+    plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
     plt.subplot(121)
 
     plt.plot(epochs, acc, 'bo' ,label = 'training acc')
@@ -82,7 +82,7 @@ def main():
                         epochs=3000,
                         validation_data=(test_x, test_y)) # 検証用データ
 
-    plot_history(history, SAVE_DATA_DIR_PATH + "graph.png", 25, 10)
+    plot_history(history, SAVE_DATA_DIR_PATH + "graph.png", 25, 10, 25)
 
 if __name__ == '__main__':
     main()
