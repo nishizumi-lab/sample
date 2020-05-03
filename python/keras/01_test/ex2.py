@@ -11,7 +11,10 @@ def main():
                         [0.0, 1.0],
                         [1.0, 1.0]])
     # 目的変数（正解データ）
-    train_y = np.array([0.0, 1.0, 1.0, 0.0])
+    train_y = np.array([[0.0, 0.0],
+                        [1.0, 0.0],
+                        [1.0, 0.0],
+                        [0.0, 0.0]])
 
     # モデル構築
     model = Sequential()
@@ -19,8 +22,8 @@ def main():
     # 中間層(入力数:input_dim = 2, ユニット数:units = 3) 
     model.add(Dense(activation='sigmoid', input_dim=2, units=3))
 
-    # 出力層(入力数:input_dim = 3だが、中間層のユニット数と同じなので省略可能, 出力数:units = 1) 
-    model.add(Dense(units=1, activation='sigmoid'))
+    # 出力層(入力数:input_dim = 3だが、中間層のユニット数と同じなので省略可能, ユニット数:units = 2) 
+    model.add(Dense(units=2, activation='sigmoid'))
 
     # 単純パーセプトロンをコンパイル（勾配法：RMSprop、損失関数：mean_squared_error、評価関数：accuracy）
     model.compile(loss='mean_squared_error', optimizer=RMSprop(), metrics=['accuracy'])
@@ -52,33 +55,32 @@ if __name__ == '__main__':
     main()
 
     """
-    4/4 [==============================] - 0s 159us/step - loss: 0.0753 - accuracy: 1.0000
-    Epoch 2999/3000
-    4/4 [==============================] - 0s 159us/step - loss: 0.0752 - accuracy: 1.0000
     Epoch 3000/3000
-    4/4 [==============================] - 0s 351us/step - loss: 0.0751 - accuracy: 1.0000
-    test_loss: 0.07507006824016571
+    4/4 [==============================] - 0s 169us/step - loss: 0.0771 - accuracy: 1.0000
+    test_loss: 0.07708477973937988
     test_acc: 1.0
-    test_y: [0. 1. 1. 0.]
-    predict_y: [
-    [0.29704908]
-    [0.73235863]
-    [0.73183876]
-    [0.26172462]]
-    thresholded predict_y: [[0]
-    [1]
-    [1]
-    [0]]
+    test_y: [[0. 0.]
+    [1. 0.]
+    [1. 0.]
+    [0. 0.]]
+    predict_y: [[1.4658220e-01 2.6109521e-04]
+    [4.9374342e-01 7.2102230e-05]
+    [8.1419665e-01 6.1752781e-04]
+    [5.5170000e-01 7.7235760e-05]]
+    thresholded predict_y: [[0 0]
+    [0 0]
+    [1 0]
+    [1 0]]
     Model: "sequential_1"
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
     dense_1 (Dense)              (None, 3)                 9         
     _________________________________________________________________
-    dense_2 (Dense)              (None, 1)                 4         
+    dense_2 (Dense)              (None, 2)                 8         
     =================================================================
-    Total params: 13
-    Trainable params: 13
+    Total params: 17
+    Trainable params: 17
     Non-trainable params: 0
     _________________________________________________________________
     """
