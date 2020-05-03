@@ -49,7 +49,6 @@ def main():
     threshold = 0.5
     print("thresholded predict_y:", (predict_y > threshold).astype(np.int))
 
-    model.summary()
 
 if __name__ == '__main__':
     main()
@@ -60,29 +59,24 @@ if __name__ == '__main__':
     Epoch 3000/3000
     4/4 [==============================] - 0s 163us/step - loss: 0.0059 - accuracy: 1.0000
     test_loss: 0.005894103087484837
+
     test_acc: 1.0
-    test_y: [[0. 0.]
+
+    test_y: [
+    [0. 0.]
     [0. 0.]
     [0. 0.]
     [1. 0.]]
-    predict_y: [[4.8003150e-03 3.0511411e-04]
+
+    predict_y: [
+    [4.8003150e-03 3.0511411e-04]
     [1.0174283e-01 1.7523641e-03]
     [1.1211305e-01 1.4651634e-04]
     [8.4442729e-01 1.6705699e-03]]
-    thresholded predict_y: [[0 0]
+
+    thresholded predict_y: [
+    [0 0]
     [0 0]
     [0 0]
     [1 0]]
-    Model: "sequential_1"
-    _________________________________________________________________
-    Layer (type)                 Output Shape              Param #   
-    =================================================================
-    dense_1 (Dense)              (None, 3)                 9         
-    _________________________________________________________________
-    dense_2 (Dense)              (None, 2)                 8         
-    =================================================================
-    Total params: 17
-    Trainable params: 17
-    Non-trainable params: 0
-    _________________________________________________________________
     """
