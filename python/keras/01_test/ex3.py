@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import numpy as np
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense
 from keras.optimizers import RMSprop
 from keras.utils.vis_utils import plot_model
+import numpy as np
 import os
 
 def main():
