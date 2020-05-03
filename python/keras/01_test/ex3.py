@@ -7,7 +7,11 @@ from keras.utils.vis_utils import plot_model
 
 def main():
 
-    SAVE_PLOT_MODEL_DIR_PATH = "/Users/panzer5/github/sample/python/keras/01_test/ex3_data/"
+    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/01_test/ex3_data/"
+    
+    # ディレクトリがなければ作成
+    os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
+
     # モデル構築
     model = Sequential()
 
@@ -24,7 +28,7 @@ def main():
     model.summary()
 
     # モデル構造の画像出力
-    plot_model(model, to_file=SAVE_PLOT_MODEL_DIR_PATH + "plot_model.png")
+    plot_model(model, to_file=SAVE_DATA_DIR_PATH + "plot_model.png")
 
 if __name__ == '__main__':
     main()
