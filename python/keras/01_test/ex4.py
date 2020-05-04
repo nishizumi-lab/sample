@@ -48,19 +48,19 @@ def main():
 
 
     # 説明変数（訓練用データ、入力データ）の用意
-    train_x = np.array([[0.0, 0.0],
+    x_train = np.array([[0.0, 0.0],
                         [1.0, 0.0],
                         [0.0, 1.0],
                         [1.0, 1.0]])
     # 目的変数（正解データ）
-    train_y = np.array([[0.0, 0.0],
+    y_train = np.array([[0.0, 0.0],
                         [1.0, 0.0],
                         [1.0, 0.0],
                         [0.0, 0.0]])
 
     # 検証用データ
-    test_x = train_x
-    test_y = train_y
+    x_test = x_train
+    y_test = y_train
 
     # モデル構築
     model = Sequential()
@@ -76,11 +76,11 @@ def main():
 
     # 学習（教師データでフィッティング、バッチサイズ：4, エポック数：3000）
     history = model.fit(
-                        train_x, 
-                        train_y, 
+                        x_train, 
+                        y_train, 
                         batch_size=4, 
                         epochs=3000,
-                        validation_data=(test_x, test_y)) # 検証用データ
+                        validation_data=(x_test, y_test)) # 検証用データ
 
     plot_history(history, SAVE_DATA_DIR_PATH + "graph.png", 25, 10, 25)
 

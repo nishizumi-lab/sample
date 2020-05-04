@@ -14,12 +14,12 @@ def main():
     os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
 
     # 説明変数（訓練用データ、入力データ）の用意
-    train_x = np.array([[0.0, 0.0],
+    x_train = np.array([[0.0, 0.0],
                         [1.0, 0.0],
                         [0.0, 1.0],
                         [1.0, 1.0]])
     # 目的変数（正解データ）
-    train_y = np.array([[0.0, 0.0],
+    y_train = np.array([[0.0, 0.0],
                         [1.0, 0.0],
                         [1.0, 0.0],
                         [0.0, 0.0]])
@@ -37,11 +37,11 @@ def main():
     model.compile(loss='mean_squared_error', optimizer=RMSprop(), metrics=['accuracy'])
 
     # 学習（教師データでフィッティング、バッチサイズ：4, エポック数：1000）
-    history = model.fit(train_x, train_y, batch_size=4, epochs=3000)
+    history = model.fit(x_train, y_train, batch_size=4, epochs=3000)
 
     # 検証用データの用意
-    test_x = train_x
-    test_y = train_y
+    x_test = x_train
+    y_test = y_train
        
     # モデル構造の保存
     open(SAVE_DATA_DIR_PATH  + "model.json","w").write(model.to_json())
@@ -56,12 +56,12 @@ def main():
     model2.load_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
     # 検証用データの用意
-    test_x = train_x
-    test_y = train_y
+    x_test = x_train
+    y_test = y_train
 
    # 検証用データをモデルに入力し、出力（予測値）を取り出す
-    predict_y = model2.predict(test_x)
-    print("test_y:", test_y)  # 正解データ
+    predict_y = model2.predict(x_test)
+    print("y_test:", y_test)  # 正解データ
     print("predict_y:", predict_y)  # 予測データ
 
     # 出力値をしきい値処理
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     main()
 
     """
-    test_y: [[0. 0.]
+    y_test: [[0. 0.]
     [1. 0.]
     [1. 0.]
     [0. 0.]]

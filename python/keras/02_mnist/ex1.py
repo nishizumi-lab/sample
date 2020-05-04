@@ -14,31 +14,27 @@ def main():
     epochs = 20 # エポック数(学習の繰り返し回数)
 
     # mnistデータセット（訓練用データと検証用データ）をネットから取得
-    (train_x, train_y), (test_x, test_y) = mnist.load_data()
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     # 2次元配列から1次元配列へ変換（28*28=784次元のベクトル）
-    train_x = train_x.reshape(60000, 28*28)
-    test_x = test_x.reshape(10000, 28*28)
+    x_train = x_train.reshape(60000, 28*28)
+    x_test = x_test.reshape(10000, 28*28)
 
     # データ型をfloat32に変換
-    train_x = train_x.astype('float32')
-    test_x = test_x.astype('float32')
+    x_train = x_train.astype('float32')
+    x_test = x_test.astype('float32')
 
     # 正規化(0-255から0.0-1.0に変換）
-    train_x /= 255
-    test_x /= 255
+    x_train /= 255
+    x_test /= 255
 
     # カテゴリー変数を学習しやすいよう, 0と1で表現する処理(one-hot encodings)
-    train_y = to_categorical(train_y, num_classes)
-    test_y = to_categorical(test_y, num_classes)
-
-    # 検証用最後の5000個のトレーニングサンプルを分割
-    train_x, valid_x = np.split(train_x, [55000])
-    train_y, valid_y = np.split(train_y, [55000])
+    y_train = to_categorical(y_train, num_classes)
+    y_test = to_categorical(y_test, num_classes)
 
     # データセットの個数を表示
-    print(train_x.shape[0], 'train samples')
-    print(test_x.shape[0], 'test samples')
+    print(x_train.shape[0], 'train samples')
+    print(x_test.shape[0], 'test samples')
 
     # モデルの構築
     model = Sequential()
@@ -55,16 +51,16 @@ def main():
     # コンパイル（多クラス分類問題）
     model.compile(loss='categorical_crossentropy', optimizer=RMSprop(), metrics=['accuracy'])
 
-    # 構築したモデルで学習
-    history = model.fit(train_x, 
-                        train_y, 
+    # 構築したモデルで学習（学習データ:trainのうち、10％を検証データ:validationとして使用）
+    history = model.fit(x_train, 
+                        y_train, 
                         batch_size=batch_size, 
                         epochs=epochs, 
                         verbose=1, 
-                        validation_data=(valid_x, valid_y))
+                        validation_split=0.1)
 
-    score = model.evaluate(test_x, 
-                            test_y,
+    score = model.evaluate(x_test, 
+                            y_test,
                             verbose=0
                             )
 
