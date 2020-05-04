@@ -144,10 +144,14 @@ def main():
                 fig_size_width = FIG_SIZE_WIDTH, 
                 fig_size_height = FIG_SIZE_HEIGHT, 
                 lim_font_size = FIG_FONT_SIZE)
-    """
-    Test loss: 0.1320522134795261
-    Test accuracy: 0.9837999939918518
-    """
+
+    # モデル構造の保存
+    open(SAVE_DATA_DIR_PATH  + "model.json","w").write(model.to_json())  
+
+    # 学習済みの重みを保存
+    model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
+
+
 
 if __name__ == '__main__':
     main()
