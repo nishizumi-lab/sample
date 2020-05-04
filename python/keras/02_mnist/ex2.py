@@ -5,7 +5,44 @@ from keras.layers.core import Dense, Dropout
 from keras.optimizers import RMSprop
 from keras.datasets import mnist
 from keras.utils import np_utils, to_categorical
+import matplotlib.pyplot as plt
 import os
+
+def plot_history(history, 
+                save_graph_img_path, 
+                fig_size_width, 
+                fig_size_height, 
+                lim_font_size):
+    acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+   
+    epochs = range(len(acc))
+
+    # グラフ表示
+    plt.figure(figsize=(fig_size_width, fig_size_height))
+    plt.rcParams['font.family'] = 'Times New Roman'
+    plt.rcParams['font.size'] = lim_font_size  # 全体のフォント
+    #plt.subplot(121)
+
+    # plot accuracy values
+    plt.plot(epochs, acc, color = "blue", linestyle = "solid", label = 'train acc')
+    plt.plot(epochs, val_acc, color = "green", linestyle = "solid", label= 'valid acc')
+    #plt.title('Training and Validation acc')
+    #plt.grid()
+    #plt.legend()
+ 
+    # plot loss values
+    #plt.subplot(122)
+    plt.plot(epochs, loss, color = "red", linestyle = "solid" ,label = 'train loss')
+    plt.plot(epochs, val_loss, color = "orange", linestyle = "solid" , label= 'valid loss')
+    #plt.title('Training and Validation loss')
+    plt.legend()
+    plt.grid()
+
+    plt.savefig(save_graph_img_path)
+    plt.close() # バッファ解放
 
 def main():
     # ハイパーパラメータ
@@ -18,6 +55,17 @@ def main():
     # 入力画像のパラメータ
     img_width = 28 # 入力画像の幅
     img_height = 28 # 入力画像の高さ
+
+    # データ格納用のディレクトリパス
+    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex2_data/"
+
+    # グラフ画像のサイズ
+    FIG_SIZE_WIDTH = 12
+    FIG_SIZE_HEIGHT = 10
+    FIG_FONT_SIZE = 25
+
+    # ディレクトリがなければ作成
+    os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
 
     # 入力データ数（今回は28*28=784個）
     num_input = int(img_width * img_height)
@@ -90,6 +138,12 @@ def main():
     # 正答率（値が大きいほど良い）
     print('Test accuracy:', score[1])
     
+    # 学習過程をプロット
+    plot_history(history, 
+                save_graph_img_path = SAVE_DATA_DIR_PATH + "graph.png", 
+                fig_size_width = FIG_SIZE_WIDTH, 
+                fig_size_height = FIG_SIZE_HEIGHT, 
+                lim_font_size = FIG_FONT_SIZE)
     """
     Test loss: 0.1320522134795261
     Test accuracy: 0.9837999939918518
