@@ -41,7 +41,7 @@ def main():
     # 一次元配列に変換
     th = th.reshape(1, num_input)
 
-    # 検証用データをモデルに入力し、出力（予測値）を取り出す
+    # 分類機に入力データを与えて予測（出力：各クラスの予想確率）
     predict_y = model.predict(th)
 
     # 最も確率の高い要素番号（=予想する数字）
@@ -56,6 +56,12 @@ def main():
     5.9332115e-33 0.0000000e+00 2.5989594e-25 4.9735018e-26 3.0064353e-35]]
     predict_number: 2
     """
+
+    # 分類機に入力データを与えて予測（出力：クラスラベル）
+    predict_classes_y = model.predict_classes(th)
+    print("predict_classes_y:", predict_classes_y)  # 予測した数字
+
+    # predict_classes_y: [2]
 
 if __name__ == '__main__':
     main()
