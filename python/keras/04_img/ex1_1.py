@@ -5,12 +5,17 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import RMSprop
 from keras.datasets import cifar10
-from keras.preprocessing.image import array_to_img, img_to_array, list_pictures, load_img
+from keras.preprocessing.image import array_to_img, img_to_array, load_img
 from keras.utils import np_utils, to_categorical
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import re
 import os
 import pickle
  
+def list_pictures(directory, ext='jpg|jpeg|bmp|png|ppm'):
+    return [os.path.join(root, f) for root, _, files in os.walk(directory) for f in files if re.match(r'([\w]+\.(?:' + ext + '))', f.lower())]
+
 def plot_history(history, 
                 save_graph_img_path, 
                 fig_size_width, 
@@ -50,9 +55,9 @@ def plot_history(history,
 
 def main():
     # ハイパーパラメータ
-    batch_size = 128 # バッチサイズ
-    num_classes = 10 # 分類クラス数(今回は0～9の手書き文字なので10)
-    epochs = 20      # エポック数(学習の繰り返し回数)
+    batch_size = 5 # バッチサイズ
+    num_classes = 3 # 分類クラス数(今回は0～9の手書き文字なので10)
+    epochs = 200      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
     # 入力画像のパラメータ
@@ -75,64 +80,57 @@ def main():
     data_y = []
     num_classes = 3
 
-    # 学習データの取得（正解画像）
+    # クラス0の画像データ群をロード
     for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img0"):
-        img = img_to_array(load_img(filepath, target_size=(64,64)))
+        img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
         data_x.append(img)
         data_y.append(0) # 教師データ（正解）
 
 
-    # 学習データの取得（非正解画像）
-    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img0"):
-        img = img_to_array(load_img(filepath, target_size=(64,64)))
+    # クラス1の画像データ群をロード
+    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img1"):
+        img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
         data_x.append(img)
         data_y.append(1) # 教師データ（正解）
 
-    # 学習データはNumPy配列に変換し、float32型に変換し、正規化(0～1)
-    data_x = np.asarray(data_x)
-    data_x = data_x.astype('float32')
-    data_x = data_x / 255.0
+    # クラス2の画像データ群をロード
+    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img2"):
+        img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
+        data_x.append(img)
+        data_y.append(2) # 教師データ（正解）
 
-    # 学習データはNumPy配列に変換し、one hotエンコーディング
+    # NumPy配列に変換
+    data_x = np.asarray(data_x)
+
+    # 学習データはNumPy配列に変換し
     data_y = np.asarray(data_y)
-    data_y = np_utils.to_categorical(data_y, num_classes)
- 
 
     # 学習用データとテストデータに分割
     x_train, x_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.2)
 
-
-
-    # 入力データ数（今回は28*28=784個）
-    num_input = int(img_width * img_height)
-
-    # mnistデータセット（訓練用データと検証用データ）をネットから取得
-    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-
-    # 各画像のデータを28x28x1へリサイズ
-    x_train = x_train.reshape(x_train.shape[0], img_height, img_width, img_ch)
-    x_test = x_test.reshape(x_test.shape[0], img_height, img_width, img_ch)
-
-    # データ型をfloat32に変換
+    # 学習データはfloat32型に変換し、正規化(0～1)
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
+    x_train = x_train / 255.0
+    x_test = x_test / 255.0
 
-    # 正規化(0-255から0.0-1.0に変換）
-    x_train /= 255
-    x_test /= 255
-
-    # カテゴリー変数を学習しやすいよう, 0と1で表現する処理(one-hot encodings)
+    # 正解ラベルをone hotエンコーディング
     y_train = to_categorical(y_train, num_classes)
     y_test = to_categorical(y_test, num_classes)
 
     # データセットの個数を表示
-    print(x_train.shape[0], 'train samples')
-    print(x_test.shape[0], 'test samples')
+    print(x_train.shape, 'x train samples')
+    print(x_test.shape, 'x test samples')
+    print(y_train.shape, 'y train samples')
+    print(y_test.shape, 'y test samples')
 
+    """
+    (12, 32, 32, 3) x train samples
+    (12, 32, 32, 3) x train samples
+    (4,) y test samples
+    (4,) y test samples
+    """
     # モデルの構築
-    model = Sequential()
-
-    # CNN（畳み込みニューラルネットワーク）のモデルを設定
     model = Sequential()
 
     # 入力層:32×32*3
@@ -142,7 +140,7 @@ def main():
     # 出力ユニット数：32（32枚分の出力データが得られる）
     model.add(Conv2D(32,(3,3), 
                 padding='same', 
-                input_shape=(img_width, img_height, img_ch),
+                input_shape=x_train.shape[1:],
                 activation='relu'))
 
     # 【2次元畳み込み層】
@@ -216,7 +214,7 @@ def main():
     model.add(Dense(num_classes, activation='softmax')) # 活性化関数：softmax
 
     # モデル構造の表示
-    model.summary()
+    #model.summary()
 
     # コンパイル（多クラス分類問題）
     # 最適化：RMSpropを使用
