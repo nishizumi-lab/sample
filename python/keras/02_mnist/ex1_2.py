@@ -16,7 +16,7 @@ def main():
     num_input = int(img_width * img_height)
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex2_data/"
+    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex1_data/"
 
     # 保存したモデル構造の読み込み
     model = model_from_json(open(SAVE_DATA_DIR_PATH + "model.json", 'r').read())
