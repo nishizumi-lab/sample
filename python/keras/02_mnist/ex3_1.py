@@ -8,6 +8,7 @@ from keras.datasets import mnist
 from keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import os
+import json
 
 def plot_history(history, 
                 save_graph_img_path, 
@@ -187,7 +188,8 @@ def main():
     # 学習済みの重みを保存
     model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
-
+    # 学習履歴を保存
+    json.dump(history.history, open("history.json", "w"))
 
 if __name__ == '__main__':
     main()
