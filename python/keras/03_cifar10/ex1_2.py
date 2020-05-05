@@ -11,8 +11,8 @@ import os
 
 def main():
     # 入力画像のパラメータ
-    img_width = 28 # 入力画像の幅
-    img_height = 28 # 入力画像の高さ
+    img_width = 32 # 入力画像の幅
+    img_height = 32 # 入力画像の高さ
     img_ch = 1 # 1ch画像（グレースケール）で学習
 
     # 入力データ数
@@ -20,6 +20,9 @@ def main():
 
     # データ格納用のディレクトリパス
     SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex3_data/"
+
+    # ラベル
+    labels =['飛行機', '自動車', '鳥', '猫', '鹿', '犬', '蛙', '馬', '船', 'トラック']
 
     # 保存したモデル構造の読み込み
     model = model_from_json(open(SAVE_DATA_DIR_PATH + "model.json", 'r').read())

@@ -9,7 +9,7 @@ from keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import os
 import json
-
+ 
 def plot_history(history, 
                 save_graph_img_path, 
                 fig_size_width, 
@@ -51,7 +51,7 @@ def main():
     # ハイパーパラメータ
     batch_size = 128 # バッチサイズ
     num_classes = 10 # 分類クラス数(今回は0～9の手書き文字なので10)
-    epochs = 5      # エポック数(学習の繰り返し回数)
+    epochs = 20      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
     # 入力画像のパラメータ
@@ -229,7 +229,8 @@ def main():
     model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
     # 学習履歴を保存
-    json.dump(history.history, open("history.json", "w"))
+    with open(SAVE_DATA_DIR_PATH + "history.json", "w") as f:
+        json.dump(history.history, f)
 
 
 if __name__ == '__main__':

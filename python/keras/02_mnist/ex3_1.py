@@ -189,7 +189,8 @@ def main():
     model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
     # 学習履歴を保存
-    json.dump(history.history, open("history.json", "w"))
+    with open(SAVE_DATA_DIR_PATH + "history.json", "w") as f:
+        json.dump(history.history, f)
 
 if __name__ == '__main__':
     main()
