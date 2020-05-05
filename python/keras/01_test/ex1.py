@@ -16,10 +16,11 @@ def main():
                         [0.0, 0.0],
                         [1.0, 0.0]])
 
-    # モデル構築
+    # モデル生成
     model = Sequential()
 
     # 中間層(入力数:input_dim = 2, ユニット数:units = 3) 
+    # Denseは全結合層のレイヤモジュール
     model.add(Dense(activation='sigmoid', input_dim=2, units=3))
 
     # 出力層(入力数:input_dim = 3だが、中間層のユニット数と同じなので省略可能, 出力数:units = 2) 
