@@ -5,6 +5,7 @@ from keras.layers.core import Dense, Dropout
 from keras.optimizers import RMSprop
 from keras.datasets import mnist
 from keras.utils import np_utils, to_categorical
+import matplotlib.pyplot as plt
 import os
 
 def plot_history(history, 
@@ -43,7 +44,6 @@ def plot_history(history,
     plt.savefig(save_graph_img_path)
     plt.close() # バッファ解放
 
-
 def main():
     # ハイパーパラメータ
     batch_size = 128 # バッチサイズ
@@ -63,7 +63,10 @@ def main():
     FIG_SIZE_WIDTH = 12
     FIG_SIZE_HEIGHT = 10
     FIG_FONT_SIZE = 25
-    
+
+    # ディレクトリがなければ作成
+    os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
+
     # 入力データ数（今回は28*28=784個）
     num_input = int(img_width * img_height)
 
@@ -135,17 +138,20 @@ def main():
     # 正答率（値が大きいほど良い）
     print('Test accuracy:', score[1])
     
-    """
-    Test loss: 0.1320522134795261
-    Test accuracy: 0.9837999939918518
-    """
-    
     # 学習過程をプロット
     plot_history(history, 
                 save_graph_img_path = SAVE_DATA_DIR_PATH + "graph.png", 
                 fig_size_width = FIG_SIZE_WIDTH, 
                 fig_size_height = FIG_SIZE_HEIGHT, 
                 lim_font_size = FIG_FONT_SIZE)
+
+    # モデル構造の保存
+    open(SAVE_DATA_DIR_PATH  + "model.json","w").write(model.to_json())  
+
+    # 学習済みの重みを保存
+    model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
+
+
 
 if __name__ == '__main__':
     main()
