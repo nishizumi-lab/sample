@@ -186,6 +186,7 @@ def main():
     model.summary()
 
     # コンパイル（多クラス分類問題）
+    # 最適化：RMSpropを使用
     model.compile(loss='categorical_crossentropy', optimizer=RMSprop(), metrics=['accuracy'])
 
     # 構築したモデルで学習（学習データ:trainのうち、10％を検証データ:validationとして使用）
