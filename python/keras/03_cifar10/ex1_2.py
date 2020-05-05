@@ -33,7 +33,7 @@ def main():
 
     # 画像の読み込み（32×32にリサイズ）
     # 正規化, 4次元配列に変換（モデルの入力が4次元なので合わせる）
-    img = load_img(SAVE_DATA_DIR_PATH + "test2.png", target_size=(img_width, img_height))
+    img = load_img(SAVE_DATA_DIR_PATH + "test.png", target_size=(img_width, img_height))
     img = img_to_array(img) 
     img = img.astype('float32')/255.0
     img = np.array([img])
