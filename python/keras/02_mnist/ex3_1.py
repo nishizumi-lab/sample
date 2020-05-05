@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense, Dropout
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import RMSprop
 from keras.datasets import mnist
 from keras.utils import np_utils, to_categorical
@@ -48,16 +49,16 @@ def main():
     # ハイパーパラメータ
     batch_size = 128 # バッチサイズ
     num_classes = 10 # 分類クラス数(今回は0～9の手書き文字なので10)
-    epochs = 20      # エポック数(学習の繰り返し回数)
+    epochs = 5      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
-    num_middle_unit = 512 # 中間層のユニット数
 
     # 入力画像のパラメータ
     img_width = 28 # 入力画像の幅
     img_height = 28 # 入力画像の高さ
+    img_ch = 1 # 1ch画像（グレースケール）で学習
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex2_data/"
+    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex3_data/"
 
     # グラフ画像のサイズ
     FIG_SIZE_WIDTH = 12
@@ -73,9 +74,9 @@ def main():
     # mnistデータセット（訓練用データと検証用データ）をネットから取得
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    # 2次元配列から1次元配列へ変換（今回は28*28=784個の要素数）
-    x_train = x_train.reshape(60000, num_input)
-    x_test = x_test.reshape(10000, num_input)
+    # 各画像のデータを28x28x1へリサイズ
+    x_train = x_train.reshape(x_train.shape[0], img_height, img_width, img_ch)
+    x_test = x_test.reshape(x_test.shape[0], img_height, img_width, img_ch)
 
     # データ型をfloat32に変換
     x_train = x_train.astype('float32')
@@ -99,14 +100,16 @@ def main():
     # 4層のMLP(多層パーセプトロン)のモデルを設定
     # 1層目の入力層:28×28=784個のユニット数
     # 2層目の中間層:ユニット数512、活性化関数はrelu関数
-    model.add(Dense(activation='relu', input_dim=num_input, units=num_middle_unit))
+    model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(img_width, img_height, 1)))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
 
+    # プーリング層
+    model.add(MaxPooling2D(pool_size=(2, 2)))
     # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
     model.add(Dropout(dropout_rate)) # 過学習防止用
-
+    model.add(Flatten())
     # 3層目の中間層:ユニット数512、活性化関数はrelu関数
-    model.add(Dense(units=num_middle_unit, activation='relu'))
-
+    model.add(Dense(128, activation='relu'))
     # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
@@ -138,6 +141,11 @@ def main():
     # 正答率（値が大きいほど良い）
     print('Test accuracy:', score[1])
     
+    """
+    Test loss: 0.04433278796807406
+    Test accuracy: 0.9916999936103821
+    """
+
     # 学習過程をプロット
     plot_history(history, 
                 save_graph_img_path = SAVE_DATA_DIR_PATH + "graph.png", 

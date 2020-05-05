@@ -13,7 +13,10 @@ def main():
     # 入力画像のパラメータ
     img_width = 28 # 入力画像の幅
     img_height = 28 # 入力画像の高さ
-    num_input = int(img_width * img_height)
+    img_ch = 1 # 1ch画像（グレースケール）で学習
+
+    # 入力データ数
+    num_data = 1
 
     # データ格納用のディレクトリパス
     SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex3_data/"
@@ -28,18 +31,19 @@ def main():
     img = cv2.imread(SAVE_DATA_DIR_PATH + "test.png")
 
     # グレースケールに変換
+    # 2値化, 白黒反転, ガウシアンフィルタで平滑化、リサイズ
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, th = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU) # 2値化
-    th = cv2.bitwise_not(th) # 白黒反転
-    th = cv2.GaussianBlur(th, (9,9), 0) # ガウスブラーをかけて補間
+    _, th = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU) # 
+    th = cv2.bitwise_not(th) # 
+    th = cv2.GaussianBlur(th, (9,9), 0) # 
     th = cv2.resize(th,(img_width, img_height), cv2.INTER_CUBIC) # 訓練データと同じサイズに整形
 
     # float32に変換して正規化
     th = th.astype('float32')
     th = np.array(th)/255
 
-    # 一次元配列に変換
-    th = th.reshape(1, num_input)
+    # モデルの入力次元数に合わせてリサイズ
+    th = th.reshape(num_data, img_height, img_width, img_ch)
 
     # 分類機に入力データを与えて予測（出力：各クラスの予想確率）
     predict_y = model.predict(th)
@@ -51,17 +55,16 @@ def main():
     print("predict_y:", predict_y)  # 出力値
     print("predict_number:", predict_number)  # 予測した数字
 
-    """
-    predict_y: [[4.8937692e-38 1.5886028e-14 1.0000000e+00 6.0272791e-14 0.0000000e+00
-    5.9332115e-33 0.0000000e+00 2.5989594e-25 4.9735018e-26 3.0064353e-35]]
-    predict_number: 2
-    """
-
     # 分類機に入力データを与えて予測（出力：クラスラベル）
     predict_classes_y = model.predict_classes(th)
     print("predict_classes_y:", predict_classes_y)  # 予測した数字
 
-    # predict_classes_y: [2]
+    """
+    predict_y: [[2.0631208e-16 8.2029376e-11 1.0000000e+00 8.4496722e-13 4.3476162e-22
+    4.4720264e-21 3.8950523e-22 5.1041643e-18 1.4993143e-12 1.6509382e-13]]
+    predict_number: 2
+    predict_classes_y: [2]
+    """
 
 if __name__ == '__main__':
     main()

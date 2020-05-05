@@ -145,11 +145,6 @@ def main():
                 fig_size_height = FIG_SIZE_HEIGHT, 
                 lim_font_size = FIG_FONT_SIZE)
 
-    # モデル構造の保存
-    open(SAVE_DATA_DIR_PATH  + "model.json","w").write(model.to_json())  
-
-    # 学習済みの重みを保存
-    model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
 
 
