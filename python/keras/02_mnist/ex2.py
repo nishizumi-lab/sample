@@ -7,7 +7,7 @@ from keras.datasets import mnist
 from keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import os
-import json
+import pickle
 
 def plot_history(history, 
                 save_graph_img_path, 
@@ -147,8 +147,8 @@ def main():
                 lim_font_size = FIG_FONT_SIZE)
 
     # 学習履歴を保存
-    with open(SAVE_DATA_DIR_PATH + "history.json", "w") as f:
-        json.dump(history.history, f)
+    with open(SAVE_DATA_DIR_PATH + "history.json", 'wb') as f:
+        pickle.dump(history.history, f)
 
 if __name__ == '__main__':
     main()

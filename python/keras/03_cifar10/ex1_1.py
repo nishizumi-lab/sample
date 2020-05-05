@@ -8,7 +8,7 @@ from keras.datasets import cifar10
 from keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import os
-import json
+import pickle
  
 def plot_history(history, 
                 save_graph_img_path, 
@@ -60,7 +60,7 @@ def main():
     img_ch = 3 # 1ch画像（グレースケール）で学習
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/03_cifar/ex1_data/"
+    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/03_cifar10/ex1_data/"
 
     # グラフ画像のサイズ
     FIG_SIZE_WIDTH = 12
@@ -212,8 +212,8 @@ def main():
     print('Test accuracy:', score[1])
     
     """
-    Test loss: 0.04433278796807406
-    Test accuracy: 0.9916999936103821
+    Test loss: 0.9460215708255768
+    Test accuracy: 0.7775999903678894
     """
 
     # 学習過程をプロット
@@ -230,8 +230,9 @@ def main():
     model.save_weights(SAVE_DATA_DIR_PATH + "weight.hdf5")
 
     # 学習履歴を保存
-    with open(SAVE_DATA_DIR_PATH + "history.json", "w") as f:
-        json.dump(history.history, f)
+    with open(SAVE_DATA_DIR_PATH + "history.json", 'wb') as f:
+        pickle.dump(history.history, f)
+
 
 
 if __name__ == '__main__':

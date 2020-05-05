@@ -4,7 +4,7 @@ from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense
 from keras.optimizers import RMSprop
 import os
-import json
+import pickle
 import matplotlib.pyplot as plt
 
 def plot_history(history, save_graph_img_path, fig_size_x, fig_size_y, lim_font_size):
@@ -86,8 +86,8 @@ def main():
     plot_history(history, SAVE_DATA_DIR_PATH + "graph.png", 25, 10, 25)
 
     # 学習履歴を保存
-    with open(SAVE_DATA_DIR_PATH + "history.json", "w") as f:
-        json.dump(history.history, f)
+    with open(SAVE_DATA_DIR_PATH + "history.json", 'wb') as f:
+        pickle.dump(history.history, f)
 
 if __name__ == '__main__':
     main()
