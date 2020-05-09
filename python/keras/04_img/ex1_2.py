@@ -14,7 +14,7 @@ def main():
     # 入力画像のパラメータ
     img_width = 32 # 入力画像の幅
     img_height = 32 # 入力画像の高さ
-    img_ch = 3 # 1ch画像（グレースケール）で学習
+    img_ch = 3 # 3ch画像（RGB）
 
     # 入力データ数
     num_data = 1
@@ -33,7 +33,7 @@ def main():
 
     # 画像の読み込み（32×32にリサイズ）
     # 正規化, 4次元配列に変換（モデルの入力が4次元なので合わせる）
-    img = load_img(SAVE_DATA_DIR_PATH + "test.jpg", target_size=(32, 32))
+    img = load_img(SAVE_DATA_DIR_PATH + "test.jpg", target_size=(img_width, img_height))
     img = img_to_array(img) 
     img = img.astype('float32')/255.0
     img = np.array([img])
