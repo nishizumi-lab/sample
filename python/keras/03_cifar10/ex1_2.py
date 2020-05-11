@@ -14,7 +14,7 @@ def main():
     # 入力画像のパラメータ
     img_width = 32 # 入力画像の幅
     img_height = 32 # 入力画像の高さ
-    img_ch = 3 # 3ch画像（グレースケール）で学習
+    img_ch = 3 # 3ch画像（RGB）で学習
 
     # 入力データ数
     num_data = 1
