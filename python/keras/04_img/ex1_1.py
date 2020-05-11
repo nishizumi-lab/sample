@@ -56,14 +56,14 @@ def plot_history(history,
 def main():
     # ハイパーパラメータ
     batch_size = 5 # バッチサイズ
-    num_classes = 3 # 分類クラス数(今回は0～9の手書き文字なので10)
+    num_classes = 3 # 分類クラス数(今回は3種類)
     epochs = 200      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
     # 入力画像のパラメータ
     img_width = 32 # 入力画像の幅
     img_height = 32 # 入力画像の高さ
-    img_ch = 3 # 1ch画像（グレースケール）で学習
+    img_ch = 3 # 3ch画像（RGB）で学習
 
     # データ格納用のディレクトリパス
     SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/04_img/ex1_data/"
@@ -210,7 +210,6 @@ def main():
     # 全結合層
     # 10分類（0から9まで）なので、ユニット数10, 分類問題なので活性化関数はsoftmax関数
     # Softmax関数で総和が1となるように、各出力の予測確率を計算
-    # 例「0.7, 0, 0, 0, 0, 0, 0.2, 0, 0, 0.1」（0の確率70%, 6の確率20%, 9の確率10%, 他0%）
     model.add(Dense(num_classes, activation='softmax')) # 活性化関数：softmax
 
     # モデル構造の表示

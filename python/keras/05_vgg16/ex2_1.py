@@ -51,10 +51,12 @@ def build_model(num_classes=3,
                 img_height=32):
     # VGG16の読み込み（FC層は不要なので include_topはFalse）
     input_tensor = Input(shape=(img_width, img_height, 3))
+
     vgg16 = VGG16(include_top=False, weights='imagenet', input_tensor=input_tensor)
 
-    # FC層の作成
+    # 全結合層(FC層)の作成
     model = Sequential()
+
     model.add(Flatten(input_shape=vgg16.output_shape[1:]))
     model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.5))
