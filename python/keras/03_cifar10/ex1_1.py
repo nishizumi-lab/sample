@@ -50,7 +50,7 @@ def plot_history(history,
 def main():
     # ハイパーパラメータ
     batch_size = 128 # バッチサイズ
-    num_classes = 10 # 分類クラス数(今回は10種類なので10)
+    num_classes = 10 # 分類クラス数(今回は10種類)
     epochs = 20      # エポック数(学習の繰り返し回数)
     dropout_rate = 0.2 # 過学習防止用：入力の20%を0にする（破棄）
 
