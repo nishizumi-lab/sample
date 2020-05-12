@@ -82,43 +82,43 @@ def img_generator(classes,
 
     validation_gen = ImageDataGenerator(rescale=1.0 / 255)
 
-    tg = train_gen.flow_from_directory(train_path,
-        target_size=(img_width, img_height),
-        color_mode='rgb',
-        classes=classes,
-        class_mode='categorical',
-        batch_size=batch_size,
-        shuffle=True)
+    # 学習用データと検証用データを取得
+    train_datas = train_gen.flow_from_directory(train_path,
+                target_size=(img_width, img_height),
+                color_mode='rgb',
+                classes=classes,
+                class_mode='categorical',
+                batch_size=batch_size,
+                shuffle=True)
 
-    vg = validation_gen.flow_from_directory(
-        validation_path,
-        target_size=(img_width, img_height),
-        color_mode='rgb',
-        classes=classes,
-        class_mode='categorical',
-        batch_size=batch_size,
-        shuffle=True)
+    valid_datas = validation_gen.flow_from_directory(
+                validation_path,
+                target_size=(img_width, img_height),
+                color_mode='rgb',
+                classes=classes,
+                class_mode='categorical',
+                batch_size=batch_size,
+                shuffle=True)
 
-    return tg, vg
+    return train_datas, valid_datas
 
 
 def main():
-    num_epoch = 10
-    samples_per_epoch = 100
-
-
-    nb_val_samples = 50
+    # エポック数
+    num_epoch = 20
 
     # バッチサイズ
     batch_size = 16
 
+    # クラス数
+    num_classes = 3
+
+    # 分類するクラス名
+    classes = ['yakan', 'donabe', 'mag']
+
     # 画像の高さ, 幅
     img_width = 150
     img_height = 150
-    # クラス数
-    num_classes = 3
-    # 分類するクラス名
-    classes = ['yakan', 'donabe', 'mag']
 
     # グラフ画像のサイズ
     FIG_SIZE_WIDTH = 12
@@ -155,10 +155,8 @@ def main():
 
     # Fine-tuning
     history = model.fit_generator(train_datas,
-        samples_per_epoch = samples_per_epoch,
-        nb_epoch = num_epoch,
-        validation_data = valid_datas,
-        nb_val_samples = nb_val_samples)
+                                    nb_epoch = num_epoch,
+                                    validation_data = valid_datas)
 
  
     # モデル構造の保存
