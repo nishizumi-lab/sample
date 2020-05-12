@@ -114,11 +114,11 @@ def main():
     num_classes = 3
 
     # 分類するクラス名
-    classes = ['yakan', 'donabe', 'mag']
+    classes = ['yakan', 'donabe', 'magcup']
 
     # 画像の高さ, 幅
-    img_width = 150
-    img_height = 150
+    img_width = 224
+    img_height = 224
 
     # グラフ画像のサイズ
     FIG_SIZE_WIDTH = 12
