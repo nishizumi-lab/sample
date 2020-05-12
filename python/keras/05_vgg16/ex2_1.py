@@ -62,7 +62,7 @@ def build_model(num_classes=3,
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
 
-    # VGG16とFC層を結合してモデルを作成
+    # VGG16のモデルと作成した全結合層(FC層)を結合してモデルを作成
     new_model = Model(input = vgg16.input, output=model(vgg16.output))
 
     return new_model
@@ -136,7 +136,7 @@ def main():
                         img_width = img_width,
                         img_height = img_height)
 
-    # 最後のconv層の直前までの層をfreeze
+    # 最後の畳み込み層の直前までの層が学習しない（重みを学習せずにVGG16のまま固定：frozen）
     for layer in model.layers[:15]:
         layer.trainable = False
 
