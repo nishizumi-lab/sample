@@ -72,7 +72,7 @@ def main():
     # 入力データ数（今回は28*28=784個）
     num_input = int(img_width * img_height)
 
-    # mnistデータセット（訓練用データと検証用データ）をネットから取得
+    # データセット（訓練用データとテスト用データ）をネットから取得
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     # 各画像のデータを28x28x1へリサイズ
@@ -123,7 +123,7 @@ def main():
     # 入力画像内の「2×2」の領域で最大の数値を出力。
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 平坦化（次元削減）
@@ -134,7 +134,7 @@ def main():
     # 出力ユニット数：128
     model.add(Dense(128, activation='relu'))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 全結合層

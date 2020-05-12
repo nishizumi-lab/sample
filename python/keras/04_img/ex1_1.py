@@ -13,7 +13,7 @@ import re
 import os
 import pickle
  
-def list_pictures(directory, ext='jpg|jpeg|bmp|png|ppm'):
+def list_imgs(directory, ext='jpg|jpeg|bmp|png|ppm'):
     return [os.path.join(root, f) for root, _, files in os.walk(directory) for f in files if re.match(r'([\w]+\.(?:' + ext + '))', f.lower())]
 
 def plot_history(history, 
@@ -81,20 +81,20 @@ def main():
     num_classes = 3
 
     # クラス0の画像データ群をロード
-    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img0"):
+    for filepath in list_imgs(SAVE_DATA_DIR_PATH + "img0"):
         img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
         data_x.append(img)
         data_y.append(0) # 教師データ（正解）
 
 
     # クラス1の画像データ群をロード
-    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img1"):
+    for filepath in list_imgs(SAVE_DATA_DIR_PATH + "img1"):
         img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
         data_x.append(img)
         data_y.append(1) # 教師データ（正解）
 
     # クラス2の画像データ群をロード
-    for filepath in list_pictures(SAVE_DATA_DIR_PATH + "img2"):
+    for filepath in list_imgs(SAVE_DATA_DIR_PATH + "img2"):
         img = img_to_array(load_img(filepath, target_size=(img_width,img_height, img_ch)))
         data_x.append(img)
         data_y.append(2) # 教師データ（正解）
@@ -162,7 +162,7 @@ def main():
     # 入力画像内の「2×2」の領域で最大の数値を出力。
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 【2次元畳み込み層】
@@ -193,7 +193,7 @@ def main():
     # 入力画像内の「2×2」の領域で最大の数値を出力。
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 平坦化（次元削減）
@@ -204,7 +204,7 @@ def main():
     # 出力ユニット数：512
     model.add(Dense(512, activation='relu'))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
     
     # 全結合層

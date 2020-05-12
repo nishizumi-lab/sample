@@ -73,7 +73,7 @@ def main():
     # 入力データ数（今回は32*32個）
     num_input = int(img_width * img_height)
 
-    # mnistデータセット（訓練用データと検証用データ）をネットから取得
+    # データセット（訓練用データとテスト用データ）をネットから取得
     (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
     # 各画像のデータを32x32x3へリサイズ
@@ -95,9 +95,6 @@ def main():
     # データセットの個数を表示
     print(x_train.shape[0], 'train samples')
     print(x_test.shape[0], 'test samples')
-
-    # モデルの構築
-    model = Sequential()
 
     # CNN（畳み込みニューラルネットワーク）のモデルを設定
     model = Sequential()
@@ -131,7 +128,7 @@ def main():
     # 入力画像内の「2×2」の領域で最大の数値を出力。
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 【2次元畳み込み層】
@@ -162,7 +159,7 @@ def main():
     # 入力画像内の「2×2」の領域で最大の数値を出力。
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 平坦化（次元削減）
@@ -173,7 +170,7 @@ def main():
     # 出力ユニット数：512
     model.add(Dense(512, activation='relu'))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
     
     # 全結合層

@@ -71,7 +71,7 @@ def main():
     # 入力データ数（今回は28*28=784個）
     num_input = int(img_width * img_height)
 
-    # mnistデータセット（訓練用データと検証用データ）をネットから取得
+    # データセット（訓練用データとテスト用データ）をネットから取得
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     # 2次元配列から1次元配列へ変換（今回は28*28=784個の要素数）
@@ -102,13 +102,13 @@ def main():
     # 2層目の中間層:ユニット数512、活性化関数はrelu関数
     model.add(Dense(activation='relu', input_dim=num_input, units=num_middle_unit))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate)) # 過学習防止用
 
     # 3層目の中間層:ユニット数512、活性化関数はrelu関数
     model.add(Dense(units=num_middle_unit, activation='relu'))
 
-    # ドロップアウト(過学習防止用, dropout_rate=0.2なら512個のユニットのうち、20%のユニットを無効化）
+    # ドロップアウト(過学習防止用, dropout_rate=0.2なら20%のユニットを無効化）
     model.add(Dropout(dropout_rate))
 
     # 4層目の出力層:10分類（0から9まで）なので、ユニット数10, 分類問題なので活性化関数はsoftmax関数
