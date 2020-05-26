@@ -7,6 +7,9 @@ f = open(filepath, "r")
 
 data = f.read()
 
+# ファイルを閉じる
+f.close()
+
 # 表示
 print(data)
 
