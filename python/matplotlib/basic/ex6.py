@@ -6,5 +6,5 @@ import matplotlib.pyplot as plt
 x = [1, 2, 3, 3, 3, 4, 4, 5, 6]
 
 # ヒストグラムの描画
-plt.hist(x, bins=6, color='g', width=0.3)
+plt.hist(x, bins=3, color='g', width=0.3)
 plt.show()
