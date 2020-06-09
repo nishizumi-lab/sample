@@ -2,9 +2,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 乱数を100個生成
-x = np.random.randn(100)
+# データを用意
+x = [1, 2, 3, 3, 3, 4, 4, 5, 6]
 
 # ヒストグラムの描画
-plt.hist(x, bins=20, color='g', width=0.3)
+plt.hist(x, bins=3, color='g', width=0.3)
 plt.show()
