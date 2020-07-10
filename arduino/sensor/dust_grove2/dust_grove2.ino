@@ -17,8 +17,8 @@ double pcs2ugm3 (double pcs)
   double pi = 3.14159;
   // 全粒子密度(1.65E12μg/ m3)
   double density = 1.65 * pow (10, 12);
-  // PM2.5粒子の半径(0.44μm)
-  double r25 = 0.44 * pow (10, -6);
+  // PM2.5粒子の半径(2.5μm)
+  double r25 = 2.5 * pow (10, -6);
   double vol25 = (4/3) * pi * pow (r25, 3);
   double mass25 = density * vol25; // μg
   double K = 3531.5; // per m^3 
@@ -41,4 +41,3 @@ void loop() {
     t0 = millis();
   }
 }
-
