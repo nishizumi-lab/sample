@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include <M5Stack.h>
 
-const char* ssid = "panzer4"; // SSID
-const char* password = "atmega64a"; // PASSWORD
+const char* ssid = "SSID"; // SSID
+const char* password = "PASSWORD"; // PASSWORD
 
 // IP固定する場合
 IPAddress ip(192, 168, 128, 20);
