@@ -8,10 +8,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   shared_preferences:
   cupertino_icons: ^0.1.2
   json_table: ^1.2.0
-  intl: ^0.15.8
+  intl: any
+  intl_translation:
 
 dev_dependencies:
   flutter_test:
