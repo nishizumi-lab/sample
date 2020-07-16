@@ -12,6 +12,7 @@ import 'package:basic/ui/load_json_detail_page.dart';
 import 'package:basic/ui/keyboard_number_page.dart';
 import 'package:basic/ui/calculator_page.dart';
 import 'package:basic/ui/date_page.dart';
+import 'package:basic/ui/textform_listview_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // ①多言語化（日本語化含む）に必要
 
 void main() => runApp(MyApp());
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
       //home:LoadJson2Page(),
       //home:CalculatorPage(),
       //home:KeyboardNumberPage(),
-      home:DatePage(),
+      home:TextformListviewPage(),
+      //home:DatePage(),
       // ルートを事前に定義
       // ルーティング名称に対して、表示されるページを作成しウィジェットを設定
       routes: <String, WidgetBuilder> {
