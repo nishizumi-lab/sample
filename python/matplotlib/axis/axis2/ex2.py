@@ -58,10 +58,10 @@ def plot_graph():
     graph_max_x = time_soc100.max()
 
     # 第1軸に電圧データをプロット
-    ax1.plot(time_soc100, V_soc100, "r--", label="$V_SOC100$", linewidth=2)
-    ax1.plot(time_soc80, V_soc80, "g--", label="$V_SOC80$", linewidth=2)
-    ax1.plot(time_soc60, V_soc60, "b--", label="$V_SOC60$", linewidth=2)
-    ax1.plot(time_soc40, V_soc40, "m--", label="$V_SOC40$", linewidth=2)
+    ax1.plot(time_soc100, V_soc100, "r--", label="$V SOC100$", linewidth=2)
+    ax1.plot(time_soc80, V_soc80, "g--", label="$V SOC80$", linewidth=2)
+    ax1.plot(time_soc60, V_soc60, "b--", label="$V SOC60$", linewidth=2)
+    ax1.plot(time_soc40, V_soc40, "m--", label="$V SOC40$", linewidth=2)
 
     # 第2軸に電流データをプロット
     ax2.plot(time_soc100, I_soc100, "k--", label="$I_SOC100$", linewidth=2)
