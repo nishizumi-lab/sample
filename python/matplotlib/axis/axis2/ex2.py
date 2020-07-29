@@ -64,7 +64,7 @@ def plot_graph():
     ax1.plot(time_soc40, V_soc40, "m--", label="$V(SOC40)$", linewidth=2)
 
     # 第2軸に電流データをプロット
-    ax2.plot(time_soc100, I_soc100, "k--", label="$I_SOC100$", linewidth=2)
+    ax2.plot(time_soc100, I_soc100, "k--", label="$I(SOC100)$", linewidth=2)
 
     # 凡例を表示
     handler1, label1 = ax1.get_legend_handles_labels()
