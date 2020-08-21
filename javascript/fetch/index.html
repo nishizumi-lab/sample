@@ -1,0 +1,23 @@
+<html>
+	<head>
+			<script type="text/javascript">
+				const getCode = (url) => {
+					return new Promise((a, b) => {
+						const promise = fetch(url);
+						const code = promise.then(text => text.text()).then(code => a(code)).catch(err => b(new Error(err)));
+					});
+				};
+				document.addEventListener("DOMContentLoaded", () => {
+					const codeElement = document.getElementById("code");
+					const url = "https://raw.githubusercontent.com/wakewakame/SoundGoogleMap/master/src/main.js";
+					const codePromise = getCode(url);
+					codePromise.then(code => {
+						codeElement.innerHTML = code;
+					});
+				});
+			</script>
+	</head>
+	<body>
+		<pre id="code" style="word-wrap: break-word; white-space: pre-wrap;"></pre>
+	</body>
+</html>

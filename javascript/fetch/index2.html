@@ -1,0 +1,41 @@
+<html>
+
+	<head>
+
+            <script type="text/javascript">
+
+
+				const load = async() => {
+
+                    var preList = document.getElementsByTagName("pre");
+ 
+                    for ( var i=0 ; i<preList.length ; i++ ){
+                        if(preList[i].title == ""){
+
+                        }
+                        else{
+                            url = preList[i].title;
+                            url = url.replace("https://github.com/", "https://raw.githubusercontent.com/");
+                            url = url.replace("blob/master", "master")
+                            const response = await fetch(url);
+                            const code = await response.text();
+                            preList[i].innerHTML = code;
+                        }
+
+
+                    }
+                };
+                document.addEventListener("DOMContentLoaded", load);
+			</script>
+	</head>
+	<body>
+
+        <pre title="https://github.com/ytdl-org/youtube-dl/blob/master/devscripts/bash-completion.py"></pre>
+
+        <pre>X humstar</pre>
+
+        <pre title="https://github.com/mariosemes/PornHub-downloader-python/blob/master/phdler.py"></pre>
+
+
+	</body>
+</html>
