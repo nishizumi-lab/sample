@@ -8,11 +8,18 @@ encode_type = "UTF-8"
 # ディレクトリを自動生成する先のパス
 make_dir_path = "C:/github/sample/python/file/03_csv/01_list_to_dir/"
 
+# スキップする行数
+skip_rows = 1 # 1行目はヘッダ行なので除外
+
 with open(load_csv_path, encoding = encode_type) as f:
     # CSVファイルをロード
     reader = csv.reader(f)
+
     # 1行ずつデータを取り出し
-    for row in reader:
+    for cnt, row in enumerate(reader):
+        # スキップする行数分は何もしない
+        if(cnt < skip_rows):
+            continue
         # 1列目（管理番号）と2列目（クラス名）をディレクトリ名にする
         dir_name = row[0] + '-' + row[1]
         # ディレクトリがなければ新規作成
