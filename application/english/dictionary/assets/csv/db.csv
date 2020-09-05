@@ -1,202 +1,274 @@
-単語,意味,品詞1,品詞2,補足,例文,英検
-due to,"～のために, ～のせいで",熟語,前置詞,,,準2級
-because of,"～のために, ～のせいで",熟語,前置詞,,,準2級
-call off N, Nを中止にする,熟語,動詞,,,準2級
-look similar to N,Nと似ている,熟語,動詞,,,準2級
-look like N,Nと似ている,熟語,動詞,likeは前置詞なので、 後に前置詞が入ってこない,,準2級
-different from N,,熟語,,,,準2級
-same as N,,熟語,,,,準2級
-had better V,Vした方がいい,熟語,助動詞,助動詞の後は動詞の原形Vを置く,,準2級
-turn down N,Nを断る,熟語,動詞,丁重に断るような意味,,準2級
-decline N,Nを断る,動詞,,丁重に断るような意味,,準2級
-refuse N,Nを断る,動詞,,強く断るような意味,,準2級
-reject N,Nを断る,動詞,,強く断るような意味,,準2級
-do my best,"努力する, ベストを 尽くす",熟語,動詞,,,準2級
-try my best,"努力する, ベストを 尽くす",熟語,動詞,,,準2級
-in advance,前もって,熟語,副詞,,,準2級
-beforehand,前もって,副詞,,,,準2級
-ahead of time,前もって,熟語,副詞,,,準2級
-"By the time S1 V1p, S2 had (already) V2 pp.",S1がV1した時にS2は（既に）V2していた,熟語,構文,"V1pは過去単純形, V2ppは過去完了形",,準2級
-stay up all night to V,徹夜でVする,熟語,動詞,,,準2級
-sit up all night to V,徹夜でVする,熟語,動詞,,,準2級
-leave O behind,Oを忘れる,熟語,動詞,,,準2級
-belongings,手荷物,名詞,,,,準2級
-make use of N,Nを利用する,熟語,動詞,,,準2級
-used to V（原形）,かつてはVしたものだ,熟語,動詞,be used to Vimg（かつてはVしたものだ）と間違えないように注意,,準2級
-be used to Ving,Vするのに慣れている,熟語,動詞,used to V(原型)（Vするのに慣れている）と間違えないように注意,,準2級
-be about to V,（今にも）Vするところだ,熟語,動詞,,,準2級
-leave A for B,Bに向けてAを出る,熟語,動詞,,,準2級
-What is A like?,Aはどんな感じですか？,熟語,動詞,like（前置詞：～のような）,,準2級
-try on N（衣類）,（衣類）を試着する,熟語,動詞,,,準2級
-It depends on N,N次第である,熟語,動詞,,,準2級
-depend on N,Nに依存する,熟語,動詞,,,準2級
-rely on N,Nに依存する,熟語,動詞,,,準2級
-whether A or not,Aかどうか,熟語,接続詞,,,準2級
-if A,Aかどうか,接続詞,,,,準2級
-"Ns such as A, B and C","A, B, CのようなNs",熟語,名詞,,,準2級
-feel like Ving,Vしたい気分だ,熟語,動詞,,,準2級
-all year round[around],年中,熟語,名詞,,,準2級
-through[throughout] the year,年中,熟語,名詞,,,準2級
-a whole year,丸一年,熟語,名詞,,,準2級
-all year,丸一年,熟語,名詞,,,準2級
-be satisfied with N,Nに満足している,熟語,動詞,satisfy(Vo: ～を満足させる)なので、主語自身が満足している場合は、受動態となる,,準2級
-come to V,Vするようになる,熟語,,,,準2級
-put up with N,Nに耐える,熟語,,standと同じ意味,,準2級
-so 形容詞／副詞 that S V,余りにも～なのでSVする,熟語,,,,準2級
-(just) in case,一応、念のため,熟語,,,,準2級
-although,～だけれども,熟語,,,,準2級
-"To begin with, S V",初めにSはVする,熟語,,,,準2級
-"To start with, S V",初めにSはVする,熟語,,,,準2級
-From now on,今後ずっと,熟語,,,,準2級
-a bunch of Ns,Nの一束（房）ひと束）,熟語,,Nはgrape、banana、flower,,準2級
-a loaf of bread,パン一斤,熟語,,,,準2級
-in turn,順番に,熟語,,,,準2級
-in order,順番に,熟語,,,,準2級
-A as well as B,Aと同じくBも,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
-A in addition to B,Aと同じくBも,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
-A besides B,Aと同じくBも,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
-be likely to V,Vする傾向にある,熟語,,,,準2級
-nowadays,最近,熟語,,,,準2級
-graduate from N,Nを卒業する,熟語,,,,準2級
-You can say that again.,その通りです。,熟語,,,,準2級
-It’s time to V.,そろそろVする頃だ,熟語,,,,準2級
-break down,故障する,熟語,,,,準2級
-make a reservation for N,Nの予約をする,熟語,,,,準2級
-quit Ving,Vするのをやめる（継続的）,熟語,,習慣的にやめる（例：タバコをやめる）,,準2級
-stop Ving,Vするのをやめる（一時的）,熟語,,一時的にやめる（例：ゲームを中断する）,,準2級
-for or against,賛成か反対か,熟語,,,,準2級
-be for N,Nに賛成である,熟語,,,,準2級
-be in favor of N,Nに賛成である,熟語,,,,準2級
-You can’t miss it.,すぐに見つかりますよ,熟語,,,,準2級
-When it comes to Ving,Vするとなると,熟語,,toは前置詞なので、直後に置く動詞は動名詞,,準2級
-recover from an illness,病気が回復する,熟語,,,,準2級
-Generally speaking, 一般的に,熟語,,,,準2級
-pay attention to N,Nに注意を払う,熟語,,,,準2級
-Bear in mind that S V.,SがVするのを頭に入れておく,熟語,,,,準2級
-in the distance,遠くに,熟語,,,,準2級
-go on a business trip to N,Nへ出張する,熟語,,,,準2級
-go on a trip,Nへ旅行する,熟語,,,,準2級
-I’m afraid,あいにく,熟語,,,,準2級
-over coffee,コーヒーでも飲みながら,熟語,,,,準2級
-That’s why S V.,だから、SがVする,熟語,,,,準2級
-S be delayed,Sが遅延する,熟語,,,,準2級
-due to N,N のせいで,熟語,,,,準2級
-heavy traffic (jam),渋滞,熟語,,,,準2級
-have a (bad) headache,（ひどい）頭痛です,熟語,,,,準2級
-How come S V?,どうしてSがVするの？,熟語,,whyと同じ,,準2級
-leave school early,学校を早退する,熟語,,,,準2級
-Why don’t we V?,Vしませんか？,熟語,,,,準2級
-be tired of Ving,Vするのに飽きている,熟語,,,,準2級
-with one’ s arms folded,腕組みしながら,熟語,,前置詞withは「～しながら」の意味,,準2級
-feel stressed,ストレスを感じる,熟語,,,,準2級
-bring up N,Nを育てる,熟語,,,,準2級
-a couple of Ns,2～3の,熟語,,,,準2級
-plenty of,多くの,熟語,,,,準2級
-bear A in mind,Aを頭に入れておく,熟語,,,,準2級
-keep A in mind,Aを頭に入れておく,熟語,,,,準2級
-have (got) to V, Vしなければならない,熟語,,,,準2級
-hand in N,Nを提出する,熟語,,,,準2級
-see A off,Aを見送る,熟語,,see off Aも同じ,,準2級
-leave A for B,,熟語,,Bに向けてAを出発する,,準2級
-major in N,Nを専攻する,熟語,,,,準2級
-take a course,受講する,熟語,,,,準2級
-(It’s) my pleasure,どういたしまして,熟語,,,,準2級
-You are welcome,どういたしまして,熟語,,,,準2級
-a job interview,就職面接,熟語,,,,準2級
-What do you say to Ving?,Vするのはどう？,熟語,,toは前置詞 なので動名詞になる,,準2級
-Would you like to V?,Vするのはどう？,熟語,,,,準2級
-Why don’t we V?,Vするのはどう？,熟語,,,,準2級
-different from N,Nと異なる,熟語,,,,準2級
-have a gift for N,Nの才能がある,熟語,,,,準2級
-drop in at N,Nに立ち寄る,熟語,,,,準2級
-and so on,等々,熟語,,,,準2級
-on one's way (to) A from B,BからAへの途中に,熟語,,,,準2級
-for a while,しばらくの間,熟語,,,,準2級
-spend O Ving,VするのにO(お金など)を費やす,熟語,,,,準2級
-move into N,N（家など）に引っ越す,熟語,,,,準2級
-move to N,N（地名など）に引っ越す,熟語,,,,準2級
-How do you like N?,Nはどう（気にいってる）？,熟語,,,,準2級
-study abroad,留学する,熟語,,,,準2級
-abroad,海外,熟語,,,,準2級
-abandon,辞める,熟語,,,,準2級
-advertise,宣伝する,熟語,,,,準2級
-admitt,認める,熟語,,,,準2級
-consist of,～から構成される,熟語,,,,準2級
-asset,資産,熟語,,,,準2級
-suffer in A,Aで苦しんでいる,熟語,,,,準2級
-trade with N,Nと取引する,熟語,,,,準2級
-a huge amount of N,大量のN,熟語,,,,準2級
-It is no use crying over spilt milk.,覆水盆に返らず,熟語,,済んだことを後悔しても仕方がない,,準2級
-It is no use Ving.,Vしても無駄である,熟語,,,,準2級
-have a large population,人口が多い,熟語,,英語では人口は規模と扱うので、「多い・少ない」ではなく「大きい・小さい」で表,,準2級
-What is A like?,Aはどんな感じ？,熟語,,,,準2級
-tough,厳しい、頑固な,熟語,,,,準2級
-S be/have sold out,Sが売り切れた,熟語,,,,準2級
-be on a diet,ダイエットしている,熟語,,,,準2級
-go on a diet,ダイエットをする,熟語,,,,準2級
-at the moment,現在,熟語,,nowと同じ,,準2級
-put on N,Nを着る,熟語,,,,準2級
-take off N,Nを脱ぐ,熟語,,,,準2級
-It’s better to V.,Vした方がいい,熟語,,,,準2級
-Would you mind my( me) Ving?,Vしても良いですか？,熟語,,「良いよ」と答えるときは「No」。my( me) は省略可。,,準2級
-as usual,いつもの通り,熟語,,,,準2級
-come up with an idea,案を考え出す,熟語,,,,準2級
-be sure to V,必ずVする,熟語,,,,準2級
-on time,時間通りに,熟語,,,,準2級
-change A into B,AをBに変える,熟語,,,,準2級
-convert A into B,AをBに変える,熟語,,,,準2級
-turn A into B,AをBに変える,熟語,,,,準2級
-parking lot,駐車場,熟語,,,,準2級
-I’m relieved to hear that.,それは心強い、安心した,熟語,,,,準2級
-As far as I know,私の知る限りでは,熟語,,,,準2級
-as long as A,Aである限りは,熟語,,,,準2級
-be retired,引退している,熟語,,,,準2級
-give O a ride to N,O（人）を N（場所） まで乗せていく,熟語,,,,準2級
-Would you V?,Vしてくれますか？,熟語,,,,準2級
-under repair,修理中,熟語,,,,準2級
-take care of N,Nを処理する/世話する,熟語,,,,準2級
-paperwork,事務仕事,熟語,,,,準2級
-be unable to V,Vすることができない,熟語,,,,準2級
-be able to V,Vすることができる,熟語,,,,準2級
-make it (to N),（ N に） 来る、 間に合う,熟語,,,,準2級
-have no choice but to V,Vする他ない,熟語,,,,準2級
-have no option but to V,Vする他ない,熟語,,,,準2級
-A instead of B,Bの代わりにA,熟語,,等位接続詞なのでAとBは並列の関係,,準2級
-apologize to 人 for A,Aのことで（人）に謝罪する,熟語,,,,準2級
-be latefor N,Nに遅刻する,熟語,,,,準2級
-wantad,求人広告,熟語,,,,準2級
-apply for,応募する,熟語,,,,準2級
-right away,早速,熟語,,,,準2級
-Why don’t you V?,Vしませんか？,熟語,,,,準2級
-Why don’t we V?,Vしませんか？,熟語,,,,準2級
-How about Ving？,Vしませんか？,熟語,,,,準2級
-Let’ s V.,Vしましょうよ。,熟語,,,,準2級
-Would you like to V？,Vしませんか？,熟語,,,,準2級
-You have the wrong number.,間違い電話,熟語,,,,準2級
-decide to V,Vすることを決める,熟語,,,,準2級
-study abroad,留学する,熟語,,,,準2級
-have a fever,熱がある,熟語,,,,準2級
-slight,少しの、わずかな,熟語,,,,準2級
-must V without fail,必ずVしなければならない,熟語,,,,準2級
-have A in common with B,Bと共通のAがある,熟語,,,,準2級
-S 1 V 1 so that S 2 can V 2,S2がV2できるようにS1がV1する,熟語,,,,準2級
-take a nap,昼寝をする,熟語,,,,準2級
-put off A until B,AをBまで延期する,熟語,,,,準2級
-be popular with N,N（人）に人気がある,熟語,,,,準2級
-cannot help Ving,Vせざるを得ない,熟語,,,,準2級
-cannot help but V,Vせざるを得ない,熟語,,,,準2級
-such (a) 形容詞 ＋ 名詞 that S V,余りに（形）な（名）なのでSがVする,熟語,,,,準2級
-Anything will do.,何でもいいよ,熟語,,will do には be OK の よう なニュアンスがある,,準2級
-remind A of B,A（人）に B（物）を思い出させる,熟語,,,,準2級
-be excellent at N,Nに秀でている,熟語,,,,準2級
-look forward to Ving,Vすることを楽しみにする,熟語,,,,準2級
-It depends.,物（ 内容）による,熟語,,,,準2級
-May I ask you a favor?,ちょっとお願いがあるのですが,熟語,,,,準2級
-Can I ask you a favor?,ちょっとお願いがあるのですが,熟語,,,,準2級
-will be held,開催される予定だ,熟語,,,,準2級
-despite N,Nにもかかわらず,前置詞,,,,準2級
-occasionally,時々,副詞,,,,準2級
-seldom,めったに～しない,副詞,,,,準2級
-colleague,同僚,名詞,,,,準2級
-checking account,当座預金口座,熟語,名詞,,,1級
-get in touch with A,Aに連絡する,熟語,動詞,,,準1級
+﻿単語,意味,発音記号,品詞1,品詞2,補足,例文,英検
+due to,"～のために, ～のせいで",,熟語,前置詞,,,準2級
+because of,"～のために, ～のせいで",,熟語,前置詞,,,準2級
+call off N, Nを中止にする,,熟語,動詞,,,準2級
+look similar to N,Nと似ている,,熟語,動詞,,,準2級
+look like N,Nと似ている,,熟語,動詞,likeは前置詞なので、 後に前置詞が入ってこない,,準2級
+different from N,,,熟語,,,,準2級
+same as N,,,熟語,,,,準2級
+had better V,Vした方がいい,,熟語,助動詞,助動詞の後は動詞の原形Vを置く,,準2級
+turn down N,Nを断る,,熟語,動詞,丁重に断るような意味,,準2級
+decline N,Nを断る,,動詞,,丁重に断るような意味,,準2級
+refuse N,Nを断る,,動詞,,強く断るような意味,,準2級
+reject N,Nを断る,,動詞,,強く断るような意味,,準2級
+do my best,"努力する, ベストを 尽くす",,熟語,動詞,,,準2級
+try my best,"努力する, ベストを 尽くす",,熟語,動詞,,,準2級
+in advance,前もって,,熟語,副詞,,,準2級
+beforehand,前もって,,副詞,,,,準2級
+ahead of time,前もって,,熟語,副詞,,,準2級
+"By the time S1 V1p, S2 had (already) V2 pp.",S1がV1した時にS2は（既に）V2していた,,熟語,構文,"V1pは過去単純形, V2ppは過去完了形",,準2級
+stay up all night to V,徹夜でVする,,熟語,動詞,,,準2級
+sit up all night to V,徹夜でVする,,熟語,動詞,,,準2級
+leave O behind,Oを忘れる,,熟語,動詞,,,準2級
+belongings,手荷物,,名詞,,,,準2級
+make use of N,Nを利用する,,熟語,動詞,,,準2級
+used to V（原形）,かつてはVしたものだ,,熟語,動詞,be used to Vimg（かつてはVしたものだ）と間違えないように注意,,準2級
+be used to Ving,Vするのに慣れている,,熟語,動詞,used to V(原型)（Vするのに慣れている）と間違えないように注意,,準2級
+be about to V,（今にも）Vするところだ,,熟語,動詞,,,準2級
+leave A for B,Bに向けてAを出る,,熟語,動詞,,,準2級
+What is A like?,Aはどんな感じですか？,,熟語,動詞,like（前置詞：～のような）,,準2級
+try on N（衣類）,（衣類）を試着する,,熟語,動詞,,,準2級
+It depends on N,N次第である,,熟語,動詞,,,準2級
+depend on N,Nに依存する,,熟語,動詞,,,準2級
+rely on N,Nに依存する,,熟語,動詞,,,準2級
+whether A or not,Aかどうか,,熟語,接続詞,,,準2級
+if A,Aかどうか,,接続詞,,,,準2級
+"Ns such as A, B and C","A, B, CのようなNs",,熟語,名詞,,,準2級
+feel like Ving,Vしたい気分だ,,熟語,動詞,,,準2級
+all year round[around],年中,,熟語,名詞,,,準2級
+through[throughout] the year,年中,,熟語,名詞,,,準2級
+a whole year,丸一年,,熟語,名詞,,,準2級
+all year,丸一年,,熟語,名詞,,,準2級
+be satisfied with N,Nに満足している,,熟語,動詞,satisfy(Vo: ～を満足させる)なので、主語自身が満足している場合は、受動態となる,,準2級
+come to V,Vするようになる,,熟語,,,,準2級
+put up with N,Nに耐える,,熟語,,standと同じ意味,,準2級
+so 形容詞／副詞 that S V,余りにも～なのでSVする,,熟語,,,,準2級
+(just) in case,一応、念のため,,熟語,,,,準2級
+although,～だけれども,,熟語,,,,準2級
+"To begin with, S V",初めにSはVする,,熟語,,,,準2級
+"To start with, S V",初めにSはVする,,熟語,,,,準2級
+From now on,今後ずっと,,熟語,,,,準2級
+a bunch of Ns,Nの一束（房）ひと束）,,熟語,,Nはgrape、banana、flower,,準2級
+a loaf of bread,パン一斤,,熟語,,,,準2級
+in turn,順番に,,熟語,,,,準2級
+in order,順番に,,熟語,,,,準2級
+A as well as B,Aと同じくBも,,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
+A in addition to B,Aと同じくBも,,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
+A besides B,Aと同じくBも,,熟語,,AとBは並列の関係なので、品詞は同じになる,,準2級
+be likely to V,Vする傾向にある,,熟語,,,,準2級
+nowadays,最近,,熟語,,,,準2級
+graduate from N,Nを卒業する,,熟語,,,,準2級
+You can say that again.,その通りです。,,熟語,,,,準2級
+It’s time to V.,そろそろVする頃だ,,熟語,,,,準2級
+break down,故障する,,熟語,,,,準2級
+make a reservation for N,Nの予約をする,,熟語,,,,準2級
+quit Ving,Vするのをやめる（継続的）,,熟語,,習慣的にやめる（例：タバコをやめる）,,準2級
+stop Ving,Vするのをやめる（一時的）,,熟語,,一時的にやめる（例：ゲームを中断する）,,準2級
+for or against,賛成か反対か,,熟語,,,,準2級
+be for N,Nに賛成である,,熟語,,,,準2級
+be in favor of N,Nに賛成である,,熟語,,,,準2級
+You can’t miss it.,すぐに見つかりますよ,,熟語,,,,準2級
+When it comes to Ving,Vするとなると,,熟語,,toは前置詞なので、直後に置く動詞は動名詞,,準2級
+recover from an illness,病気が回復する,,熟語,,,,準2級
+Generally speaking, 一般的に,,熟語,,,,準2級
+pay attention to N,Nに注意を払う,,熟語,,,,準2級
+Bear in mind that S V.,SがVするのを頭に入れておく,,熟語,,,,準2級
+in the distance,遠くに,,熟語,,,,準2級
+go on a business trip to N,Nへ出張する,,熟語,,,,準2級
+go on a trip,Nへ旅行する,,熟語,,,,準2級
+I’m afraid,あいにく,,熟語,,,,準2級
+over coffee,コーヒーでも飲みながら,,熟語,,,,準2級
+That’s why S V.,だから、SがVする,,熟語,,,,準2級
+S be delayed,Sが遅延する,,熟語,,,,準2級
+due to N,N のせいで,,熟語,,,,準2級
+heavy traffic (jam),渋滞,,熟語,,,,準2級
+have a (bad) headache,（ひどい）頭痛です,,熟語,,,,準2級
+How come S V?,どうしてSがVするの？,,熟語,,whyと同じ,,準2級
+leave school early,学校を早退する,,熟語,,,,準2級
+Why don’t we V?,Vしませんか？,,熟語,,,,準2級
+be tired of Ving,Vするのに飽きている,,熟語,,,,準2級
+with one’ s arms folded,腕組みしながら,,熟語,,前置詞withは「～しながら」の意味,,準2級
+feel stressed,ストレスを感じる,,熟語,,,,準2級
+bring up N,Nを育てる,,熟語,,,,準2級
+a couple of Ns,2～3の,,熟語,,,,準2級
+plenty of,多くの,,熟語,,,,準2級
+bear A in mind,Aを頭に入れておく,,熟語,,,,準2級
+keep A in mind,Aを頭に入れておく,,熟語,,,,準2級
+have (got) to V, Vしなければならない,,熟語,,,,準2級
+hand in N,Nを提出する,,熟語,,,,準2級
+see A off,Aを見送る,,熟語,,see off Aも同じ,,準2級
+leave A for B,,,熟語,,Bに向けてAを出発する,,準2級
+major in N,Nを専攻する,,熟語,,,,準2級
+take a course,受講する,,熟語,,,,準2級
+(It’s) my pleasure,どういたしまして,,熟語,,,,準2級
+You are welcome,どういたしまして,,熟語,,,,準2級
+a job interview,就職面接,,熟語,,,,準2級
+What do you say to Ving?,Vするのはどう？,,熟語,,toは前置詞 なので動名詞になる,,準2級
+Would you like to V?,Vするのはどう？,,熟語,,,,準2級
+Why don’t we V?,Vするのはどう？,,熟語,,,,準2級
+different from N,Nと異なる,,熟語,,,,準2級
+have a gift for N,Nの才能がある,,熟語,,,,準2級
+drop in at N,Nに立ち寄る,,熟語,,,,準2級
+and so on,等々,,熟語,,,,準2級
+on one's way (to) A from B,BからAへの途中に,,熟語,,,,準2級
+for a while,しばらくの間,,熟語,,,,準2級
+spend O Ving,VするのにO(お金など)を費やす,,熟語,,,,準2級
+move into N,N（家など）に引っ越す,,熟語,,,,準2級
+move to N,N（地名など）に引っ越す,,熟語,,,,準2級
+How do you like N?,Nはどう（気にいってる）？,,熟語,,,,準2級
+study abroad,留学する,,熟語,,,,準2級
+abroad,海外,,熟語,,,,準2級
+abandon,辞める,,熟語,,,,準2級
+advertise,宣伝する,,熟語,,,,準2級
+admitt,認める,,熟語,,,,準2級
+consist of,～から構成される,,熟語,,,,準2級
+asset,資産,,熟語,,,,準2級
+suffer in A,Aで苦しんでいる,,熟語,,,,準2級
+trade with N,Nと取引する,,熟語,,,,準2級
+a huge amount of N,大量のN,,熟語,,,,準2級
+It is no use crying over spilt milk.,覆水盆に返らず,,熟語,,済んだことを後悔しても仕方がない,,準2級
+It is no use Ving.,Vしても無駄である,,熟語,,,,準2級
+have a large population,人口が多い,,熟語,,英語では人口は規模と扱うので、「多い・少ない」ではなく「大きい・小さい」で表,,準2級
+What is A like?,Aはどんな感じ？,,熟語,,,,準2級
+tough,厳しい、頑固な,,熟語,,,,準2級
+S be/have sold out,Sが売り切れた,,熟語,,,,準2級
+be on a diet,ダイエットしている,,熟語,,,,準2級
+go on a diet,ダイエットをする,,熟語,,,,準2級
+at the moment,現在,,熟語,,nowと同じ,,準2級
+put on N,Nを着る,,熟語,,,,準2級
+take off N,Nを脱ぐ,,熟語,,,,準2級
+It’s better to V.,Vした方がいい,,熟語,,,,準2級
+Would you mind my( me) Ving?,Vしても良いですか？,,熟語,,「良いよ」と答えるときは「No」。my( me) は省略可。,,準2級
+as usual,いつもの通り,,熟語,,,,準2級
+come up with an idea,案を考え出す,,熟語,,,,準2級
+be sure to V,必ずVする,,熟語,,,,準2級
+on time,時間通りに,,熟語,,,,準2級
+change A into B,AをBに変える,,熟語,,,,準2級
+convert A into B,AをBに変える,,熟語,,,,準2級
+turn A into B,AをBに変える,,熟語,,,,準2級
+parking lot,駐車場,,熟語,,,,準2級
+I’m relieved to hear that.,それは心強い、安心した,,熟語,,,,準2級
+As far as I know,私の知る限りでは,,熟語,,,,準2級
+as long as A,Aである限りは,,熟語,,,,準2級
+be retired,引退している,,熟語,,,,準2級
+give O a ride to N,O（人）を N（場所） まで乗せていく,,熟語,,,,準2級
+Would you V?,Vしてくれますか？,,熟語,,,,準2級
+under repair,修理中,,熟語,,,,準2級
+take care of N,Nを処理する/世話する,,熟語,,,,準2級
+paperwork,事務仕事,,熟語,,,,準2級
+be unable to V,Vすることができない,,熟語,,,,準2級
+be able to V,Vすることができる,,熟語,,,,準2級
+make it (to N),（ N に） 来る、 間に合う,,熟語,,,,準2級
+have no choice but to V,Vする他ない,,熟語,,,,準2級
+have no option but to V,Vする他ない,,熟語,,,,準2級
+A instead of B,Bの代わりにA,,熟語,,等位接続詞なのでAとBは並列の関係,,準2級
+apologize to 人 for A,Aのことで（人）に謝罪する,,熟語,,,,準2級
+be latefor N,Nに遅刻する,,熟語,,,,準2級
+wantad,求人広告,,熟語,,,,準2級
+apply for,応募する,,熟語,,,,準2級
+right away,早速,,熟語,,,,準2級
+Why don’t you V?,Vしませんか？,,熟語,,,,準2級
+Why don’t we V?,Vしませんか？,,熟語,,,,準2級
+How about Ving？,Vしませんか？,,熟語,,,,準2級
+Let’ s V.,Vしましょうよ。,,熟語,,,,準2級
+Would you like to V？,Vしませんか？,,熟語,,,,準2級
+You have the wrong number.,間違い電話,,熟語,,,,準2級
+decide to V,Vすることを決める,,熟語,,,,準2級
+study abroad,留学する,,熟語,,,,準2級
+have a fever,熱がある,,熟語,,,,準2級
+slight,少しの、わずかな,,熟語,,,,準2級
+must V without fail,必ずVしなければならない,,熟語,,,,準2級
+have A in common with B,Bと共通のAがある,,熟語,,,,準2級
+S 1 V 1 so that S 2 can V 2,S2がV2できるようにS1がV1する,,熟語,,,,準2級
+take a nap,昼寝をする,,熟語,,,,準2級
+put off A until B,AをBまで延期する,,熟語,,,,準2級
+be popular with N,N（人）に人気がある,,熟語,,,,準2級
+cannot help Ving,Vせざるを得ない,,熟語,,,,準2級
+cannot help but V,Vせざるを得ない,,熟語,,,,準2級
+such (a) 形容詞 ＋ 名詞 that S V,余りに（形）な（名）なのでSがVする,,熟語,,,,準2級
+Anything will do.,何でもいいよ,,熟語,,will do には be OK の よう なニュアンスがある,,準2級
+remind A of B,A（人）に B（物）を思い出させる,,熟語,,,,準2級
+be excellent at N,Nに秀でている,,熟語,,,,準2級
+look forward to Ving,Vすることを楽しみにする,,熟語,,,,準2級
+It depends.,物（ 内容）による,,熟語,,,,準2級
+May I ask you a favor?,ちょっとお願いがあるのですが,,熟語,,,,準2級
+Can I ask you a favor?,ちょっとお願いがあるのですが,,熟語,,,,準2級
+will be held,開催される予定だ,,熟語,,,,準2級
+despite N,Nにもかかわらず,,前置詞,,,,準2級
+occasionally,時々,,副詞,,,,準2級
+seldom,めったに～しない,,副詞,,,,準2級
+colleague,同僚,,名詞,,,,準2級
+checking account,当座預金口座,,熟語,名詞,,,1級
+get in touch with A,Aに連絡する,,熟語,動詞,,,準1級
+make a call,電話する,,熟語,,,,
+keep in touch,連絡を取り合う,,熟語,,,,
+help yourself,うぞ食べて下さい,,熟語,,,,
+break the ice,緊張をほぐす,,熟語,,,,
+unlike,～とちがって,,前置詞,,,,
+although,～にもかかわらず,,接続詞,,,,
+nevertheless,やはり、それでも,,副詞,,,,
+even,～さえ,,副詞,,,,
+I will miss you a lot,寂しくなる,,,,,,
+delight,喜ばせる,,動詞,,,,
+sill,つまらない,,形容詞,,,,
+Please do not V,Vしないで,,熟語,命令,,,
+appreciation,感謝,,,,,,
+consumption,消費,,,,,,
+expenditure,費用,,,,,,
+household,家計,,,,,,
+sluggish,不振な、不景気の,,,,,,
+up to you,あなた次第,,,,,,
+after you,お先にどうぞ,,,,,,
+only to you,あなただけに,,,,,,
+prefer,好む,,,,,,
+convert,変える、変わる,kənvˈɚːt,,,,,
+conversion,転換、変換,kənvˈɚːʒən,,,,,
+compete,競争する,kəmpíːt,,,,,
+competition,競争,kὰmpətíʃən,,,,,
+competitive,競争力のある,kəmpéṭəṭɪv,,,,,
+competitively,競合的に,kʌˈmpɛtɪtɪvli,,,,,
+competent,有能な, kὰmpətnt,,,,,
+competitor,競争相手,əmpéṭəṭɚ,,,同義語：rival(rάɪv(ə)l),,
+employ,雇用する、使用する、雇用,ɪmplˈɔɪ,,,,,
+employee,従業員,,,,,,
+employer,雇い主,,,,,,
+employment,雇用/使用/職, ɪmplˈɔɪmənt,,,,,
+interview,面接する、[人と]面接する、面接, ínṭɚvjùː,,,,,
+interviewer,面接官,,,,,,
+interviewee,面接を受ける人）,,,,,,
+listen,[集中して]聞く,,,,,,
+listener,聞き手,,,,,,
+listening,聞き取り,,,,,,
+hear,聞こえてくる,,,,,,
+hearing,聞き取り,,,,,,
+watch,[注意して]見る,,,,,,
+look at,[集中して]見る,,,,,,
+see,みえる,,,,,,
+turn,回転する、回転させる、回転, tˈɚːn,,,,,
+turn on A,Aをひねって開ける/つける,,,,,,
+turn O on,Oを興奮させる,,,,,,
+A turned on,Aを活性化する/オンにする,,,,,,
+part,部分、割合、編、分かれる、分ける, pɑ’ɚt,,,,,
+participation,参加・関与, pɑɚtìsəpéɪʃən,,,,,
+participate,参加する、関係する, pɑɚtísəpèɪt,,,,,
+participant,参加者、関係者, pɑɚtísəp(ə)nt,同義語：participator,,,,
+partly,一部分は, pάɚtli,,,,,
+partaker,一部分,,,,,,
+contribution,寄付、寄贈、貢献, kὰntrəbjúːʃən,,,,,
+contribute,寄付する, 与える, kəntríbjʊt,,,,
+use,利用する、[能力などの]利用法, júːz,,,,,
+utilize,利用する、利用、, júːtəlàiz, useをカッコつけて話す,,,,
+usage,[装置などの]使用法,,,,,,
+classic,最高水準の、古典的な、由緒のある, klˈæsɪk
+in time,時間内に[間に合う],,,,,,
+on time,ちょうど時間内に,,,,,,
+in progress,進行中,,,,,,
+god,神, gάd,,,,,
+Heaven,天, ˈhɛvʌn,,,,,
+be without,無い, wɪðὰʊt,,,,,
+void,空(から)の、無効の, vˈɔɪd,,,,,
+expanse,[陸地・空・海などの]広がり、広々とした場所, ɪkspˈæns,,,,,
+see good,良いと思う,,,,,,
+day,1日、日中,,,,,,
+midst(U:[真ん]中、最中, mídst:ミストウ,,,,,,
+hover over,覆いかぶさる、徘徊する,,,,,,
