@@ -1,14 +1,6 @@
-#include <M5Stack.h>
-#include <mcp_can.h>
-#include "m5_logo.h"
+#include < M5Stack.h >
+#include < mcp_can.h >
 
-/*
-    test RS485 first by default
- */
-
-/**
- * variable for RS485
- */
 
 // 帧头  长度  功能  数据  和校验
 // 01 aa 00 09 00 01 00 01 b6

@@ -1,6 +1,5 @@
-#include <M5Stack.h>
-#include <mcp_can.h>
-#include "m5_logo.h"
+#include < M5Stack.h >
+#include < mcp_can.h >
 
 long unsigned int canId;
 unsigned char len = 0;
