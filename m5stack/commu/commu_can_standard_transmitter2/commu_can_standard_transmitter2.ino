@@ -5,7 +5,7 @@
 #define CAN0_INT 15                              // Set INT to pin 2
 MCP_CAN CAN0(12);     // Set CS to pin 10
 int cnt = 0;
-int CANID = 0x041;
+int CANID = 0x031;
 int TYPE = 0; //Standard Format
 int DLC = 8;
 int timeCycle = 100; // サイクル[ms]
@@ -36,17 +36,13 @@ void setup() {
 }
 
 void loop() {
-
-
-
-
   // バイトオーダがMotorola（ビッグエンディアンのとき）
   // 1～2バイト目
-  datas[1] = byte( maxCellVoltage >> 8 );
-  datas[2] = byte( maxCellVoltage );
+  datas[1] = byte( maxCellVoltage >> 8 ); // 上位バイト
+  datas[2] = byte( maxCellVoltage );      // 下位バイト
   // 3～4バイト目
-  datas[3] = byte( minCellVoltage >> 8 );
-  datas[4] = byte( minCellVoltage);
+  datas[3] = byte( minCellVoltage >> 8 ); // 上位バイト
+  datas[4] = byte( minCellVoltage);      // 下位バイト
 
 
   /* バイトオーダがintel（リトルエンディアンのとき）
@@ -63,7 +59,8 @@ void loop() {
   datas[5] = byte( maxCellTemp );
   datas[6] = byte( aveCellTemp );
   datas[7] = byte( minCellTemp );
-  
+
+  // Aボタンが押されたら最大セル電圧を100mV加算
   if(M5.BtnA.wasPressed())
   {
     maxCellVoltage = maxCellVoltage + 100;
@@ -72,6 +69,7 @@ void loop() {
     init_can();
   }
 
+  // Aボタンが押されたら最大セル電圧を100mV減算
   if(M5.BtnB.wasPressed())
   {
     maxCellVoltage = maxCellVoltage - 100;
@@ -80,15 +78,17 @@ void loop() {
     init_can();
   }
 
+  // Cボタンが押されたら初期化
   if(M5.BtnC.wasPressed())
   {
     M5.Lcd.clear();
     M5.Lcd.fillScreen(0x0000);
     init_can();
   }
-  
+
+  // データ送信
   sendData(CANID, TYPE, DLC, datas);
-  delay(1000);
+
   M5.Lcd.fillScreen(0x0000);
   M5.update();
 }
