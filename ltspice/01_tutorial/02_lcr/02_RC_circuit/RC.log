@@ -1,0 +1,21 @@
+Circuit: * C:\github\sample\ltspice\01_tutorial\02_lcr\02_RC_circuit\RC.asc
+
+.OP point found by inspection.
+
+Date: Wed Sep 23 23:15:31 2020
+Total elapsed time: 0.125 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2350
+traniter = 2350
+tranpoints = 1176
+accept = 1142
+rejected = 34
+matrix size = 3
+fillins = 0
+solver = Normal
+Matrix Compiler1: 86 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2: 163 bytes object code size  0.1/0.2/[0.1]
+
