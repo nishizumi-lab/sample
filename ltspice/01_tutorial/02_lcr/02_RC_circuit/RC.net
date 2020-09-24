@@ -1,7 +1,0 @@
-* C:\github\sample\ltspice\01_tutorial\02_lcr\02_RC_circuit\RC.asc
-Voltage N001 0 PULSE(0 5 1m 0.001m 0.001m 1m 3m 2)
-R N002 0 2k
-C N002 N001 0.1µ
-.tran 10m
-.backanno
-.end
