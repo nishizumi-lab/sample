@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+	<channel>
+		<title>Example Title1</title>
+		<description>HogeHoge Description</description>
+		<link>http://example.ex/</link>
+		<lastBuildDate>Sun, 12 Dec 2020 15:20:02 GMT</lastBuildDate>
+		<managingEditor>hogehoge@example.com</managingEditor>
+		<item>
+			<title>HogeHoge Item Title</title>
+			<link>http://example.ex/2020/12/12/atom01</link>
+			<guid isPermaLink="false">urn:uuid:1334d123-a8vd-5abb-bbbb-d2d1354afb61</guid>
+			<pubDate>Sun, 12 Dec 2020 15:20:02 GMT</pubDate>
+			<description>sample descriptions.</description>
+		</item>
+	</channel>
+</rss>
