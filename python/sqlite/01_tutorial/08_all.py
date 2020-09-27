@@ -24,7 +24,7 @@ data = [('artoria',11221,15150),
 
 c.executemany(sql, data)
 
-# コミット
+# コミット（変更を確定する）
 db.commit()
     
 # データ（レコード）を取得して表示
@@ -50,6 +50,9 @@ sql = 'insert into artoria (name, atk, hp) values (?,?,?)'
 data = ('artoria caster', 15341, 11230)
 c.execute(sql, data)
 
+# コミット（変更を確定する）
+db.commit()
+
 # データ（レコード）を取得して表示
 print("---------------------")
 sql = 'select * from artoria'
@@ -73,6 +76,9 @@ for row in c.execute(sql):
 # artoriaテーブルのnameカラムにあるartoria casterをcastriaに更新
 sql = 'UPDATE artoria SET name = "artoria caster" where name = "castria"'
 c.execute(sql)
+
+# コミット（変更を確定する）
+db.commit()
 
 # データ（レコード）を取得して表示
 print("---------------------")
@@ -98,6 +104,9 @@ for row in c.execute(sql):
 sql = 'DELETE FROM artoria where name = "castria"'
 c.execute(sql)
 
+# コミット（変更を確定する）
+db.commit()
+
 # データ（レコード）を取得して表示
 print("---------------------")
 sql = 'select * from artoria'
@@ -116,8 +125,6 @@ for row in c.execute(sql):
 ('mystery heroine x alter', 11113, 14175)
 ('artoria caster', 15341, 11230)
 """
-
-
 
 # クローズ
 db.close() 
