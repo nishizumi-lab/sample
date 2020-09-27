@@ -1,7 +1,8 @@
 # -*- coding: utf-8
 import sqlite3
 
-# データベース開く
+# データベースを開く
+# ファイルがなければ新規作成
 db = sqlite3.connect("C:/github/sample/python/sqlite/00_sample_data/sarvant.db")
 
 c = db.cursor()
