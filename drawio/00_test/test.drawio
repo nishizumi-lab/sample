@@ -1,0 +1,19 @@
+<mxfile host="c505b3fb-c9ce-4996-a6f5-bca1ff0e47db" modified="2020-10-01T15:26:37.791Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.49.2 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="jSISSrFURHG9ZP6lr0n5" version="13.1.3">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="736" dy="441" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.opto_electronics.opto-transistor;" vertex="1" parent="1">
+                    <mxGeometry x="610" y="220" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.waveforms.pulse_1;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="50" width="570" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.rot_mech.field;pointerEvents=1;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="220" width="90" height="15" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
