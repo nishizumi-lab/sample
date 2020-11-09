@@ -1,14 +1,10 @@
-#include < M5Stack.h >
-#include < mcp_can.h >
+#include <M5Stack.h>
+#include <mcp_can.h>
 
 
 byte data[8] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
 
-
-/**
- * variable for RS485
- */
-// 帧头  长度  功能  数据  和校验
+// フレームヘッダー長関数データ合計チェック
 // 01 aa 00 09 00 01 00 01 b6
 char uart_buffer[9] = {0x01, 0xaa, 0x00, 0x09, 0x00, 0x01, 0x00, 0x01, 0xb6};
 char comchar;
@@ -54,10 +50,12 @@ void test_rs485();
 void updatedata()
 {
   Send_Count = ( Send_Count + 1 ) & 0xffff;
-   // 更新数值
+  
+  // 数値更新
   UART_DATA.datahigh =  (Send_Count & 0xff00)>>8;
   UART_DATA.datalow =  Send_Count & 0xff;
-  // 计算和校验值
+  
+  // 計算とチェック値
   UART_DATA.check = UART_DATA.framelow + UART_DATA.framehigh + UART_DATA.datalengthlow + UART_DATA.datalengthhigh + UART_DATA.functionlow + UART_DATA.functionhigh + UART_DATA.datalow + UART_DATA.datahigh;
 
   for(stringnum = 0;stringnum < 9; stringnum ++)
@@ -81,7 +79,6 @@ void setup() {
   Serial.begin(9600);
   Serial2.begin(9600, SERIAL_8N1, 16, 17);
 
-  M5.Lcd.pushImage(0, 0, 320, 240, (uint16_t *)gImage_logoM5);
   delay(500);
   M5.Lcd.setTextColor(BLACK);
   // M5.Lcd.setTextSize(1);
@@ -104,16 +101,13 @@ void loop() {
 }
 
 void init_rs485(){
-  M5.Lcd.pushImage(0, 0, 320, 240, (uint16_t *)gImage_logoM5);
   delay(500);
 
   M5.Lcd.setTextSize(2);
   M5.Lcd.setCursor(0, 10);
   M5.Lcd.printf("RS485 Test A!\n");
   Serial.println("RS485 Test A!\n");
-  /* nit data
-  帧头  长度  功能  数据  和校验
-  01 aa 00 09 00 01 00 01 b6 */
+
   memcpy(UART_DATA.buff, uart_buffer, 9);
 
   updatedata();
@@ -122,11 +116,11 @@ void init_rs485(){
 void test_rs485(){
   while(Serial2.available() > 0)
   {
-    Num = Serial2.readBytes(uart_buffer,9);//读串口字符串
+    Num = Serial2.readBytes(uart_buffer,9);
     if(Num == 9)
     {
       memcpy(UART_RECDATA.buff, uart_buffer, 9);
-        // 计算和校验值
+
       RECcheck = UART_RECDATA.framelow + UART_RECDATA.framehigh + UART_RECDATA.datalengthlow + UART_RECDATA.datalengthhigh + UART_RECDATA.functionlow + UART_RECDATA.functionhigh + UART_RECDATA.datalow + UART_RECDATA.datahigh;
       if (UART_RECDATA.check == (RECcheck & 0xff))
       {
