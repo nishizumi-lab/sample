@@ -27,7 +27,9 @@ with open(csv_filepath, 'r') as f:
 # artoria tableの内容を表示
 c.execute('SELECT * FROM artoria;')
 print(c.fetchall()) 
-# DBの変更を保存する。
+
+# DBの変更を反映(コミット)
 db.commit()
-# データベースとの接続を閉じる
+
+# DBとの接続を閉じる
 db.close()
