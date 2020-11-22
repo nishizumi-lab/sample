@@ -13,7 +13,7 @@ def realtime_graph(x, y):
     plt.xlim([0, 10])    # x軸範囲
     plt.ylim([0, 10])    # y軸範囲
     plt.draw()          # グラフの描画
-    plt.pause(0.01)
+    plt.pause(0.5) # 0.5sec間隔で更新
     plt.clf()  # 画面初期化
     
 
