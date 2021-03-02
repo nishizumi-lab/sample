@@ -3,7 +3,7 @@ import sqlite3
 
 # データベースを開く
 # ファイルがなければ新規作成
-db = sqlite3.connect("C:/github/sample/python/sqlite/00_sample_data/sarvant.db")
+db = sqlite3.connect("/Users/github/sample/python/sqlite/00_sample_data/sarvant.db")
 
 c = db.cursor()
 
@@ -29,7 +29,7 @@ db.commit()
     
 # データ（レコード）を取得して表示
 sql = 'select * from artoria'
-print("---------------------")
+print("1---------------------")
 for row in c.execute(sql):
     print(row)
 
@@ -54,7 +54,7 @@ c.execute(sql, data)
 db.commit()
 
 # データ（レコード）を取得して表示
-print("---------------------")
+print("2---------------------")
 sql = 'select * from artoria'
 for row in c.execute(sql):
     print(row)
@@ -74,14 +74,14 @@ for row in c.execute(sql):
 
 # データ更新
 # artoriaテーブルのnameカラムにあるartoria casterをcastriaに更新
-sql = 'UPDATE artoria SET name = "artoria caster" where name = "castria"'
+sql = 'UPDATE artoria SET name = "castria" where name = "artoria caster"'
 c.execute(sql)
 
 # コミット（変更を確定する）
 db.commit()
 
 # データ（レコード）を取得して表示
-print("---------------------")
+print("3---------------------")
 sql = 'select * from artoria'
 for row in c.execute(sql):
     print(row)
@@ -95,7 +95,7 @@ for row in c.execute(sql):
 ('artoria santa alter', 9258, 11286)
 ('mystery heroine x', 11761, 12696)
 ('mystery heroine x alter', 11113, 14175)
-('artoria caster', 15341, 11230)
+('castria', 15341, 11230)
 """
 
 
@@ -108,7 +108,7 @@ c.execute(sql)
 db.commit()
 
 # データ（レコード）を取得して表示
-print("---------------------")
+print("4---------------------")
 sql = 'select * from artoria'
 for row in c.execute(sql):
     print(row)
@@ -123,7 +123,6 @@ for row in c.execute(sql):
 ('artoria santa alter', 9258, 11286)
 ('mystery heroine x', 11761, 12696)
 ('mystery heroine x alter', 11113, 14175)
-('artoria caster', 15341, 11230)
 """
 
 # クローズ

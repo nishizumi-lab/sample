@@ -1,12 +1,13 @@
 from pathlib import Path
 import PyPDF2
 
-# ロードするCSVファイルのパスと文字コード
-load_pdf_dir = "C:/github/sample/python/file/04_pdf/00_sample_data/"
+# ロードするPDFファイルのパスと文字コード
+load_pdf_dir = "/Users/github/sample/python/file/04_pdf/00_sample_data"
 encode_type = "UTF-8"
 pdf_files = Path(load_pdf_dir)
-# ディレクトリを自動生成する先のパス
-merge_pdf_path = "C:/github/sample/python/file/04_pdf/01_merge_pdf/"
+
+# 結合したPDFの保存先パス
+merge_pdf_path = "/Users/github/sample/python/file/04_pdf/00_result_data"
 
 pdf_files = pdf_files.glob("*.pdf")
 print(pdf_files)

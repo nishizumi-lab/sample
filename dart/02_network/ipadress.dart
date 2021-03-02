@@ -72,6 +72,14 @@ class Ip {
     return ipToLong(getBroadcastAdress(ip, subnet)) - ipToLong(getNetworkAdress(ip, subnet)) - 1;
   }
 
+  List<String> cidrsToSubnets(List<int> cidrs){
+    List<String> subnets = new List<String>();
+    cidrs.forEach((int cidr) {
+      subnets.add(cidrTosubnet(cidr));
+    });
+    return subnets;
+  }
+
 }
 
 void main() {
@@ -88,4 +96,11 @@ void main() {
     print(ip.getIpEnd('192.168.1.1', '255.255.255.0')); // 192.168.1.255
     print(ip.getAdressNum('192.168.1.1', '255.255.255.0')); // 256
     print(ip.getHostNum('192.168.1.100', '255.255.255.0')); // 254
+    print(ip.cidrsToSubnets(new List.generate(32, (i)=>i+1)));
+    /*
+[0.0.0.0, 128.0.0.0, 192.0.0.0, 224.0.0.0, 240.0.0.0, 248.0.0.0, 252.0.0.0, 
+254.0.0.0, 255.0.0.0, 255.128.0.0, 255.192.0.0, 255.224.0.0, 255.240.0.0, 
+255.248.0.0, 255.252.0.0, 255.254.0.0, 255.255.0.0, 255.255.128.0, 255.255.192.0, 
+255.255.224.0, 255.255.240.0, 255.255.248.0, 255.255.252.0, 255.255.254.0]
+    */
 }
