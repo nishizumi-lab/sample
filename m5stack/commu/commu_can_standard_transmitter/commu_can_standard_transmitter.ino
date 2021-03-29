@@ -1,5 +1,6 @@
-#include < M5Stack.h >
-#include < mcp_can.h >
+#include <M5Stack.h>
+#include <mcp_can.h>
+
 
 #define CAN0_INT 15                              // Set INT to pin 2
 MCP_CAN CAN0(12);     // Set CS to pin 10
