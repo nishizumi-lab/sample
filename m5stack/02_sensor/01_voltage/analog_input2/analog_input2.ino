@@ -36,10 +36,12 @@ void loop() {
 
   M5.Lcd.fillScreen(BLACK);
 
-  if(realVoltage1 >= trigVoltage1 || realVoltage2 >= trigVoltage2){
+  if(realVoltage1 >= trigVoltage1){
     M5.Lcd.fillScreen(RED);
   }
-
+  else if(realVoltage2 >= trigVoltage2){
+    M5.Lcd.fillScreen(ORANGE);
+  }
   // CH1, CH2(35, 36pin)の電圧とアナログ入力値を表示
   M5.Lcd.setTextSize(4);
   M5.Lcd.drawString("CH1=" + String(realVoltage1) + "V", 0, 0);
@@ -96,7 +98,5 @@ void loop() {
       selectedItem = "trigVoltage1";    
     }
   }
-
     M5.update();  // ボタン操作の状況を読み込む関数(ボタン操作を行う際は必須)
-  
 }
