@@ -129,25 +129,26 @@ void loop() {
     // 選択対象を分圧抵抗の倍率に変更
     else if(selectedNum == 2){
       selectedItem = "alpha";
-      timerColor = 0xFFFF;
       trigUpperColor = 0xFFFF;
       trigLowerColor = 0xFFFF;
       alphaColor = 0xEC42;  
+      timerColor = 0xFFFF;
     }
     // 選択対象をトリガ電圧上限に変更
     else if(selectedNum == 3){
       selectedItem = "timer";
-      timerColor = 0xEC42;
       trigUpperColor = 0xFFFF;
       trigLowerColor = 0xFFFF;
-      alphaColor = 0xFFFF;   
+      alphaColor = 0xFFFF;
+      timerColor = 0xEC42;
     }
     else{
       selectedNum = 0;
       selectedItem = "trigUpper";
       trigUpperColor = 0xEC42;
       trigLowerColor = 0xFFFF;
-      alphaColor = 0xFFFF;   
+      alphaColor = 0xFFFF;
+      timerColor = 0xFFFF;
     }
   }
     M5.update();  // ボタン操作の状況を読み込む関数(ボタン操作を行う際は必須)
