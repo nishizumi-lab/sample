@@ -15,6 +15,12 @@ float trigVoltage2 = 3;
 float alpha = 1.0; // 倍率(分圧抵抗)
 String selectedItem = "trigVoltage1";
 int selectedNum = 0;
+int chColor = 0x07E0;
+int orgchColor = 0xFFFF;
+int trigCH1Color = 0xEC42;
+int trigCH2Color = 0xFFFF;
+int alphaColor = 0xFFFF;
+int bgColor = 0x0000;
 
 void setup() {
   M5.begin(); // 初期化処理
@@ -33,26 +39,32 @@ void loop() {
   realVoltage1 = alpha * voltage1;
   realVoltage2 = alpha * voltage2;
   
-
-  M5.Lcd.fillScreen(BLACK);
-
   if(realVoltage1 >= trigVoltage1){
-    M5.Lcd.fillScreen(RED);
+    bgColor = 0xF800;
   }
   else if(realVoltage2 >= trigVoltage2){
-    M5.Lcd.fillScreen(ORANGE);
+    bgColor = 0x1C48;
+    chColor = 0xFFFF;
   }
+  else{
+     bgColor = 0x0000;   
+  }
+  M5.Lcd.fillScreen(bgColor);
   // CH1, CH2(35, 36pin)の電圧とアナログ入力値を表示
   M5.Lcd.setTextSize(4);
+  M5.Lcd.setTextColor(chColor);
   M5.Lcd.drawString("CH1=" + String(realVoltage1) + "V", 0, 0);
   M5.Lcd.drawString("CH2=" + String(realVoltage2) + "V", 0, 40);
   M5.Lcd.setTextSize(2);
+  M5.Lcd.setTextColor(orgchColor);
   M5.Lcd.drawString("ORG CH1=" + String(voltage1) + "V", 0, 100);
   M5.Lcd.drawString("ORG CH2=" + String(voltage2) + "V", 0, 120);
+  M5.Lcd.setTextColor(trigCH1Color);
   M5.Lcd.drawString("TRIG CH1=" + String(trigVoltage1) + "V", 0, 140);
+  M5.Lcd.setTextColor(trigCH2Color);
   M5.Lcd.drawString("TRIG CH2=" + String(trigVoltage2) + "V", 0, 160);
-  M5.Lcd.drawString("alpha=" + String(alpha) + "", 0, 180);
-  M5.Lcd.drawString("select> " + selectedItem, 0, 220);
+  M5.Lcd.setTextColor(alphaColor);
+  M5.Lcd.drawString("alpha=" + String(alpha) + "", 0, 180);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
   delay(100);
 
   // Aボタンが押されたら+1
@@ -88,14 +100,23 @@ void loop() {
   {
     selectedNum++; // 選択アイテム管理用の変数を加算
     if(selectedNum == 1){
-      selectedItem = "trigVoltage2";         
+      selectedItem = "trigVoltage2";
+      trigCH1Color = 0xFFFF;
+      trigCH2Color = 0xEC42;
+      alphaColor = 0xFFFF;      
     }
     else if(selectedNum == 2){
-      selectedItem = "alpha";         
+      selectedItem = "alpha";
+      trigCH1Color = 0xFFFF;
+      trigCH2Color = 0xFFFF;
+      alphaColor = 0xEC42;        
     }
     else{
       selectedNum = 0;
-      selectedItem = "trigVoltage1";    
+      selectedItem = "trigVoltage1";
+      trigCH1Color = 0xEC42;
+      trigCH2Color = 0xFFFF;
+      alphaColor = 0xFFFF;   
     }
   }
     M5.update();  // ボタン操作の状況を読み込む関数(ボタン操作を行う際は必須)
