@@ -31,8 +31,8 @@ void loop() {
   M5.Lcd.drawString("CH1=" + String(voltage1) + "V", 0, 0);
   M5.Lcd.drawString("CH2=" + String(voltage2) + "V", 0, 40);
   M5.Lcd.setTextSize(2);
-  M5.Lcd.drawString("V=" + String(value1) + "", 0, 80);
-  M5.Lcd.drawString("V=" + String(value2) + "", 0, 100);
+  M5.Lcd.drawString("CH1=" + String(value1) + "", 0, 80);
+  M5.Lcd.drawString("CH2=" + String(value2) + "", 0, 100);
   delay(100);
 
 }
