@@ -46,6 +46,7 @@ void loop() {
   if(realVoltage1 >= trigUpper || realVoltage1 <= trigLower){
     bgColor = 0xF800; // 背景色の変更
     digitalWrite(RELAY_PIN1, HIGH); // リレー1をON
+ 
     // タイマーが0でなれば指定時間後にリレーOFF
     if(timer != 0){
       delay(timer);
@@ -74,7 +75,7 @@ void loop() {
   M5.Lcd.setTextColor(alphaColor);
   M5.Lcd.drawString("Alpha=" + String(alpha) + "", 0, 180);
   M5.Lcd.setTextColor(timerColor);
-  M5.Lcd.drawString("Times=" + String(timer) + "msec", 0, 200);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+  M5.Lcd.drawString("Timer=" + String(timer) + "msec", 0, 200);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
   delay(100);
 
   // Aボタンが押されたら+1
@@ -90,7 +91,10 @@ void loop() {
   {
     alpha++;
   }
-  
+  if(M5.BtnA.wasPressed() && selectedItem == "timer")
+  {
+    timer++;
+  }
   // Bボタンが押されたら-1
   if(M5.BtnB.wasPressed() && selectedItem == "trigUpper")
   {
@@ -103,6 +107,10 @@ void loop() {
   if(M5.BtnB.wasPressed() && selectedItem == "alpha")
   {
     alpha--;
+  }
+  if(M5.BtnB.wasPressed() && selectedItem == "timer")
+  {
+    timer--;
   }
   
   // Cボタンが押されたら選択アイテムを変更
@@ -122,15 +130,15 @@ void loop() {
     else if(selectedNum == 2){
       selectedItem = "alpha";
       timerColor = 0xFFFF;
-      trigUpper = 0xFFFF;
-      trigLower = 0xFFFF;
+      trigUpperColor = 0xFFFF;
+      trigLowerColor = 0xFFFF;
       alphaColor = 0xEC42;  
     }
     // 選択対象をトリガ電圧上限に変更
     else if(selectedNum == 3){
       selectedItem = "timer";
       timerColor = 0xEC42;
-      trigUpper = 0xFFFF;
+      trigUpperColor = 0xFFFF;
       trigLowerColor = 0xFFFF;
       alphaColor = 0xFFFF;   
     }
