@@ -24,8 +24,8 @@ void loop() {
   }
     // Bボタンを押したらリレー2をON(1000ms)
   if(M5.BtnC.wasPressed()){
-      digitalWrite(RELAY_PIN1, LOW);
-  digitalWrite(RELAY_PIN2, LOW);
+    digitalWrite(RELAY_PIN1, LOW);
+    digitalWrite(RELAY_PIN2, LOW);
   }
   delay(30);
   M5.update(); // ボタン操作の取得に必要
