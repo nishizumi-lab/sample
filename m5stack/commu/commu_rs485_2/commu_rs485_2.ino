@@ -1,5 +1,5 @@
-#include < M5Stack.h >
-#include < mcp_can.h >
+#include <M5Stack.h>
+#include <mcp_can.h>
 
 
 // 帧头  长度  功能  数据  和校验
