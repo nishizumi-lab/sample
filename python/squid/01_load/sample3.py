@@ -6,13 +6,8 @@ import apache_log_parser
 import pathlib
 import csv
 
-def main(csv_path):
-    """メイン関数"""
-
-    # (1/5) CSV ファイルのファイルパスを指定します。
+def load_csv_data(csv_path):
     data_csv = pathlib.Path(csv_path)
-
-    # (2/5) 読み込み結果を入れるリストを作成します。
     datas = []
 
     with data_csv.open('r', encoding='cp932', newline='') as f:
@@ -20,6 +15,8 @@ def main(csv_path):
         for c in csv.reader(f):
             # リストに追加
             datas.append(c)
+
+    return datas
 
 def read_apache_log(log_path, logformat='%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"'):
     parser = apache_log_parser.make_parser(logformat)
@@ -37,12 +34,16 @@ def read_apache_log(log_path, logformat='%h %l %u %t \"%r\" %>s %b \"%{Referer}i
     return dst
 
 log_path = "C:/github/sample/python/squid/00_sample_data/access.log"
- 
+csv_path = 'C:/github/sample/python/squid/00_sample_data/access.csv'
 
 df = pd.DataFrame(read_apache_log(log_path))
 #df['time_received'] = df['time_received'].str[1:]
 #df['time_received'] = df['time_received'].str[:-1]
 
 df.drop(columns=['time_received','time_received_isoformat','time_received_tz_datetimeobj','time_received_tz_isoformat','time_received_utc_datetimeobj','time_received_utc_isoformat'])
+df['id']= df.index
+#df.to_csv()
 
-df.to_csv('C:/github/sample/python/squid/00_sample_data/access.csv')
+#datas = load_csv_data(csv_path)
+
+print(df.values.tolist())
