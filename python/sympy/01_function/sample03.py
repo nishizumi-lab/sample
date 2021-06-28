@@ -10,8 +10,10 @@ f = x**2 + 6*x + 3
 # 関数f(x)をxで微分
 df = diff(f, x)
 
-# x=3のf(x)の傾きを計算
-dx = df.subs([(df, 3)])
+print(df) # 2*x + 6
+
+# f'(3)の値を計算
+dx = df.subs([(x, 3)])
 
 #計算結果の表示
-print(dx) # 3
+print(dx) # 12
