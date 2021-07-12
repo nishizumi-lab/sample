@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <h1>{{ name }} へようこそ</h1>
+    <p>メッセージ:{{ message }}ああああ</p>
+    <!-- url_forの引数に関数名を指定してそのviewに遷移 -->
+    <a  href="{{ url_for('index') }}">INDEX PAGEへ</a>
+</body>
+
+</html>
