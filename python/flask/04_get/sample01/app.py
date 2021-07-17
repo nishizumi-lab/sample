@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # index にアクセスされた場合の処理
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     message = "いらっしゃい"
 
