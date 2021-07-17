@@ -6,8 +6,10 @@
         <div class="row">
             <div class="col-md-12" class="bg-dark text-white">
                 <p class="bg-dark text-white">
+                    <!-- 変数nameに値があるとき -->
                     {% if name %}
                     こんにちは {{ name }} さん
+                    <!-- 変数nameに値がないとき -->
                     {% else %}
                     {{ message }}
                     {% endif %}

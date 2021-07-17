@@ -8,16 +8,7 @@ app = Flask(__name__)
 # index にアクセスされた場合の処理
 @app.route('/')
 def index():
-    title = "ようこそ"
-    message = "君の名前を教えてくれ"
-    # messageとtitleをindex.htmlに変数展開
-    return render_template('index.html',
-                           message=message, title=title)
-
-# /post にアクセスされ、GETもしくはPOSTメソッドでデータが送信された場合の処理
-@app.route('/page', methods=['GET', 'POST'])
-def post():
-    title = "いらっしゃい"
+    message = "いらっしゃい"
 
     # GETメソッドの場合
     if request.method == 'GET':
@@ -25,7 +16,7 @@ def post():
         page_num = request.args.get('page')
         # nameとtitleをindex.htmlに変数展開
         return render_template('index.html',
-                               name=page_num, message="GETメソッドが使用されました")
+                               name=page_num, message="GETパラメータがありません")
 
     # POSTメソッドの場合
     else:

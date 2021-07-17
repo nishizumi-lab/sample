@@ -30,7 +30,7 @@ def post():
         name = request.form['name']
         # nameとtitleをindex.htmlに変数展開
         return render_template('index.html',
-                               name=name,message="POSTメソッドが使用されました")
+                               name=name,message="名前を送信してください")
 
 
 if __name__ == "__main__":
