@@ -15,22 +15,21 @@ def index():
                            message=message, title=title)
 
 # /post にアクセスされ、GETもしくはPOSTメソッドでデータが送信された場合の処理
-@app.route('/post', methods=['GET', 'POST'])
+@app.route('/page', methods=['GET', 'POST'])
 def post():
     title = "いらっしゃい"
 
     # GETメソッドの場合
     if request.method == 'GET':
-        # トップページにリダイレクト
-        return redirect(url_for('index'))
+        # リクエストフォームから「名前」を取得
+        page_num = request.args.get('page')
+        # nameとtitleをindex.htmlに変数展開
+        return render_template('index.html',
+                               name=page_num, message="GETメソッドが使用されました")
 
     # POSTメソッドの場合
     else:
-        # リクエストフォームから「名前」を取得
-        name = request.form['name']
-        # nameとtitleをindex.htmlに変数展開
-        return render_template('index.html',
-                               name=name,message="POSTメソッドが使用されました")
+        return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
