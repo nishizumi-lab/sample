@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, request, redirect
 
 app = Flask(__name__)
 
-# ルートページ
+# ページ1
 @app.route('/page1')
 def page1():
     name = "ページ1"

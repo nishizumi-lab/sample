@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form" class="bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" class="bg-dark text-white">
+                <p class="bg-dark text-white">
+                    <!-- 変数nameに値があるとき -->
+                    {% if name %}
+                    こんにちは {{ name }} さん
+                    <!-- 変数nameに値がないとき -->
+                    {% else %}
+                    {{ message }}
+                    {% endif %}
+                </p>
+                <form action="/post" method="post" class="form-inline">
+                    <label for="name" class="bg-dark text-white">名前</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <button type="submit" class="btn btn-success">送信する</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

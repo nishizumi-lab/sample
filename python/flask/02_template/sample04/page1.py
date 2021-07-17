@@ -5,7 +5,7 @@ from flask import Blueprint
 # 関数名(page1)でBlueprintオブジェクトを生成
 page1_app = Blueprint('page1', __name__)
 
-# ルートページ
+# ページ1
 @page1_app.route('/page1')
 def page1():
     name = "ページ1"
