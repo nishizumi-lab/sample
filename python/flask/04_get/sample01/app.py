@@ -14,7 +14,7 @@ def index():
     if request.method == 'GET':
         # リクエストフォームから「名前」を取得
         page_num = request.args.get('page')
-        # nameとtitleをindex.htmlに変数展開
+
         return render_template('index.html',
                                name=page_num, message="GETパラメータがありません")
 
