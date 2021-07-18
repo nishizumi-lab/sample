@@ -4,12 +4,6 @@ import numpy as np
 import cv2
 from grayscale import rgb_to_gray
 
-
-SAVE_DIR = "./images/"
-
-if not os.path.isdir(SAVE_DIR):
-    os.mkdir(SAVE_DIR)
-
 app = Flask(__name__, static_url_path="")
 
 
@@ -34,7 +28,5 @@ def index():
 
 
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 5000))
-    app.debug = True  # デバッグモード有効化
-    #app.run(host="0.0.0.0", port=port)
-    app.run(host="127.0.0.1", port=port)
+
+    app.run(host="127.0.0.1", port=8080)
