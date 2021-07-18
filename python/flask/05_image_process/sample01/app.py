@@ -6,6 +6,14 @@ from grayscale import rgb_to_gray
 
 app = Flask(__name__, static_url_path="")
 
+# 処理した画像ファイルの保存先
+IMG_DIR = "/static/images/"
+BASE_DIR = os.path.dirname(__file__)
+IMG_PATH = BASE_DIR + IMG_DIR
+
+# 保存先のパスがなければ作成
+if not os.path.isdir(IMG_PATH):
+    os.mkdir(IMG_PATH)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,11 +28,11 @@ def index():
             # グレースケール変換
             gray = rgb_to_gray(img)
             # 画像の保存
-            save_path = os.path.join(SAVE_DIR + "gray.png")
-            cv2.imwrite(save_path, gray)
+
+            cv2.imwrite(os.path.join(IMG_PATH + "gray.png"), gray)
 
 
-    return render_template('index.html', images=os.listdir(SAVE_DIR)[::-1])
+    return render_template('index.html', images=os.path.join(IMG_PATH + "gray.png"))
 
 
 if __name__ == '__main__':
