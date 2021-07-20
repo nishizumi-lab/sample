@@ -64,22 +64,27 @@ def index():
     img_name = ""
 
     if request.method == 'POST':
-        # リクエストフォームから「名前」を取得
+        # 画像処理のパラメータを取得
         alpha = float(request.form['alpha'])
         K = int(request.form['K'])
-        # 画像をロード
+
+        # POSTで画像データを受信
         stream = request.files['image'].stream
+
+        # NumPy配列に変換し、OpenCVで扱えるようにする
         img_array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
 
-        # 画像データ用配列にデータがあれば
+        # 画像データ用配列にデータがあれば処理
         if len(img_array) != 0:
+            # デコード
             img = cv2.imdecode(img_array, 1)
-            # グレースケール変換
-            print(alpha)
-            print(K)
+            # モザイクアート加工
             dst = pixel_art(img, alpha, K)
+
+            # 出力ファイル名の生成(現在日時を付与して被らないようにする)
             now_date = dt.now()
             img_name = "dst-" + now_date.strftime('%Y-%m-%d-%H-%M-%S') + ".png"
+            
             # 画像の保存
             cv2.imwrite(os.path.join(IMG_PATH + img_name), dst)
 
