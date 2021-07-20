@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 # データベースの設定(sqliteファイルのパスを指定)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.sqlite'
 db = SQLAlchemy(app)
 
 
@@ -77,7 +77,8 @@ def update(id):
 
 
 if __name__ == "__main__":
-    # モデルからテーブルを作成(最初だけ)
-    #db.create_all()
-    # アプリを起動
-    app.run(host="127.0.0.1", port=8080)
+    # モデルからテーブルを作成(データベースファイルを最初に作るときだけ実行)
+    db.create_all()
+    
+    # アプリを起動(データベースファイルを最初に作るときはコメントアウトして実行しない)
+    #app.run(host="127.0.0.1", port=8080)
