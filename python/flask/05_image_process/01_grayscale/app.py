@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
-import os
 import numpy as np
 import cv2
-from grayscale import rgb_to_gray
+import os
+from datetime import datetime as dt
 
 app = Flask(__name__, static_url_path="")
 
@@ -15,8 +15,16 @@ IMG_PATH = BASE_DIR + IMG_DIR
 if not os.path.isdir(IMG_PATH):
     os.mkdir(IMG_PATH)
 
+# グレースケール変換
+def rgb_to_gray(img):
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return gray
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    img_name = ""
+
     if request.method == 'POST':
         # 画像をロード
         stream = request.files['image'].stream
@@ -27,12 +35,13 @@ def index():
             img = cv2.imdecode(img_array, 1)
             # グレースケール変換
             gray = rgb_to_gray(img)
+            now_date = dt.now()
+            img_name = "gray" + now_date.strftime('%Y-%m-%d-%H-%M-%S') + ".png"
             # 画像の保存
+            cv2.imwrite(os.path.join(IMG_PATH + img_name), gray)
 
-            cv2.imwrite(os.path.join(IMG_PATH + "gray.png"), gray)
 
-
-    return render_template('index.html', images=os.path.join(IMG_PATH + "gray.png"))
+    return render_template('index.html', img_name=img_name)
 
 
 if __name__ == '__main__':
