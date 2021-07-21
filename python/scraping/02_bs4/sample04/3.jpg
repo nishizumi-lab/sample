@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ページタイトル</title>
+</head>
+<body>
+  <div class="header">ヘッダーです</div>
+  <div class="main">
+    <h1>H1の見出しです</h1>
+    <p>文章1です</p>
+    <img src="./images/1.jpg"><br>
+    <img src="./images/2.jpg"><br>
+    <img src="./images/3.jpg"><br>
+  </div>
+  <div class="footer">
+    <p>フッターです</p>
+    <a href="#">リンク1</a><br>
+	  <a href="#">リンク2</a><br>
+  </div>
+</body>
+</html>
