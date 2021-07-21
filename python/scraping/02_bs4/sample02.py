@@ -3,7 +3,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 # urlのHTMLを取得
-url = 'https://raw.githubusercontent.com/nishizumi-lab/sample/master/python/scraping/00_sample_data/sample01/index.html'
+url = 'https://raw.githubusercontent.com/nishizumi-lab/sample/master/python/scraping/00_sample_data/sample02/index.html'
 html = urllib.request.urlopen(url)
 
 # HTMLパース
