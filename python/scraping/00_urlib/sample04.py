@@ -1,5 +1,5 @@
 #-*- using:utf-8 -*-
-import urllib
+import urllib.request
 
 def check_url(url):
     flag = True
@@ -14,6 +14,6 @@ def check_url(url):
     return flag
 
 
-url = "https://algorithm.joho.info"
+url = "https://raw.githubusercontent.com/nishizumi-lab/sample/master/python/scraping/00_sample_data/sample01/index.html"
 
 print(check_url(url)) # True
