@@ -1,26 +1,35 @@
-# -*- coding: utf-8
-import urllib.request
-    
-# 取得先URL
-url = "https://algorithm.joho.info/" 
+# -*- coding: utf-8 -*-
+import csv
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 
-# ユーザーエージェント情報を設定
-opener = urllib.request.build_opener()
-opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 ( .NET CLR 3.5.30729)')]
+def table_to_csv(file_path, url, selecter):
+    html = urlopen(url)
+    soup = BeautifulSoup(html, "html.parser")
 
-# HTMLファイルを開く
-data = opener.open(url)
-    
-# HTMLの取得      
-html = data.read()
-html = html.decode('utf-8')
-    
-# 表示
-print(html)
-    
-# HTMLファイルを閉じる
-data.close()
+    # セレクタ(タグ：table、クラス：test)
+    table = soup.findAll("table", selecter)[0]
 
-"""
-b'<!DOCTYPE html>\r\n<html lang="ja">\r\n<head>\r\n<meta charset="UTF-8"・・・・・・
-"""
+    trs = table.findAll("tr")
+    # ファイルオープン
+    csv_file = open(file_path, 'wt', newline = '', encoding = 'utf-8')
+    csv_write = csv.writer(csv_file)
+
+    for tr in trs:
+        csv_data = []
+        # 1行ごとにtd, tr要素のデータを取得してCSVに書き込み
+        for cell in tr.findAll(['td', 'th']):
+            csv_data.append(cell.get_text())
+        csv_write.writerow(csv_data)
+
+    # ファイルクローズド
+    csv_file.close()
+
+# URLの指定
+url = 'https://raw.githubusercontent.com/nishizumi-lab/sample/master/python/scraping/00_sample_data/sample02/index.html'
+
+# セレクタ
+selecter = {"class":"test"}
+
+# 指定したURL・セレクタの表のデータをCSVに保存
+table_to_csv("/Users/github/sample/python/scraping/02_bs4/sample03.csv", url, selecter)
