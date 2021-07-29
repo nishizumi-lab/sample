@@ -26,7 +26,7 @@ def anime_filter(img, K=20):
 
 def main():
     # 入力画像の読み込み
-    img = cv2.imread("C:/github/sample/python/opencv/sample_data/input2.jpg")
+    img = cv2.imread("C:/github/sample/python/opencv/sample_data/input.jpg")
 
     # 画像のアニメ絵化
     anime = anime_filter(img, 30)

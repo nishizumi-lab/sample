@@ -27,10 +27,10 @@ def sub_color(src, K):
 
 
 # 入力画像を取得
-img = cv2.imread("C:/github/sample/python/opencv/equalize_hist/input.jpg")
+img = cv2.imread("C:/github/sample/python/opencv/kmeans/input.jpg")
 
 # 減色処理(三値化)
 dst = sub_color(img, K=3)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/equalize_hist/output.jpg", dst)
+cv2.imwrite("C:/github/sample/python/opencv/kmeans/output.jpg", dst)

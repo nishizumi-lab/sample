@@ -12,4 +12,4 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 dst = cv2.equalizeHist(gray)
 
 # 結果の出力
-v2.imwrite("C:/github/sample/python/opencv/equalize_hist/output1.jpg", dst)
+cv2.imwrite("C:/github/sample/python/opencv/equalize_hist/output1.jpg", dst)
