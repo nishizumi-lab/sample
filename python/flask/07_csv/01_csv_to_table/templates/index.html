@@ -8,10 +8,26 @@
     <button type="submit">送信</button>
 </form>
 
-{% if img_name %}
-<div>
-    <img src="{{ url_for('static', filename='images/' + img_name) }}" style="margin-top: 10px; vertical-align: bottom; width: 600px;">
-</div>
+{% if date_fruit_list %}
+<h3>食べた果物記録</h3>
+こんにちは。こちょすさん。
+ 
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>日付</th>
+            <th>果物</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in date_fruit_list %}
+            <tr>
+                <td>{{ list[0] }}</td>
+                <td>{{ list[1] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endif %}
 
 {% endblock %}
