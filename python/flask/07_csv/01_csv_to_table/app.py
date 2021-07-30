@@ -19,7 +19,7 @@ if not os.path.isdir(IMG_PATH):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    date_fruit_list = pd.read_csv("./input/date_fruit.csv").values.tolist()
+    date_fruit_list = pd.read_csv("https://raw.githubusercontent.com/nishizumi-lab/sample/master/python/flask/07_csv/00_sample_data/sample01.csv").values.tolist()
 
     return render_template('index.html', title='食べた果物記録', date_fruit_list=date_fruit_list)
 ## おまじない
