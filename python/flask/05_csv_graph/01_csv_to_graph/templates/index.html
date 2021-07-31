@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" name="csv">
+    <button type="submit">送信</button>
+</form>
+
+{% if tables %}
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+{% endif %}
+
+{% endblock %}
