@@ -1,26 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form action="/" method="post" enctype="multipart/form-data">
-    <input type="file" name="image" accept="image/png, image/jpeg">
-    <input type="text" class="form-control" id="alpha" name="alpha" placeholder="alpha">
-    <input type="text" class="form-control" id="K" name="K" placeholder="K">
-    <button type="submit">送信</button>
-</form>
+{% if data_lists %}
 
-{% if date_fruit_list %}
-<h3>食べた果物記録</h3>
-こんにちは。こちょすさん。
- 
     <table class="table">
         <thead class="thead-light">
         <tr>
-            <th>日付</th>
-            <th>果物</th>
+            <th>経過日数</th>
+            <th>価格</th>
         </tr>
         </thead>
         <tbody>
-        {% for list in date_fruit_list %}
+        {% for list in data_lists %}
             <tr>
                 <td>{{ list[0] }}</td>
                 <td>{{ list[1] }}</td>
