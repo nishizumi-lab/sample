@@ -169,16 +169,16 @@ class SVM():
 
 def main():
     # 入力データのファイルパス
-    LOAD_INPUT_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/svm/ex4_data/train.csv"
+    LOAD_INPUT_DATA_PATH = "C:/github/sample/python/scikit/svm/ex4_data/train.csv"
 
     # 学習済みモデルデータの出力先パス
-    SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex4_data/train.learn'
+    SAVE_TRAINED_DATA_PATH = 'C:/github/sample/python/scikit/svm/ex4_data/train.learn'
 
     # テストデータのファイルパス
-    LOAD_TEST_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/svm/ex4_data/test.csv"
+    LOAD_TEST_DATA_PATH = "C:/github/sample/python/scikit/svm/ex4_data/test.csv"
 
     # グラフ出力先パス
-    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex4_data/graph.png'
+    SAVE_GRAPH_IMG_PATH = 'C:/github/sample/python/scikit/svm/ex4_data/graph.png'
 
     # 説明変数の列名
     NAME_X = ["x1", "x2"]

@@ -131,10 +131,10 @@ class SVM():
 
 def main():
     # 学習済みモデルデータの出力先パス
-    SAVE_TRAINED_DATA_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/train.learn'
+    SAVE_TRAINED_DATA_PATH = 'C:/github/sample/python/scikit/svm/ex5_data/train.learn'
 
     # グラフ出力先パス
-    SAVE_GRAPH_IMG_PATH = '/Users/panzer5/github/sample/python/scikit/svm/ex5_data/graph_x2_x3.png'
+    SAVE_GRAPH_IMG_PATH = 'C:/github/sample/python/scikit/svm/ex5_data/graph_x2_x3.png'
 
     # SVMのパラメータ
     GAMMA = 0.1
