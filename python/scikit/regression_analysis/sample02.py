@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-from sklearn import datasets
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+from sklearn.externals import joblib
 
-# 糖尿病患者のデータセットをロード
-dataset = datasets.load_diabetes()
+# 学習結果を読み込み
+clf = joblib.load('C:\prog\python\scikit\clf.learn')
 
-print(dataset)
+# 回帰係数と切片の抽出
+[a] = clf.coef_
+b = clf.intercept_ 
 
-"""
-{'data': array([[ 0.03807591,  0.05068012,  0.06169621, ..., -0.00259226,
-         0.01990842, -0.01764613],
-         ....
-        'target': array([151.,  75., 141., 206., 135.,  97., 138.,  63., 110., 310., 101.,
-        ....
-"""
+# 回帰係数
+print("回帰係数:", a) # 回帰係数: -0.0495480955455
+print("切片:", b)  # 切片: 20.1197546804
