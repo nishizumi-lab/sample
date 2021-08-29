@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import RMSprop
 
 def main():

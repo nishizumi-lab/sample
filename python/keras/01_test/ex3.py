@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import RMSprop
-from keras.utils.vis_utils import plot_model
+from tensorflow.keras.utils import plot_model
 import numpy as np
 import os
 
