@@ -2,10 +2,10 @@
 import pandas as pd
 import numpy as np
 from sklearn import linear_model
-from sklearn.externals import joblib
+import joblib
 
 # データ読み込み
-data = pd.read_csv("C:\prog\python\scikit\data.csv", sep=",")
+data = pd.read_csv('C:/github/sample/python/scikit/regression_analysis/data.csv', sep=',')
 
 # 線形回帰モデル
 clf = linear_model.LinearRegression()
@@ -29,7 +29,7 @@ print("切片:", b)
 print("決定係数:", clf.score(x, y))
 
 # 学習結果の出力
-joblib.dump(clf, 'C:\prog\python\scikit\clf.learn') 
+joblib.dump(clf, 'C:/github/sample/python/scikit/regression_analysis/clf.learn') 
 
 """
 回帰係数: -0.0495480955455

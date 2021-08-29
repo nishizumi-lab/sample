@@ -2,10 +2,10 @@
 import pandas as pd
 import numpy as np
 from sklearn import linear_model
-from sklearn.externals import joblib
+import joblib
 
 # 学習結果を読み込み
-clf = joblib.load('C:\prog\python\scikit\clf.learn')
+clf = joblib.load('C:/github/sample/python/scikit/regression_analysis/clf.learn')
 
 # 回帰係数と切片の抽出
 [a] = clf.coef_
