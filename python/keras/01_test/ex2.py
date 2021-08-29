@@ -2,7 +2,7 @@
 import numpy as np
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense
-from keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import RMSprop
 
 def main():
     # 説明変数（訓練用データ、入力データ）の用意

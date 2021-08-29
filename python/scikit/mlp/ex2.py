@@ -7,16 +7,16 @@ import joblib
 import matplotlib.pyplot as plt
 
 # 学習用データのパス
-LOAD_TRAIN_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex2_data/train.csv"
+LOAD_TRAIN_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex2_data/train.csv"
 
 # 学習済みモデルデータの保存先パス
-SAVE_TRAINED_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex2_data/train.learn"
+SAVE_TRAINED_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex2_data/train.learn"
 
 # 検証用データのパス
-LOAD_TEST_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex2_data/test.csv"
+LOAD_TEST_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex2_data/test.csv"
 
 # グラフ出力先パス
-save_graph_img_path = '/Users/panzer5/github/sample/python/scikit/mlp/ex2_data/graph.png'
+save_graph_img_path = 'C:/github/sample/python/scikit/mlp/ex2_data/graph.png'
 
 # グラフ画像のサイズ
 fig_size_x = 10

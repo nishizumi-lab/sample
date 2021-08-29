@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense
-from keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import RMSprop
 from keras.utils.vis_utils import plot_model
 import numpy as np
 import os
 
 def main():
 
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/01_test/ex3_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/01_test/ex3_data/"
     
     # ディレクトリがなければ作成
     os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
