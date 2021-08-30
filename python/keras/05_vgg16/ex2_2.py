@@ -9,8 +9,8 @@ import os
 
 def main():
     # 入力画像のパラメータ
-    img_width = 150 # 入力画像の幅
-    img_height = 150 # 入力画像の高さ
+    img_width = 224 # 入力画像の幅
+    img_height = 224 # 入力画像の高さ
     img_ch = 3 # 1ch画像（グレースケール）で学習
 
     # 入力データ数
@@ -34,10 +34,9 @@ def main():
     img = img_to_array(img) 
     img = img.astype('float32')/255.0
     img = np.array([img])
-    #img = tf.expand_dims(img, axis=0)
 
     # 分類機に入力データを与えて予測（出力：各クラスの予想確率）
-    y_pred = model.predict([img])
+    y_pred = model.predict(img)
 
     # 最も確率の高い要素番号
     number_pred = np.argmax(y_pred) 
@@ -48,7 +47,7 @@ def main():
     print('label_pred：', labels[int(number_pred)]) # 予想ラベル（最も確率の高い要素）
 
     """
-    y_pred: [[9.8013526e-01 1.9847380e-02 1.7439326e-05]]
+    y_pred: [[0.68970644 0.24376905 0.06652448]]
     number_pred: 0
     label_pred： yakan
     """
