@@ -4,7 +4,7 @@ from tensorflow.keras.models import Sequential, model_from_json
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.datasets import mnist
-from tensorflow.eras.utils import np_utils, to_categorical
+from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import matplotlib.pyplot as plt
 import cv2

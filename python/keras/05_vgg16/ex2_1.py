@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import os
-from keras.applications.vgg16 import VGG16
-from keras.preprocessing.image import ImageDataGenerator
-from keras.models import Sequential, Model
-from keras.layers import Input, Activation, Dropout, Flatten, Dense
-from keras import optimizers
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Input, Activation, Dropout, Flatten, Dense
+from tensorflow.keras import optimizers
 import pickle
 import matplotlib.pyplot as plt
 
@@ -63,7 +63,7 @@ def build_model(num_classes=3,
     model.add(Dense(num_classes, activation='softmax'))
 
     # VGG16のモデルと作成した全結合層(FC層)を結合してモデルを作成
-    new_model = Model(input = vgg16.input, output=model(vgg16.output))
+    new_model = Model(vgg16.input, model(vgg16.output))
 
     return new_model
 
@@ -155,7 +155,7 @@ def main():
 
     # Fine-tuning
     history = model.fit_generator(train_datas,
-                                    nb_epoch = num_epoch,
+                                    epochs = num_epoch,
                                     validation_data = valid_datas)
 
  

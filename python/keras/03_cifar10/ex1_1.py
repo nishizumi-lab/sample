@@ -4,7 +4,7 @@ from tensorflow.keras.models import Sequential, model_from_json
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D 
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.utils import np_utils, to_categorical
+from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
 import os
 import pickle

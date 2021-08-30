@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.preprocessing.image import array_to_img, img_to_array, load_img
-from tensorflow.keras.utils import np_utils, to_categorical
+from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import re

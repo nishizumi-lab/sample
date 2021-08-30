@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import tensorflow as tf
 from tensorflow.keras.models import Sequential, model_from_json
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.optimizers import RMSprop
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.utils import np_utils, to_categorical
+from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import matplotlib.pyplot as plt
 import os
@@ -36,9 +34,10 @@ def main():
     img = img_to_array(img) 
     img = img.astype('float32')/255.0
     img = np.array([img])
+    #img = tf.expand_dims(img, axis=0)
 
     # 分類機に入力データを与えて予測（出力：各クラスの予想確率）
-    y_pred = model.predict(img)
+    y_pred = model.predict([img])
 
     # 最も確率の高い要素番号
     number_pred = np.argmax(y_pred) 
