@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense, Dropout
-from keras.optimizers import RMSprop
-from keras.datasets import mnist
-from keras.utils import np_utils, to_categorical
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
 import os
 import pickle
 
@@ -21,7 +21,7 @@ def main():
     img_height = 28 # 入力画像の高さ
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex2_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex2_data/"
 
     # 入力データ数（今回は28*28=784個）
     num_input = int(img_width * img_height)
@@ -95,8 +95,9 @@ def main():
     print('Test accuracy:', score[1])
     
     """
-    Test loss: 0.1320522134795261
-    Test accuracy: 0.9837999939918518
+    acy: 0.9825
+    Test loss: 0.12795983254909515
+    Test accuracy: 0.9835000038146973
     """
     
     # モデル構造の保存

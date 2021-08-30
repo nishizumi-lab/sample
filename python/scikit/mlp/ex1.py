@@ -6,13 +6,13 @@ from sklearn import metrics
 import joblib
 
 # 学習用データのパス
-LOAD_TRAIN_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex1_data/train.csv"
+LOAD_TRAIN_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex1_data/train.csv"
 
 # 学習済みモデルデータの保存先パス
-SAVE_TRAINED_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex1_data/train.learn"
+SAVE_TRAINED_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex1_data/train.learn"
 
 # 検証用データのパス
-LOAD_TEST_DATA_PATH = "/Users/panzer5/github/sample/python/scikit/mlp/ex1_data/test.csv"
+LOAD_TEST_DATA_PATH = "C:/github/sample/python/scikit/mlp/ex1_data/test.csv"
 
 # ニューラルネットワークのパラメータ
 solver = "sgd"

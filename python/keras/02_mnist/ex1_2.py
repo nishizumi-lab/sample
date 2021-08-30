@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense, Dropout
-from keras.optimizers import RMSprop
-from keras.datasets import mnist
-from keras.utils import np_utils, to_categorical
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
 import cv2
 import os
@@ -16,7 +16,7 @@ def main():
     num_input = int(img_width * img_height)
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex1_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex1_data/"
 
     # 保存したモデル構造の読み込み
     model = model_from_json(open(SAVE_DATA_DIR_PATH + "model.json", 'r').read())
@@ -58,7 +58,8 @@ def main():
     """
 
     # 分類機に入力データを与えて予測（出力：クラスラベル）
-    predict_classes_y = model.predict_classes(th)
+    predict_y = model.predict(th)
+    predict_classes_y = np.argmax(predict_y,axis=1)
     print("predict_classes_y:", predict_classes_y)  # 予測した数字
 
     # predict_classes_y: [2]

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense
-from keras.optimizers import RMSprop
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import RMSprop
 import os
 
 def main():
 
     # モデルの保存先
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/01_test/ex5_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/01_test/ex5_data/"
     
     # ディレクトリがなければ作成
     os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)
