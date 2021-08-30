@@ -58,7 +58,7 @@ def main():
     img_height = 32 # 入力画像の高さ
     img_ch = 3 # 3ch画像（RGB）で学習
 
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/03_cifar10/ex1_data/"
 
     # グラフ画像のサイズ

@@ -15,7 +15,7 @@ def main():
     img_height = 28 # 入力画像の高さ
     num_input = int(img_width * img_height)
 
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex1_data/"
 
     # 保存したモデル構造の読み込み

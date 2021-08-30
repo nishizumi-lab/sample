@@ -8,6 +8,7 @@ import os
 
 def main():
 
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/01_test/ex3_data/"
     
     # ディレクトリがなければ作成

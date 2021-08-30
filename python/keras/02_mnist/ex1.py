@@ -20,7 +20,7 @@ def main():
     img_width = 28 # 入力画像の幅
     img_height = 28 # 入力画像の高さ
 
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex2_data/"
 
     # 入力データ数（今回は28*28=784個）

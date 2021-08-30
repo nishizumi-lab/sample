@@ -57,7 +57,7 @@ def main():
     img_height = 28 # 入力画像の高さ
     img_ch = 1 # 1ch画像（グレースケール）で学習
 
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex3_data/"
 
     # グラフ画像のサイズ

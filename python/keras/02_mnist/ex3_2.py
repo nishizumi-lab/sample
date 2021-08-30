@@ -18,7 +18,7 @@ def main():
     # 入力データ数
     num_data = 1
 
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex3_data/"
 
     # 保存したモデル構造の読み込み

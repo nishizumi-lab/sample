@@ -125,6 +125,7 @@ def main():
     FIG_SIZE_HEIGHT = 10
     FIG_FONT_SIZE = 25
 
+    # データの保存先(自分の環境に応じて適宜変更)
     # トレーニング用とバリデーション用の画像格納先
     SAVE_DATA_DIR_PATH = 'C:/github/sample/python/keras/05_vgg16/ex2_data/'
 

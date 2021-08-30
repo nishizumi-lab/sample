@@ -42,6 +42,7 @@ def plot_history(history, save_graph_img_path, fig_size_x, fig_size_y, lim_font_
 
 def main():
 
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/01_test/ex4_data/"
     
     # ディレクトリがなければ作成

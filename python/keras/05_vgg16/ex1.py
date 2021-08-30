@@ -4,7 +4,7 @@ from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
 from keras.preprocessing import image
 
 def main():
-    # データ格納用のディレクトリパス
+    # データの保存先(自分の環境に応じて適宜変更)
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/05_vgg16/ex1_data/"
 
     # VGG16の学習済みモデルを読み込み
