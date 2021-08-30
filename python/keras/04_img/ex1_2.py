@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from tensorflow.keras.models import Sequential, model_from_json
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.optimizers import RMSprop
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
-import matplotlib.pyplot as plt
-import cv2
-import os
 
 def main():
     # 入力画像のパラメータ
@@ -55,6 +49,7 @@ def main():
     predict_number: 2
     predict_label： マグカップ
     """
+
 
 if __name__ == '__main__':
     main()

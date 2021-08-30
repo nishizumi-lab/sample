@@ -11,10 +11,6 @@ def main():
     # 入力画像のパラメータ
     img_width = 224 # 入力画像の幅
     img_height = 224 # 入力画像の高さ
-    img_ch = 3 # 1ch画像（グレースケール）で学習
-
-    # 入力データ数
-    num_data = 1
 
     # データ格納用のディレクトリパス
     SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/05_vgg16/ex2_data/"
