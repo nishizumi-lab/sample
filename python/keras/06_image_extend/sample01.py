@@ -26,27 +26,15 @@ for i, file in enumerate(files):
  
     # ImageDataGeneratorの生成
     datagen = ImageDataGenerator(
-    featurewise_center=False,
-    samplewise_center=False,
-    featurewise_std_normalization=False,
-    samplewise_std_normalization=False,
-    zca_whitening=False,
-    zca_epsilon=1e-06,
-    rotation_range=10.0,
-    width_shift_range=0.0,
-    height_shift_range=0.0,
-    brightness_range=None,
-    shear_range=0.0,
-    zoom_range=0.0,
-    channel_shift_range=0.0,
-    fill_mode='nearest',
-    cval=0.0,
-    horizontal_flip=True,
-    vertical_flip=True,
-    rescale=None,
-    preprocessing_function=None,
-    data_format=None,
-    validation_split=0.0)
+    zca_epsilon=1e-06,   # 白色化のイプシロン
+    rotation_range=10.0, # ランダムに回転させる範囲
+    width_shift_range=0.0, # ランダムに幅をシフトさせる範囲
+    height_shift_range=0.0, # ランダムに高さをシフトさせる範囲
+    brightness_range=None, # ランダムに明るさを変化させる範囲
+    zoom_range=0.0,        # ランダムにズームさせる範囲
+    horizontal_flip=True, # ランダムに水平方向に反転させる
+    vertical_flip=True, # ランダムに垂直方向に反転させる
+    )
  
     # 1枚あたり20枚の画像を水増し生成
     dg = datagen.flow(x, batch_size=1, save_to_dir=output_path, save_prefix='img', save_format='jpg')
