@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers.core import Dense, Dropout
-from keras.optimizers import RMSprop
-from keras.datasets import mnist
-from keras.utils import np_utils, to_categorical
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import cv2
 import os
@@ -19,7 +19,7 @@ def main():
     num_data = 1
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex3_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex3_data/"
 
     # 保存したモデル構造の読み込み
     model = model_from_json(open(SAVE_DATA_DIR_PATH + "model.json", 'r').read())

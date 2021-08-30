@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.optimizers import RMSprop
-from keras.datasets import cifar10
-from keras.preprocessing.image import array_to_img, img_to_array, load_img
-from keras.utils import np_utils, to_categorical
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.preprocessing.image import array_to_img, img_to_array, load_img
+from tensorflow.keras.utils import np_utils, to_categorical
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import re
@@ -66,7 +65,7 @@ def main():
     img_ch = 3 # 3ch画像（RGB）で学習
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/04_img/ex1_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/04_img/ex1_data/"
 
     # ディレクトリがなければ作成
     os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)

@@ -126,7 +126,7 @@ def main():
     FIG_FONT_SIZE = 25
 
     # トレーニング用とバリデーション用の画像格納先
-    SAVE_DATA_DIR_PATH = '/Users/panzer5/github/sample/python/keras/05_vgg16/ex2_data/'
+    SAVE_DATA_DIR_PATH = 'C:/github/sample/python/keras/05_vgg16/ex2_data/'
 
     # ディレクトリがなければ作成
     os.makedirs(SAVE_DATA_DIR_PATH, exist_ok=True)

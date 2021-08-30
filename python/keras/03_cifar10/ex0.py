@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-from keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar10
 
 
 def main():

@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.models import Sequential, model_from_json
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.optimizers import RMSprop
-from keras.datasets import mnist
-from keras.utils import np_utils, to_categorical
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import np_utils, to_categorical
 import matplotlib.pyplot as plt
 import os
 import pickle
@@ -59,7 +58,7 @@ def main():
     img_ch = 1 # 1ch画像（グレースケール）で学習
 
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/02_mnist/ex3_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/02_mnist/ex3_data/"
 
     # グラフ画像のサイズ
     FIG_SIZE_WIDTH = 12

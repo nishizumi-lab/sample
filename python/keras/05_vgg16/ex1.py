@@ -5,7 +5,7 @@ from keras.preprocessing import image
 
 def main():
     # データ格納用のディレクトリパス
-    SAVE_DATA_DIR_PATH = "/Users/panzer5/github/sample/python/keras/05_vgg16/ex1_data/"
+    SAVE_DATA_DIR_PATH = "C:/github/sample/python/keras/05_vgg16/ex1_data/"
 
     # VGG16の学習済みモデルを読み込み
     model = VGG16(weights='imagenet')
