@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
-from keras.preprocessing import image
+from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
+from tensorflow.keras.preprocessing import image
 
 def main():
     # データの保存先(自分の環境に応じて適宜変更)
