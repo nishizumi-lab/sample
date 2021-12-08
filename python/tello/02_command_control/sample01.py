@@ -43,6 +43,13 @@ while True:
         # Send data
         msg = msg.encode(encoding="utf-8") 
         sent = sock.sendto(msg, tello_address)
+
     except KeyboardInterrupt:
         sock.close()  
         break
+    
+"""
+command
+takeoff
+Land
+"""
