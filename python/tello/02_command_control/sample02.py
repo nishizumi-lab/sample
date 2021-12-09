@@ -2,7 +2,6 @@
 import threading 
 import socket
 import time
-import sys
 import tkinter
 
 class Application(tkinter.Frame):
@@ -31,16 +30,16 @@ class Application(tkinter.Frame):
 
     # ウィジェットの作成
     def create_widgets(self):
-        # 「はい」ボタンの生成
+        # 離陸
         self.takeoff = tkinter.Button(self)
-        self.takeoff["text"] = "Take Off"  # ボタンのテキスト
-        self.takeoff["command"] = self.takeoffBtnClicked # ボタンが押されたらprint_yesメソッドを実行
+        self.takeoff["text"] = "離陸"  # ボタンのテキスト
+        self.takeoff["command"] = self.takeoff # ボタンが押されたらtakeoffメソッドを実行
         self.takeoff.pack(side="top") # ボタンの位置
 
-        # 「はい」ボタンの生成
+        # 着陸
         self.land = tkinter.Button(self)
-        self.land["text"] = "Land"  # ボタンのテキスト
-        self.land["command"] = self.landBtnClicked # ボタンが押されたらprint_yesメソッドを実行
+        self.land["text"] = "着陸"  # ボタンのテキスト
+        self.land["command"] = self.land # ボタンが押されたらlandメソッドを実行
         self.land.pack(side="bottom") # ボタンの位置
 
 
@@ -60,59 +59,67 @@ class Application(tkinter.Frame):
 
 
     # 各種コマンド送信
-    def takeoffBtnClicked(self):
+    def takeoff(self):
         try:
             sent = self.sock.sendto('takeoff'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def landBtnClicked(self):
+
+    def land(self):
         try:
             sent = self.sock.sendto('land'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def upBtnClicked(self):
+
+    def up(self):
         try:
             sent = self.sock.sendto('up 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def downBtnClicked(self):
+    def down(self):
         try:
             sent = self.sock.sendto('down 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def cwBtnClicked(self):
+
+    def cw(self):
         try:
             sent = self.sock.sendto('cw 45'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def ccwBtnClicked(self):
+
+    def ccw(self):
         try:
             sent = self.sock.sendto('ccw 45'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def forwardBtnClicked(self):
+
+    def forward(self):
         try:
             sent = self.sock.sendto('forward 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def backBtnClicked(self):
+
+    def back(self):
         try:
             sent = self.sock.sendto('back 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def rightBtnClicked(self):
+
+    def right(self):
         try:
             sent = self.sock.sendto('right 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
-    def leftBtnClicked(self):
+
+    def left(self):
         try:
             sent = self.sock.sendto('left 20'.encode(encoding="utf-8"), self.tello)
         except:
             pass
 
     # Telloからのレスポンス受信
-    def recvSocket(self):
+    def recv(self):
         while True: 
             try:
                 data, server = self.sock.recvfrom(1518)
@@ -131,7 +138,7 @@ class Application(tkinter.Frame):
                 pass
 
     # 問い合わせ
-    def askTello(self):
+    def ask(self):
         while True:
             try:
                 sent = self.sock.sendto('battery?'.encode(encoding="utf-8"), self.tello)
