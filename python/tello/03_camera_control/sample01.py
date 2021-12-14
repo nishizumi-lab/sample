@@ -26,7 +26,7 @@ def udp_receiver():
     while True:
         try:
             # クライアントからのメッセージの受信を受付開始(コネクションレス型)
-            response, _ = socket.recvfrom(1024)
+            response, _ = sock.recvfrom(1024)
         except Exception as e:
             print(e)
             break
@@ -47,7 +47,16 @@ if not cap.isOpened():
     cap.open(tello_camera_address)
 
 while True:
+
     ret, frame = cap.read()
+
+    # frameが空やサイズが0のとき、スキップ
+    if frame is None or frame.size == 0:
+        continue
+
+    # カメラ映像のサイズを半分にしてウィンドウに表示
+    frame_height, frame_width = frame.shape[:2]
+    frame = cv2.resize(frame, (frame_height / 2, frame_width / 2))
         
     cv2.imshow('Tello Camera View', frame)
 
