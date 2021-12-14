@@ -4,91 +4,94 @@ import socket
 import tkinter as tk
 import time
 
-tello = ('192.168.10.1', 8889)
+# Tello側のローカルIPアドレス(デフォルト)、宛先ポート番号(コマンドモード用)
+TELLO_IP = '192.168.10.1'
+TELLO_PORT = 8889
+TELLO_ADDRESS = (TELLO_IP, TELLO_PORT)
 
-host = ''
-port = 9000
-locaddr = (host,port) 
+# UDP通信ソケットの作成(アドレスファミリ：AF_INET（IPv4）、ソケットタイプ：SOCK_DGRAM（UDP）)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(locaddr)
+
+# 自ホストで使用するIPアドレスとポート番号を設定
+sock.bind(('', TELLO_PORT))
 
 
 # 離陸
 def takeoff():
         print("-----")
         try:
-            sent = sock.sendto('takeoff'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('takeoff'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 着陸
 def land():
         try:
-            sent = sock.sendto('land'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('land'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 上昇(20cm)
 def up():
         try:
-            sent = sock.sendto('up 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('up 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 下降(20cm)
 def down():
         try:
-            sent = sock.sendto('down 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('down 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 前に進む(20cm)
 def forward():
         try:
-            sent = sock.sendto('forward 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('forward 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 後に進む(20cm)
 def back():
         try:
-            sent = sock.sendto('back 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('back 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 右に進む(20cm)
 def right():
         try:
-            sent = sock.sendto('right 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('right 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 左に進む(20cm)
 def left():
         try:
-            sent = sock.sendto('left 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('left 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 右回りに回転(90 deg)
 def cw():
         try:
-            sent = sock.sendto('cw 90'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('cw 90'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 左回りに回転(90 deg)
 def ccw():
         try:
-            sent = sock.sendto('ccw 90'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('ccw 90'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 高速モード(速度40cm/sec)
 def speed40():
         try:
-            sent = sock.sendto('speed 40'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('speed 40'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 低速モード(速度20cm/sec)
 def speed20():
         try:
-            sent = sock.sendto('speed 20'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('speed 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 
 # Telloからのレスポンス受信
-def recv():
+def udp_receiver():
         while True: 
             try:
                 data, server = sock.recvfrom(1518)
@@ -108,13 +111,13 @@ def recv():
 def ask():
     while True:
         try:
-            sent = sock.sendto('battery?'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('battery?'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
         time.sleep(0.5)
 
         try:
-            sent = sock.sendto('time?'.encode(encoding="utf-8"), tello)
+            sent = sock.sendto('time?'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
         time.sleep(0.5)
@@ -126,12 +129,12 @@ root.title('ボタンイベントの検証')
 
 # 最初にcommandコマンドを送信
 try:
-    sent = sock.sendto('command'.encode(encoding="utf-8"), tello)
+    sent = sock.sendto('command'.encode(encoding="utf-8"), TELLO_ADDRESS)
 except:
     pass
 # 速度を遅めに設定
 try:
-    sent = sock.sendto('speed 20'.encode(encoding="utf-8"), tello)
+    sent = sock.sendto('speed 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
 except:
     pass
 
@@ -142,7 +145,7 @@ askThread.start()
 
 
 # 受信スレッド起動
-recvThread = threading.Thread(target=recv)
+recvThread = threading.Thread(target=udp_receiver)
 recvThread.setDaemon(True)
 recvThread.start()
 

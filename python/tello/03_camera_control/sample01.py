@@ -48,11 +48,8 @@ if not cap.isOpened():
 
 while True:
     ret, frame = cap.read()
-
-    # カメラ映像のサイズを半分にしてウィンドウに表示
-    frame_height, frame_width = frame.shape[:2]
-    frame2 = cv2.resize(frame, (frame_height / 2, frame_width / 2))
-    cv2.imshow('Tello Camera View', frame2)
+        
+    cv2.imshow('Tello Camera View', frame)
 
     # qキーで終了
     if cv2.waitKey(1) & 0xFF == ord('q'):

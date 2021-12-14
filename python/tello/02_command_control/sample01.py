@@ -1,8 +1,9 @@
 import threading 
 import socket
 
+
 # Telloからのレスポンス受信
-def recv():
+def udp_receiver():
     count = 0
     while True: 
         try:
@@ -12,22 +13,21 @@ def recv():
             print ('\nExit . . .\n')
             break
 
-host = ""
-port = 9000
-locaddr = (host,port) 
+# Tello側のローカルIPアドレス(デフォルト)、宛先ポート番号(コマンドモード用)
+TELLO_IP = '192.168.10.1'
+TELLO_PORT = 8889
+TELLO_ADDRESS = (TELLO_IP, TELLO_PORT)
 
 # UDP通信ソケットの作成
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# Tello側のローカルIPアドレス(デフォルト)、コマンドモード用の宛先ポート番号
-tello_address = ('192.168.10.1', 8889)
-
 # 自ホストで使用するIPアドレスとポート番号を設定
-sock.bind(locaddr)
+sock.bind(('', TELLO_PORT))
 
 # 受信用スレッドの作成
-recvThread = threading.Thread(target=recv)
-recvThread.start()
+thread  = threading.Thread(target=udp_receiver)
+thread.daemon = True
+thread .start()
 
 while True: 
 
@@ -46,7 +46,7 @@ while True:
 
         # データを送信
         msg = msg.encode(encoding="utf-8") 
-        sent = sock.sendto(msg, tello_address)
+        sent = sock.sendto(msg, TELLO_ADDRESS)
 
     except KeyboardInterrupt:
         sock.close()  
