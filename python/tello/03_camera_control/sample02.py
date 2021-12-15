@@ -20,7 +20,7 @@ def udp_receiver():
                     battery_text = "Battery:" + resp + "%"
                 # 最後の文字がsなら飛行時間
                 elif resp[-1:] == "s":
-                    time_text = "Time:" + resp + "s"
+                    time_text = "Time:" + resp
                 else: 
                     status_text = "Status:" + resp
             except:
@@ -124,7 +124,7 @@ TELLO_ADDRESS = (TELLO_IP, TELLO_PORT)
 # Telloからの映像受信用のローカルIPアドレス、宛先ポート番号
 TELLO_CAMERA_ADDRESS = 'udp://@0.0.0.0:11111'
 
-command_text = "WAIT..."
+command_text = "None"
 battery_text = "Battery:"
 time_text = "Time:"
 status_text = "Status:"
@@ -183,70 +183,97 @@ while True:
     
     # 送信したコマンドを表示
     cv2.putText(frame2,
-            text=command_text,
+            text="Cmd:" + command_text,
             org=(10, 20),
             fontFace=cv2.FONT_HERSHEY_SIMPLEX,
             fontScale=0.5,
             color=(0, 255, 0),
-            thickness=2,
+            thickness=1,
             lineType=cv2.LINE_4)
-
+    # バッテリー残量を表示
     cv2.putText(frame2,
             text=battery_text,
             org=(10, 40),
             fontFace=cv2.FONT_HERSHEY_SIMPLEX,
             fontScale=0.5,
             color=(0, 255, 0),
-            thickness=2,
+            thickness=1,
             lineType=cv2.LINE_4)
-
+    # 飛行時間を表示
     cv2.putText(frame2,
             text=time_text,
             org=(10, 60),
             fontFace=cv2.FONT_HERSHEY_SIMPLEX,
             fontScale=0.5,
             color=(0, 255, 0),
-            thickness=2,
+            thickness=1,
             lineType=cv2.LINE_4)
-
+    # ステータスを表示
     cv2.putText(frame2,
             text=status_text,
             org=(10, 80),
             fontFace=cv2.FONT_HERSHEY_SIMPLEX,
             fontScale=0.5,
             color=(0, 255, 0),
-            thickness=2,
+            thickness=1,
             lineType=cv2.LINE_4)
-
+    # カメラ映像を画面に表示
     cv2.imshow('Tello Camera View', frame2)
+
+    # キー入力を取得
     key = cv2.waitKey(1)
+
     # qキーで終了
     if key == ord('q'):
         break
+    # ↑キーで前進
     elif key == 2490368:
-        up()
-        command_text = "UP"
+        forward()
+        command_text = "Forward"
+    # ↓キーで後進
     elif key == 2621440:
-        down()
-        command_text = "DOWN"
+        back()
+        command_text = "Back"
+    # ←キーで左進
     elif key == 2424832:
         left()
-        command_text = "LEFT"
+        command_text = "Left"
+    # →キーで右進
     elif key == 2555904:
         right()
-        command_text = "RIGHT"
+        command_text = "Right"
+    # jキーで離陸
     elif key == ord('j'):
         takeoff()
-        command_text = "TAKE OFF"
+        command_text = "Take off"
+    # kキーで着陸
     elif key == ord('k'):
         land()
-        command_text = "LAND"
+        command_text = "Land"
+    # hキーで上昇
     elif key == ord('h'):
-        ccw()
-        command_text = "CCW"
+        up()
+        command_text = "Up"
+    # lキーで下降
     elif key == ord('l'):
+        down()
+        command_text = "Down"
+    # uキーで左回りに回転
+    elif key == ord('u'):
+        ccw()
+        command_text = "Ccw"
+    # iキーで右回りに回転
+    elif key == ord('i'):
         cw()
-        command_text = "CW"
+        command_text = "Cw"
+    # nキーで低速モード
+    elif key == ord('n'):
+        speed20()
+        command_text = "Low speed"
+    # mキーで高速モード
+    elif key == ord('m'):
+        speed40()
+        command_text = "High speed"
 
 cap.release()
 cv2.destroyAllWindows()
