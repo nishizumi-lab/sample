@@ -8,7 +8,7 @@ import numpy as np
 def udp_receiver():
     while True:
         try:
-            response, _ = socket.recvfrom(1024)
+            response, _ = sock.recvfrom(1024)
         except Exception as e:
             print(e)
             break
@@ -29,10 +29,10 @@ response = None
 
 # 通信用のソケットを作成
 # ※アドレスファミリ：AF_INET（IPv4）、ソケットタイプ：SOCK_DGRAM（UDP）
-socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # 自ホストで使用するIPアドレスとポート番号を設定
-socket.bind(('', TELLO_PORT))
+sock.bind(('', TELLO_PORT))
 
 # 受信用スレッドの作成
 thread = threading.Thread(target=udp_receiver, args=())
@@ -40,12 +40,12 @@ thread.daemon = True
 thread.start()
 
 # コマンドモード
-socket.sendto('command'.encode('utf-8'), TELLO_ADDRESS)
+sock.sendto('command'.encode('utf-8'), TELLO_ADDRESS)
 
 time.sleep(1)
 
 # カメラ映像のストリーミング開始
-socket.sendto('streamon'.encode('utf-8'), TELLO_ADDRESS)
+sock.sendto('streamon'.encode('utf-8'), TELLO_ADDRESS)
 
 time.sleep(5)
 
@@ -55,7 +55,7 @@ if cap is None:
 if not cap.isOpened():
     cap.open(TELLO_CAMERA_ADDRESS)
 
-time.sleep(10)
+time.sleep(1)
 
 while True:
     ret, frame = cap.read()
@@ -66,7 +66,7 @@ while True:
 
     # カメラ映像のサイズを半分にしてウィンドウに表示
     frame_height, frame_width = frame.shape[:2]
-    frame = cv2.resize(frame, int(frame_width/2), (int(frame_height/2)))
+    frame = cv2.resize(frame, (int(frame_width/2), int(frame_height/2)))
     
     cv2.imshow('Tello Camera View', frame)
 
@@ -77,4 +77,4 @@ cap.release()
 cv2.destroyAllWindows()
 
 # ビデオストリーミング停止
-socket.sendto('streamoff'.encode('utf-8'), TELLO_ADDRESS)
+sock.sendto('streamoff'.encode('utf-8'), TELLO_ADDRESS)
