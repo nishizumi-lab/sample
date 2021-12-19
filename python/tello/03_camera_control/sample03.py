@@ -103,18 +103,7 @@ def ccw():
             sent = sock.sendto('ccw 90'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 高速モード(速度40cm/sec)
-def speed40():
-        try:
-            sent = sock.sendto('speed 40'.encode(encoding="utf-8"), TELLO_ADDRESS)
-        except:
-            pass
-# 低速モード(速度20cm/sec)
-def speed20():
-        try:
-            sent = sock.sendto('speed 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
-        except:
-            pass
+
 
 # Tello側のローカルIPアドレス(デフォルト)、宛先ポート番号(コマンドモード用)
 TELLO_IP = '192.168.10.1'
@@ -170,6 +159,9 @@ if not cap.isOpened():
 
 time.sleep(1)
 
+# カスケード型識別器の読み込み
+cascade = cv2.CascadeClassifier("./lbpcascade_animeface.xml")
+
 while True:
     ret, frame = cap.read()
 
@@ -180,6 +172,20 @@ while True:
     # カメラ映像のサイズを半分にしてウィンドウに表示
     frame_height, frame_width = frame.shape[:2]
     frame2 = cv2.resize(frame, (int(frame_width/2), int(frame_height/2)))
+
+    # グレースケール変換
+    gray_frame = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
+
+    # アニメ顔領域の探索
+    faces = cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+    
+    # もしアニメ顔が1つ以上あれば
+    if len(faces) > 0:
+        # 最も大きいアニメ顔の座標のみ抽出
+        max_face = max(faces, key=lambda x: x[2] * x[3])
+        # 顔領域を赤色の矩形で囲む
+        for (x, y, w, h) in max_face:
+            cv2.rectangle(gray_frame, (x, y), (x + w, y+h), (0, 0, 200), 3)
     
     # 送信したコマンドを表示
     cv2.putText(frame2,
@@ -217,6 +223,7 @@ while True:
             color=(0, 255, 0),
             thickness=1,
             lineType=cv2.LINE_4)
+
     # カメラ映像を画面に表示
     cv2.imshow('Tello Camera View', frame2)
 
@@ -266,14 +273,7 @@ while True:
     elif key == ord('i'):
         cw()
         command_text = "Cw"
-    # nキーで低速モード
-    elif key == ord('n'):
-        speed20()
-        command_text = "Low speed"
-    # mキーで高速モード
-    elif key == ord('m'):
-        speed40()
-        command_text = "High speed"
+
 
 cap.release()
 cv2.destroyAllWindows()
