@@ -1,72 +1,94 @@
 
 #include "RoverC.h"
 
-
-
-void RoverC_Init(void)    //sda  0     scl  26
+// 初期化
+void rovercInit(void)    //sda  0     scl  26
 {
     Wire.begin(0,26,100);
 }
 
-void Send_iic(uint8_t Register, uint8_t Speed)
+// I2C通信で送信
+void sendIic(uint8_t registerNum, uint8_t speed)
 {
-  Wire.beginTransmission(ROVER_ADDRESS);
-  Wire.write(Register);
-  Wire.write(Speed);
+  // 指定したアドレスのI2Cスレーブに対して送信処理を開始
+  Wire.beginTransmission(ROVER_ADDRESS); // 0X38
+  // 1バイト(レジスタ)をキューへ送信
+  Wire.write(registerNum);
+  // 1バイト(速度)をキューへ送信
+  Wire.write(speed);
+  // 指定したアドレスのI2Cスレーブに対して送信処理を終了
   Wire.endTransmission();
 }
 
-void Move_forward(int8_t Speed)
+// 前進
+void moveForward(int8_t speed)
 {
-  Send_iic(0x00, Speed );
-  Send_iic(0x01, Speed );
-  Send_iic(0x02, Speed );
-  Send_iic(0x03, Speed );
+  // 4輪とも同じ速度で前進方向に回転
+  sendIic(0x00, speed ); // 前輪(左)
+  sendIic(0x01, speed ); // 前輪(右)
+  sendIic(0x02, speed ); // 後輪(左)
+  sendIic(0x03, speed ); // 後輪(右)
 }
 
-void Move_back(int8_t Speed)
+// 後進
+void moveBack(int8_t speed)
 {
-  Send_iic(0x00, (-1) * Speed );
-  Send_iic(0x01, (-1) * Speed );
-  Send_iic(0x02, (-1) * Speed );
-  Send_iic(0x03, (-1) * Speed );
+  // 4輪とも同じ速度で後進方向に回転
+  sendIic(0x00, (-1) * speed );
+  sendIic(0x01, (-1) * speed );
+  sendIic(0x02, (-1) * speed );
+  sendIic(0x03, (-1) * speed );
 }
 
-void Move_turnleft(int8_t Speed)
+// 左旋回
+void turnLeft(int8_t speed)
 {
-  Send_iic(0x00, Speed );
-  Send_iic(0x01, (-1) * Speed );
-  Send_iic(0x02, Speed );
-  Send_iic(0x03, (-1) * Speed );
+  // 前輪(左)と後輪(左)は同じ速度で前進方向に回転
+  // 前輪(右)と後輪(右)は同じ速度で後進方向に回転
+  sendIic(0x00, speed );
+  sendIic(0x01, (-1) * speed );
+  sendIic(0x02, speed );
+  sendIic(0x03, (-1) * speed );
 }
 
-void Move_turnright(int8_t Speed)
+// 右旋回
+void turnRight(int8_t speed)
 {
-  Send_iic(0x00, (-1) * Speed );
-  Send_iic(0x01, Speed );
-  Send_iic(0x02, (-1) * Speed );
-  Send_iic(0x03, Speed );
+  // 前輪(左)と後輪(左)は同じ速度で後進方向に回転
+  // 前輪(右)と後輪(右)は同じ速度で前進方向に回転
+  sendIic(0x00, (-1) * speed );
+  sendIic(0x01, speed );
+  sendIic(0x02, (-1) * speed );
+  sendIic(0x03, speed );
 }
 
-void Move_left(int8_t Speed)
+// 左進
+void moveLeft(int8_t speed)
 {
-  Send_iic(0x00, (-1) * Speed );
-  Send_iic(0x01, Speed );
-  Send_iic(0x02, Speed );
-  Send_iic(0x03, (-1) * Speed );
+  // 前輪(左)と後輪(右)は同じ速度で後進方向に回転
+  // 前輪(右)と後輪(左)は同じ速度で前進方向に回転
+  sendIic(0x00, (-1) * speed );
+  sendIic(0x01, speed );
+  sendIic(0x02, speed );
+  sendIic(0x03, (-1) * speed );
 }
 
-void Move_right(int8_t Speed)
+// 右進
+void moveRight(int8_t speed)
 {
-  Send_iic(0x00, Speed );
-  Send_iic(0x01, (-1) * Speed );
-  Send_iic(0x02, (-1) * Speed );
-  Send_iic(0x03, Speed );
+  // 前輪(左)と後輪(右)は同じ速度で前進方向に回転
+  // 前輪(右)と後輪(左)は同じ速度で後進方向に回転
+  sendIic(0x00, speed );
+  sendIic(0x01, (-1) * speed );
+  sendIic(0x02, (-1) * speed );
+  sendIic(0x03, speed );
 }
-void Move_stop(int8_t Speed)
+
+// 停止
+void moveStop(int8_t speed)
 {
-  Send_iic(0x00, 0 );
-  Send_iic(0x01, 0 );
-  Send_iic(0x02, 0 );
-  Send_iic(0x03, 0 );
+  sendIic(0x00, 0 );
+  sendIic(0x01, 0 );
+  sendIic(0x02, 0 );
+  sendIic(0x03, 0 );
 }

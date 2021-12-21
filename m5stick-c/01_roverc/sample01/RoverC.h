@@ -4,22 +4,23 @@
 #include <M5StickC.h>
 
 #define ROVER_ADDRESS	0X38
-void RoverC_Init(void);	//sda  0     scl  26
 
-void Move_forward(int8_t Speed);
+void rovercInit(void);	//sda  0     scl  26
 
-void Move_back(int8_t Speed);
+void moveForward(int8_t speed);
 
-void Move_turnleft(int8_t Speed);
+void moveBack(int8_t speed);
 
-void Move_turnright(int8_t Speed);
+void turnLeft(int8_t speed);
 
-void Move_left(int8_t Speed);
+void turnRight(int8_t speed);
 
-void Move_right(int8_t Speed);
+void moveLeft(int8_t speed);
 
-void Move_stop(int8_t Speed);
+void moveRight(int8_t speed);
 
-void Send_iic(uint8_t Register, uint8_t Speed);
+void moveStop(int8_t speed);
+
+void sendIic(uint8_t registerNum, uint8_t speed);
 
 #endif

@@ -55,46 +55,46 @@ def land():
             sent = sock.sendto('land'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 上昇(20cm)
-def up():
+# 上昇(cm)
+def up(distance):
         try:
-            sent = sock.sendto('up 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('up ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 下降(20cm)
-def down():
+# 下降(cm)
+def down(distance):
         try:
-            sent = sock.sendto('down 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('down ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 前に進む(20cm)
-def forward():
+# 前に進む(cm)
+def forward(distance):
         try:
-            sent = sock.sendto('forward 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('forward ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 後に進む(20cm)
-def back():
+# 後に進む(cm)
+def back(distance):
         try:
-            sent = sock.sendto('back 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('back ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 右に進む(20cm)
-def right():
+def right(distance):
         try:
-            sent = sock.sendto('right 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('right ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 左に進む(20cm)
-def left():
+def left(distance):
         try:
-            sent = sock.sendto('left 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('left ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 右回りに回転(90 deg)
-def cw():
+def cw(distance):
         try:
-            sent = sock.sendto('cw 90'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('cw ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 # 左回りに回転(90 deg)
@@ -187,6 +187,21 @@ while True:
         for (x, y, w, h) in max_face:
             cv2.rectangle(gray_frame, (x, y), (x + w, y+h), (0, 0, 200), 3)
     
+        # オブジェクトが画像の左側に位置していたら、反時計回りに旋回する
+        if c_center[0] < F_WIDTH / 2 - 100:
+            drone.rotate_ccw(20)
+        # オブジェクトが画像の右側に位置していたら、時計回りに旋回する
+        elif c_center[0] > F_WIDTH / 2 + 100:
+            drone.rotate_cw(20)
+        # オブジェクトが画像の上側に位置していたら、上昇する
+        elif c_center[1] < F_HEIGHT / 2 - 50:
+            drone.move_up(0.2)
+        # オブジェクトが画像の下側に位置していたら、下降する
+        elif c_center[1] > F_HEIGHT / 2 + 50:
+            drone.move_down(0.2)
+        # オブジェクトの面積が小さい場合、前進する
+        elif c_area < 200000:
+            drone.move_forward(20)
     # 送信したコマンドを表示
     cv2.putText(frame2,
             text="Cmd:" + command_text,
