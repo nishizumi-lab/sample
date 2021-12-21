@@ -1,31 +1,36 @@
 #include <M5StickC.h>
 #include "RoverC.h"
 
-// the setup routine runs once when M5StickC starts up
 void setup(){ 
   
-  // Initialize the M5StickC object
   M5.begin();
-  
-  M5.Lcd.setRotation(3);
-  M5.Lcd.setTextColor(BLUE);
-  M5.Lcd.setCursor(40, 30, 4);
-  M5.Lcd.printf("Rover");
-
-
   RoverC_Init();
 }
 
-// the loop routine runs over and over again forever
 void loop() {
 
-  Move_forward(100);
+  // 前進(3秒間)
+  moveForward(30);
   delay(3000);
-  Move_back(100);
+
+  // 後進(3秒間)
+  moveBack(30);
   delay(3000);
-  Move_left(100);
+
+  // 左進(3秒間)
+  moveLeft(30);
   delay(3000);
-  Move_right(100);
+
+  // 右進(3秒間)
+  moveRight(30);
+  delay(3000);
+
+  // 左旋回(3秒間)
+  turnLeft(30);
+  delay(3000);
+
+  // 右旋回(3秒間)
+  turnRight(30);
   delay(3000);
 
 }
