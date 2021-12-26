@@ -183,15 +183,19 @@ while True:
         # 最も大きいアニメ顔の座標のみ抽出
         max_face = max(faces, key=lambda x: x[2] * x[3])
         # 顔領域を赤色の矩形で囲む
-        for (x, y, w, h) in max_face:
-            cv2.rectangle(gray_frame, (x, y), (x + w, y+h), (0, 0, 200), 3)
+        for (face_x, face_y, face_w, face_h) in max_face:
+            cv2.rectangle(gray_frame, (face_x, face_y), (face_x + face_w, face_y+face_h), (0, 0, 200), 3)
     
+        # アニメ顔の中心座標を取得
+        face_center_x = int(face_x + face_w/2)
+        face_center_y = int(face_y + face_h/2)
+        
         # オブジェクトが画像の左側に位置していたら、反時計回りに旋回する
-        if c_center[0] < F_WIDTH / 2 - 100:
+        if c_center[0] < face_w / 2 - 100:
             ccw()
             command_text = "Ccw"
         # オブジェクトが画像の右側に位置していたら、時計回りに旋回する
-        elif c_center[0] > F_WIDTH / 2 + 100:
+        elif c_center[0] > face_w / 2 + 100:
             cw()
             command_text = "Cw"
         # オブジェクトが画像の上側に位置していたら、上昇する
