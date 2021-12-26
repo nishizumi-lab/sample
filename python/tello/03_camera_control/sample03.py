@@ -44,7 +44,6 @@ def ask():
 
 # 離陸
 def takeoff():
-        print("-----")
         try:
             sent = sock.sendto('takeoff'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
@@ -189,19 +188,28 @@ while True:
     
         # オブジェクトが画像の左側に位置していたら、反時計回りに旋回する
         if c_center[0] < F_WIDTH / 2 - 100:
-            drone.rotate_ccw(20)
+            ccw()
+            command_text = "Ccw"
         # オブジェクトが画像の右側に位置していたら、時計回りに旋回する
         elif c_center[0] > F_WIDTH / 2 + 100:
-            drone.rotate_cw(20)
+            cw()
+            command_text = "Cw"
         # オブジェクトが画像の上側に位置していたら、上昇する
         elif c_center[1] < F_HEIGHT / 2 - 50:
-            drone.move_up(0.2)
+            up()
+            command_text = "Up"
         # オブジェクトが画像の下側に位置していたら、下降する
         elif c_center[1] > F_HEIGHT / 2 + 50:
-            drone.move_down(0.2)
+            down()
+            command_text = "Down"
         # オブジェクトの面積が小さい場合、前進する
         elif c_area < 200000:
-            drone.move_forward(20)
+            forward()
+            command_text = "Forward"
+        elif c_area < 200000:
+            back()
+            command_text = "Back"
+
     # 送信したコマンドを表示
     cv2.putText(frame2,
             text="Cmd:" + command_text,
@@ -247,6 +255,7 @@ while True:
 
     # qキーで終了
     if key == ord('q'):
+        takeoff()
         break
     # ↑キーで前進
     elif key == 2490368:
@@ -288,6 +297,7 @@ while True:
     elif key == ord('i'):
         cw()
         command_text = "Cw"
+
 
 
 cap.release()
