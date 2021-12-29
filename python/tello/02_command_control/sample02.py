@@ -125,7 +125,7 @@ def ask():
 # 画面作成
 root = tk.Tk()
 root.geometry('300x600')
-root.title('ボタンイベントの検証')
+root.title('Tello操作画面')
 
 # 最初にcommandコマンドを送信
 try:
