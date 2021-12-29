@@ -189,28 +189,29 @@ while True:
         # アニメ顔の中心座標を取得
         face_center_x = int(face_x + face_w/2)
         face_center_y = int(face_y + face_h/2)
+        face_area = int(face_w * face_h)
         
         # オブジェクトが画像の左側に位置していたら、反時計回りに旋回する
-        if c_center[0] < face_w / 2 - 100:
+        if face_center_x < face_w / 2 - 100:
             ccw()
             command_text = "Ccw"
         # オブジェクトが画像の右側に位置していたら、時計回りに旋回する
-        elif c_center[0] > face_w / 2 + 100:
+        elif face_center_x > face_w / 2 + 100:
             cw()
             command_text = "Cw"
         # オブジェクトが画像の上側に位置していたら、上昇する
-        elif c_center[1] < F_HEIGHT / 2 - 50:
+        elif face_center_y < face_h / 2 - 50:
             up()
             command_text = "Up"
         # オブジェクトが画像の下側に位置していたら、下降する
-        elif c_center[1] > F_HEIGHT / 2 + 50:
+        elif face_center_y > face_h / 2 + 50:
             down()
             command_text = "Down"
         # オブジェクトの面積が小さい場合、前進する
-        elif c_area < 200000:
+        elif face_area < 200000:
             forward()
             command_text = "Forward"
-        elif c_area < 200000:
+        elif face_area < 200000:
             back()
             command_text = "Back"
 
