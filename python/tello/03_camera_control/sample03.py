@@ -78,28 +78,28 @@ def back(distance):
             sent = sock.sendto('back ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 右に進む(20cm)
+# 右に進む(cm)
 def right(distance):
         try:
             sent = sock.sendto('right ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 左に進む(20cm)
+# 左に進む(cm)
 def left(distance):
         try:
             sent = sock.sendto('left ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 右回りに回転(90 deg)
-def cw(distance):
+# 右回りに回転(deg)
+def cw(degree):
         try:
-            sent = sock.sendto('cw ' + str(distance).encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('cw ' + str(degree).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 左回りに回転(90 deg)
-def ccw():
+# 左回りに回転(deg)
+def ccw(degree):
         try:
-            sent = sock.sendto('ccw 90'.encode(encoding="utf-8"), TELLO_ADDRESS)
+            sent = sock.sendto('ccw ' + str(degree).encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
 
@@ -159,7 +159,7 @@ if not cap.isOpened():
 time.sleep(1)
 
 # カスケード型識別器の読み込み
-cascade = cv2.CascadeClassifier("./lbpcascade_animeface.xml")
+cascade = cv2.CascadeClassifier("/Users/github/sample/python/tello/03_camera_control/lbpcascade_animeface.xml")
 
 while True:
     ret, frame = cap.read()
@@ -178,41 +178,43 @@ while True:
     # アニメ顔領域の探索
     faces = cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
     
-    # もしアニメ顔が1つ以上あれば
+    # もしアニメ顔が1つ以上あればj
     if len(faces) > 0:
         # 最も大きいアニメ顔の座標のみ抽出
-        max_face = max(faces, key=lambda x: x[2] * x[3])
-        # 顔領域を赤色の矩形で囲む
-        for (face_x, face_y, face_w, face_h) in max_face:
-            cv2.rectangle(gray_frame, (face_x, face_y), (face_x + face_w, face_y+face_h), (0, 0, 200), 3)
-    
+        [face_x, face_y, face_w, face_h] = max(faces, key=lambda x: x[2] * x[3])
+        print([face_x, face_y, face_w, face_h])
+        frame_height, frame_width, frame_channels = frame2.shape[:3]
+        # ターゲットを赤色の矩形で囲む
+        cv2.rectangle(frame2, (face_x, face_y), (face_x + face_w, face_y+face_h), (0, 0, 200), 3)
+
         # アニメ顔の中心座標を取得
         face_center_x = int(face_x + face_w/2)
         face_center_y = int(face_y + face_h/2)
         face_area = int(face_w * face_h)
         
         # オブジェクトが画像の左側に位置していたら、反時計回りに旋回する
-        if face_center_x < face_w / 2 - 100:
-            ccw()
+        if face_center_x < frame_width / 2 - 50:
+            ccw(30)
             command_text = "Ccw"
         # オブジェクトが画像の右側に位置していたら、時計回りに旋回する
-        elif face_center_x > face_w / 2 + 100:
-            cw()
+        elif face_center_x > frame_width / 2 + 50:
+            cw(30)
             command_text = "Cw"
         # オブジェクトが画像の上側に位置していたら、上昇する
-        elif face_center_y < face_h / 2 - 50:
-            up()
+        elif face_center_y < frame_height / 2 - 50:
+            up(20)
             command_text = "Up"
         # オブジェクトが画像の下側に位置していたら、下降する
-        elif face_center_y > face_h / 2 + 50:
-            down()
+        elif face_center_y > frame_height / 2 + 50:
+            down(20)
             command_text = "Down"
         # オブジェクトの面積が小さい場合、前進する
-        elif face_area < 200000:
-            forward()
+        elif face_area < 10000:
+            forward(20)
             command_text = "Forward"
-        elif face_area < 200000:
-            back()
+        # オブジェクトの面積が大きい場合、後進する
+        elif face_area > 30000:
+            back(20)
             command_text = "Back"
 
     # 送信したコマンドを表示
@@ -251,32 +253,33 @@ while True:
             color=(0, 255, 0),
             thickness=1,
             lineType=cv2.LINE_4)
+    
 
     # カメラ映像を画面に表示
     cv2.imshow('Tello Camera View', frame2)
 
     # キー入力を取得
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(10)
 
-    # qキーで終了
+    # qキーで着陸して終了
     if key == ord('q'):
-        takeoff()
+        land()
         break
     # ↑キーで前進
     elif key == 2490368:
-        forward()
+        forward(20)
         command_text = "Forward"
     # ↓キーで後進
     elif key == 2621440:
-        back()
+        back(20)
         command_text = "Back"
     # ←キーで左進
     elif key == 2424832:
-        left()
+        left(20)
         command_text = "Left"
     # →キーで右進
     elif key == 2555904:
-        right()
+        right(20)
         command_text = "Right"
     # jキーで離陸
     elif key == ord('j'):
