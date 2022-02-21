@@ -23,7 +23,7 @@ sfd = R - (w*x)
 mfd = (R*x) - (w*x**2/2)
 
 # (tight_layout=Trueは軸ラベルとタイトルの重なり防止)
-fig = plt.figure(figsize=(15,8), tight_layout=True)
+fig = plt.figure(figsize=(10,8), tight_layout=True)
 ax1 = fig.add_subplot(2,1,1)
 ax2 = fig.add_subplot(2,1,2)
 
