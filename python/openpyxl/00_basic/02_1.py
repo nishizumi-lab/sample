@@ -1,18 +1,12 @@
 import openpyxl
 from openpyxl.cell.cell import Cell\
 
-'/Users/github/sample/python/openpyxl/00_sample_data/newbook.xlsx'
+excel_path = "/Users/github/sample/python/openpyxl/00_sample_data/sample01.xlsx"
 
-# 1.Excelファイルを作成し、その中のシート名を「sheet_A」に修正
-# 新規に空のWorkbookオブジェクトを生成
-エクセルの読込
-#エクセルのファイルパスを指定
-filepath1 = '店舗売上リスト.xlsx'
-filepath2 = 'template.xlsx'
 
 #エクセルを読み込む
-wb1 = openpyxl.load_workbook(filename=filepath1)
-ws1 = wb1['売上リスト']
+wb1 = openpyxl.load_workbook(filename=excel_path)
+ws1 = wb1['シート1']
 
 wb2 = load_workbook(filename=filepath2)
 ws2 = wb1['店舗情報']
