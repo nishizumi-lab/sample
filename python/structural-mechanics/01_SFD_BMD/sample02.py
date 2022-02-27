@@ -2,25 +2,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # グラフ画像のパス
-SAVE_FIG_PATH = "/Users/github/sample/python/structural-mechanics/01_SFD_BMD/sample01.png"
+SAVE_FIG_PATH = "/Users/github/sample/python/structural-mechanics/01_SFD_BMD/sample02.png"
 
-# 梁が負担する分布荷重[N]
-w = 100
+# サンプル数
+N = 100
+
+# 梁が負担する集中荷重[N]
+P = 100
 
 # 梁の長さ [m]
 L = 10 
 
-# 支点反力
-R = w * L/2 
+# 支点Aから集中荷重の作用点までの長さ
+L1 = 5
+
+# 支点Aの反力
+RA = ((L-L1)/L)*P
 
 # x軸の範囲
-x = np.linspace(0,L,100) 
+x1 = np.linspace(0,L1,N) 
+x2 = np.linspace(L1,L,N) 
+x = np.r_[x1, x2]
 
 # SFD(せん断力)の計算
-sfd = R - (w*x)
+sfd1 = np.full(N, RA)
+sfd2 = np.full(N, -RA)
+sfd = np.r_[sfd1, sfd2]
 
 # BMD(曲げモーメントの計算)
-bmd = (R*x) - (w*x**2/2)
+bmd1 = RA * x1
+bmd2 = RA * x2 - P*(x2-L1)
+bmd = np.r_[bmd1, bmd2]
 
 # (tight_layout=Trueは軸ラベルとタイトルの重なり防止)
 fig = plt.figure(figsize=(10,8), tight_layout=True)
@@ -36,7 +48,7 @@ ax1.set_ylabel('Shear Force [N]')
 ax1.grid()
 
 # 曲げモーメント図(BMD)を描画
-ax2.plot(x, bmd)
+ax2.plot(x,bmd)
 ax2.fill_between(x, bmd,color='red',hatch='\\',alpha=0.5)
 ax2.set_title('BMD')
 ax2.set_xlabel('Length of Beam [m]')
