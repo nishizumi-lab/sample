@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 
-
+# リストをCSVに保存
 def list_to_csv(SAVE_CSV_PATH, data):
     with open(SAVE_CSV_PATH, 'w', newline='') as file:
         writer = csv.writer(file, delimiter=',')
@@ -45,6 +45,7 @@ def calc_stf1(el, EI, EA, ip1, ip2):
                [0, 0, 0, 0, 0, 0]]
     return stf
 
+# 剛性マトリクスの座標変換
 def calc_stf2(stf, cs, sn):
     z = [[cs, sn, 0,   0,   0, 0],
         [-sn, cs, 0,   0,   0, 0],
