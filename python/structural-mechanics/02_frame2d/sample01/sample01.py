@@ -9,7 +9,7 @@ def list_to_csv(SAVE_CSV_PATH, data):
         writer.writerows(data)
 
 # 剛性マトリクス生成
-def stf1(el, EI, EA, ip1, ip2):
+def calc_stf1(el, EI, EA, ip1, ip2):
     # 2つの節点(i, j)ともに回転拘束でなければ
     if ip1==0 and ip2==0:
         #  剛性マトリクス(回転拘束状態にかかわらず共通な部分)
@@ -45,6 +45,33 @@ def stf1(el, EI, EA, ip1, ip2):
                [0, 0, 0, 0, 0, 0]]
     return stf
 
+def calc_stf2(stf, cs, sn):
+    z = [[cs, sn, 0,   0,   0, 0],
+        [-sn, cs, 0,   0,   0, 0],
+        [  0,  0, 1,   0,   0, 0],
+        [  0,  0, 0,  cs,  sn, 0],
+        [  0,  0, 0, -sn,  cs, 0],
+        [  0,  0, 0,   0,   0, 1]] 
+
+    # 二次元配列の生成(6*6)
+    stff = [[0 for i in range(6)] for j in range(6)]
+    stf2 = [[0 for i in range(6)] for j in range(6)]
+
+    for Nj in range(0, 6):
+        for NI in range(0, 6):  
+            A = 0
+            for i in range(0, 6):
+                A = A + z[i][NI] * stf[i][Nj]
+            stff[NI][Nj] = A
+
+    for Nj in range(0, 6):
+        for NI in range(0, 6):  
+            A = 0
+            for i in range(0, 6):
+                A = A + stff[NI][i] * z[i][Nj]
+            stf2[NI][Nj] = A
+
+    return stf2, stff, z
 
 def main():
     node = 7 # 節点数
@@ -55,6 +82,10 @@ def main():
     icase = 4  # 荷重ケース数
     jcomb = 3  # 荷重組合せ数
 
+    STF1_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stf1.csv"
+    STF2_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stf2.csv"
+    STFF_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stff.csv"
+    Z_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/z.csv"
 
     # 材料リスト(E,A,I)
     gose = [[70000., 70000.],
@@ -104,7 +135,10 @@ def main():
     # 二次元配列の生成(3*接点数, 3*接点数)
     st = [[0 for i in range(node)] for j in range(node)]
     
-    stfs = []
+    stf1s = []
+    stf2s = []
+    zs = []
+    stffs = []
 
     for M in range(mem):
         # 各部材の接続節点(i, j)を取得
@@ -129,15 +163,22 @@ def main():
 
         el = ((x2-x1)**2 + (z2-z1)**2)**0.5
 
-        stf = stf1(el, EI, EA, ip1, ip2)
-        print(stf)
-        print(ip1)
-        print(ip2)
-        print('--------------')
-        stfs.extend(stf)
+        stf1 = calc_stf1(el, EI, EA, ip1, ip2)
 
-    SAVE_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stf1.csv"
-    list_to_csv(SAVE_CSV_PATH, stfs)
+        stf1s.extend(stf1)
+
+        cs = (x2 - x1)/el
+        sn = (z2 - z1)/el
+
+        stf2, stff, z = calc_stf2(stf1, cs, sn)
+        stf2s.extend(stf2)
+        stffs.extend(stff)
+        zs.extend(z)
+
+    list_to_csv(STF1_CSV_PATH, stf1s)
+    list_to_csv(STF2_CSV_PATH, stf2s)
+    list_to_csv(Z_CSV_PATH, zs)
+    list_to_csv(STFF_CSV_PATH, stffs)
 
 main()
 
