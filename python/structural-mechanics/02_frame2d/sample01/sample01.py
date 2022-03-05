@@ -87,6 +87,7 @@ def main():
     STF2_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stf2.csv"
     STFF_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stff.csv"
     Z_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/z.csv"
+    ST_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/st.csv"
 
     # 材料リスト(E,A,I)
     gose = [[70000., 70000.],
@@ -134,17 +135,19 @@ def main():
 
 
     # 二次元配列の生成(3*接点数, 3*接点数)
-    st = [[0 for i in range(node)] for j in range(node)]
+    st = [[0 for i in range(3*node)] for j in range(3*node)]
     
     stf1s = []
     stf2s = []
     zs = []
     stffs = []
 
+    ia = [0, 0]
+
     for M in range(mem):
         # 各部材の接続節点(i, j)を取得
-        ia1 = buzai[0][M]
-        ia2 = buzai[1][M]
+        ia[0] = buzai[0][M]
+        ia[1] = buzai[1][M]
         # 各部材の接続節点(i, j)の回転拘束状態を取得(0=非拘束、1=拘束)
         ip1 = buzai[2][M]
         ip2 = buzai[3][M]
@@ -155,12 +158,12 @@ def main():
         EA = gose[0][ig-1] * gose[1][ig-1]
 
         # 各部材のi節点の座標を取得
-        x1 = xz[0][ia1-1]
-        z1 = xz[1][ia1-1]
+        x1 = xz[0][ia[0]-1]
+        z1 = xz[1][ia[0]-1]
 
         # 各部材のj節点の座標を取得
-        x2 = xz[0][ia2-1]
-        z2 = xz[1][ia2-1]
+        x2 = xz[0][ia[1]-1]
+        z2 = xz[1][ia[1]-1]
 
         el = ((x2-x1)**2 + (z2-z1)**2)**0.5
 
@@ -175,11 +178,21 @@ def main():
         stf2s.extend(stf2)
         stffs.extend(stff)
         zs.extend(z)
+        for jj in range(0,2):
+            jjj = 3 * (ia[jj] -1)
+            j1 = 3 * (jj+1) - 3
+            for ii in range(0, 2):
+                iii = 3 * (ia[ii] -1)
+                i1 = 3 * (ii+1) - 3
+                for j in range(0, 3):
+                    for i in range(0, 3):
+                        st[i + iii][j + jjj] = st[i + iii][j + jjj] + stf2[i+i1][j+j1]
 
     list_to_csv(STF1_CSV_PATH, stf1s)
     list_to_csv(STF2_CSV_PATH, stf2s)
     list_to_csv(Z_CSV_PATH, zs)
     list_to_csv(STFF_CSV_PATH, stffs)
+    list_to_csv(ST_CSV_PATH, st)
 
 main()
 
