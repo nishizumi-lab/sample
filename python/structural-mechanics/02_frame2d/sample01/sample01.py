@@ -78,14 +78,12 @@ def calc_stf2(stf, cs, sn):
 
 # 剛性マトリクスの座標変換
 def calc_inv(M, A):
-    print("Asize" + str(len(A)))
-    print("M" + str(M))
-    #stff = [[0 for i in range(6)] for j in range(6)]
-    invA = copy.copy(A)
+
+    invA =  [[0 for i in range(120)] for j in range(120)]
     for i in range(0, M):
-        for j in range(M, 2*M+1):
-            print("i=" + str(i) + ", j=" + str(M-1 + i))
-            A[i][M-1 + i] = 1
+        for j in range(M, 2*(M-2)):
+            print("i=" + str(i) + ", j=" + str(M-2 + i))
+            A[i][M-2 + i] = 1
 
     # ガウスの消去法
     for k in range(0, M):
@@ -120,6 +118,8 @@ def main():
     STFF_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stff.csv"
     Z_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/z.csv"
     ST_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/st.csv"
+    P_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/p.csv"
+    STINV_CSV_PATH = "/Users/github/sample/python/structural-mechanics/02_frame2d/sample01/stinv.csv"
 
     # 材料リスト(E,A,I)
     gose = [[70000., 70000.],
@@ -166,8 +166,8 @@ def main():
             [0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0 , 0, 0, 0]]
 
 
-    # 二次元配列の生成(3*接点数, 3*接点数)
-    st = [[0 for i in range(3*node)] for j in range(3*node)]
+    # 二次元配列の生成(120*240)
+    st = [[0 for i in range(120)] for j in range(240)]
     
     stf1s = []
     stf2s = []
@@ -250,7 +250,10 @@ def main():
     if ieno == 0:
         print("STF=0 stop")
     
-    stinv = calc_inv(3*node, st)
+    stinv, P = calc_inv(3*node, st)
+
+    list_to_csv(STINV_CSV_PATH, stinv)
+    list_to_csv(P_CSV_PATH, P)
 
 main()
 
