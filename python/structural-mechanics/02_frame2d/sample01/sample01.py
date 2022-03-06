@@ -29,7 +29,7 @@ def calc_stf1(el, EI, EA, ip1, ip2):
                [     0,-12*EI/el**3, -6*EI/el**2,      0,  12*EI/el**3, -6*EI/el**2],
                [     0,  6*EI/el**2,     2*EI/el,      0,  -6*EI/el**2,    4*EI/el]]
     # 2つの節点(i, j)のうち、節点iだけが回転拘束であれば
-    elif ip1 ==1 and ip2 ==0:
+    elif ip1 ==0 and ip2 ==1:
         stf = [[ EA/el,            0,  0, -EA/el,           0,           0],
                [     0,   3*EI/el**3,  0,      0, -3*EI/el**3,  3*EI/el**2],
                [     0,            0,  0,      0,           0,           0],
@@ -37,13 +37,13 @@ def calc_stf1(el, EI, EA, ip1, ip2):
                [     0,  -3*EI/el**3,  0,      0,  3*EI/el**3, -3*EI/el**2],
                [     0,   3*EI/el**2,  0,      0, -3*EI/el**2,     3*EI/el]]
     # 2つの節点(i, j)のうち、節点jだけが回転拘束であれば
-    elif ip1 ==0 and ip2 ==1:
-        stf = [[EA/el, 0, 0, -EA/el, 0, 0],
-               [0, 3*EI/el**3, 3*EI/el**2, 0, -3*EI/el**3, 0],
-               [0, 3*EI/el**2, 3*EI/el, 0, -3*EI/el**2, 0],
-               [-EA/el, 0, 0, EA/el, 0, 0],
-               [0, -3*EI/el**3, -3*EI/el**2, 0, 3*EI/el**3, 0],
-               [0, 0, 0, 0, 0, 0]]
+    elif ip1 ==1 and ip2 ==0:
+        stf = [[ EA/el,           0,           0, -EA/el,           0, 0],
+               [     0,  3*EI/el**3,  3*EI/el**2,      0, -3*EI/el**3, 0],
+               [     0,  3*EI/el**2,     3*EI/el,      0, -3*EI/el**2, 0],
+               [-EA/el,           0,           0,  EA/el,           0, 0],
+               [     0, -3*EI/el**3, -3*EI/el**2,      0,  3*EI/el**3, 0],
+               [     0,            0,          0,      0,           0, 0]]
     return stf
 
 # 剛性マトリクスの座標変換
