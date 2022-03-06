@@ -89,14 +89,17 @@ def calc_inv(M, A):
     # ガウスの消去法
     for k in range(0, M):
         P = A[k][k]
-        for j in range(0, 2*M):  
-            A[k][j] = A[k][j]/P
+        for j in range(0, 2*M): 
+            if P != 0:
+                A[k][j] = A[k][j]/P
+            else:
+                A[k][j] = 0
         for i in range(0, 2*M):
             if i == k:
                 i += 1
-                Q = A[i][k]
-                for j in range(0, 2*M):      
-                    A[i][j] = A[i][j] - (Q * A[k][j])
+            Q = A[i][k]
+            for j in range(0, 2*M):      
+                A[i][j] = A[i][j] - (Q * A[k][j])
     # 逆行列
     for i in range(0, M):
         for j in range(0, M):
