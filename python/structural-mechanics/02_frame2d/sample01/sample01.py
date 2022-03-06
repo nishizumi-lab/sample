@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import copy
+import numpy as np
 
 # リストをCSVに保存
 def list_to_csv(SAVE_CSV_PATH, data):
@@ -81,9 +82,9 @@ def calc_inv(M, A):
 
     invA =  [[0 for i in range(120)] for j in range(120)]
     for i in range(0, M):
-        for j in range(M, 2*(M-2)):
-            print("i=" + str(i) + ", j=" + str(M-2 + i))
-            A[i][M-2 + i] = 1
+        for j in range(M, 2*M):
+            #print("i=" + str(i) + ", j=" + str(M-1 + i))
+            A[i][M-1 + i] = 1
 
     # ガウスの消去法
     for k in range(0, M):
@@ -101,7 +102,7 @@ def calc_inv(M, A):
         for j in range(0, M):
             invA[i][j] = A[i][j+M-1]
             
-    return invA, P
+    return invA
 
 
 def main():
@@ -250,10 +251,12 @@ def main():
     if ieno == 0:
         print("STF=0 stop")
     
-    stinv, P = calc_inv(3*node, st)
+    stinv = calc_inv(3*node, st)
+
+    #stinv = np.linalg.inv(st)
 
     list_to_csv(STINV_CSV_PATH, stinv)
-    list_to_csv(P_CSV_PATH, P)
+    #list_to_csv(P_CSV_PATH, P)
 
 main()
 
