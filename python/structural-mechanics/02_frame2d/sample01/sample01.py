@@ -256,7 +256,7 @@ def main():
     
     stinv = calc_inv(3*node, st)
 
-    #stinv = np.linalg.inv(st)
+    #print(np.linalg.inv(st))
 
     list_to_csv(STINV_CSV_PATH, stinv)
     #list_to_csv(P_CSV_PATH, P)
