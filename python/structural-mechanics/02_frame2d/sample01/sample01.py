@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import copy
 
 # リストをCSVに保存
 def list_to_csv(SAVE_CSV_PATH, data):
@@ -74,6 +75,37 @@ def calc_stf2(stf, cs, sn):
 
     return stf2, stff, z
 
+
+# 剛性マトリクスの座標変換
+def calc_inv(M, A):
+    print("Asize" + str(len(A)))
+    print("M" + str(M))
+    #stff = [[0 for i in range(6)] for j in range(6)]
+    invA = copy.copy(A)
+    for i in range(0, M):
+        for j in range(M, 2*M+1):
+            print("i=" + str(i) + ", j=" + str(M-1 + i))
+            A[i][M-1 + i] = 1
+
+    # ガウスの消去法
+    for k in range(0, M):
+        P = A[k][k]
+        for j in range(0, 2*M):  
+            A[k][j] = A[k][j]/P
+        for i in range(0, 2*M):
+            if i == k:
+                i += 1
+                Q = A[i][k]
+                for j in range(0, 2*M):      
+                    A[i][j] -= Q * A[k][j]
+    # 逆行列
+    for i in range(0, M):
+        for j in range(0, M):
+            invA[i][j] = A[i][j+M-1]
+            
+    return invA, P
+
+
 def main():
     node = 7 # 節点数
     mem = 8  # 部材数
@@ -144,6 +176,7 @@ def main():
 
     ia = [0, 0]
 
+    # 各部材ごとに剛性マトリクスを計算
     for M in range(mem):
         # 各部材の接続節点(i, j)を取得
         ia[0] = buzai[0][M]
@@ -193,6 +226,31 @@ def main():
     list_to_csv(Z_CSV_PATH, zs)
     list_to_csv(STFF_CSV_PATH, stffs)
     list_to_csv(ST_CSV_PATH, st)
+
+    ieno = 0
+
+    # 境界条件
+    for j in range(0, node):
+        jj = 3 * (j+1) - 3
+        for i in range(0,3):
+            if xz[2*i][j] == 1:
+                st[i+jj][j+jj] *= 1E+20
+            elif xz[2*i][j] == 2:
+                st[i+jj][j+jj] += xz[1 + 2*i][j]
+
+            # 剛性が0ならエラー停止
+            if abs(st[i+jj][i+jj]) < 0.000000001:
+                ieno += 1
+                print("----------")
+                print(j)
+                print("-node")
+                print(i)
+                print("-DOF")
+    
+    if ieno == 0:
+        print("STF=0 stop")
+    
+    stinv = calc_inv(3*node, st)
 
 main()
 
