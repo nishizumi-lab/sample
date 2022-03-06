@@ -103,7 +103,7 @@ def calc_inv(M, A):
     # 逆行列
     for i in range(0, M):
         for j in range(0, M):
-            invA[i][j] = A[i][j+M-1]
+            invA[i][j] = A[i][j+M]
             
     return invA
 
