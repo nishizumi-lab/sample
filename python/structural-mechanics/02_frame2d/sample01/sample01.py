@@ -80,11 +80,11 @@ def calc_stf2(stf, cs, sn):
 # 剛性マトリクスの座標変換
 def calc_inv(M, A):
 
-    invA =  [[0 for i in range(120)] for j in range(120)]
+    invA =  [[0. for i in range(120)] for j in range(120)]
     for i in range(0, M):
         for j in range(M, 2*M):
             #print("i=" + str(i) + ", j=" + str(M-1 + i))
-            A[i][M + i] = 1
+            A[i][M-1 + i] = 1
 
     # ガウスの消去法
     for k in range(0, M):
@@ -103,7 +103,7 @@ def calc_inv(M, A):
     # 逆行列
     for i in range(0, M):
         for j in range(0, M):
-            invA[i][j] = A[i][j+M]
+            invA[i][j] = A[i][j+M-1]
             
     return invA
 
