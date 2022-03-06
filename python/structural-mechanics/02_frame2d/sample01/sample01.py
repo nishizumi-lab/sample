@@ -96,7 +96,7 @@ def calc_inv(M, A):
                 i += 1
                 Q = A[i][k]
                 for j in range(0, 2*M):      
-                    A[i][j] -= Q * A[k][j]
+                    A[i][j] = A[i][j] - (Q * A[k][j])
     # 逆行列
     for i in range(0, M):
         for j in range(0, M):
