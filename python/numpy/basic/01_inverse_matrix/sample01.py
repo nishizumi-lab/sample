@@ -7,6 +7,8 @@ def calc_invA(A):
     for y in range(n):  
         max = abs(A[y, y])
         indx = y
+        # ピボット選択(分母A[y, y] が0や小さな値(gainが無限大)で計算できない場合、yより下の行とy行を入れ替える)
+        # その列の絶対値が最も大きいものと入れ替えるの(例:2行目の計算中に3行目の値の値の方が大きい𝑥4<𝑥7となったら、2行目と3行目を入れ替える。（1行目はそのまま）
         for yy in range(y + 1, n):
             if max < abs(A[yy, y]):
                 max = abs(A[yy, y])

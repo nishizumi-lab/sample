@@ -76,7 +76,7 @@ def calc_stf2(stf, cs, sn):
 
     return stf2, stff, z
 
-
+"""
 # 剛性マトリクスの座標変換
 def calc_inv(M, A):
 
@@ -106,7 +106,45 @@ def calc_inv(M, A):
             invA[i][j] = A[i][j+M-1]
             
     return invA
+"""
 
+def calc_invA(A):
+    n = len(A)
+    I = np.eye(n).astype(np.float64)
+     # 操作中の行がy
+    for y in range(n):  
+        max = abs(A[y, y])
+        indx = y
+        # ピボット選択(分母A[y, y] が0や小さな値(gainが無限大)で計算できない場合、yより下の行とy行を入れ替える)
+        # その列の絶対値が最も大きいものと入れ替えるの(例:2行目の計算中に3行目の値の値の方が大きい𝑥4<𝑥7となったら、2行目と3行目を入れ替える。（1行目はそのまま）
+        for yy in range(y + 1, n):
+            if max < abs(A[yy, y]):
+                max = abs(A[yy, y])
+                indx = yy
+        if indx != y:
+            for x in range(n):
+                tmp = A[indx, x]
+                A[indx, x] = A[y, x]
+                A[y, x] = tmp
+                tmp = I[indx, x]
+                I[indx, x] = I[y, x]
+                I[y, x] = tmp
+         # 対角成分
+        gain = 1/A[y, y]    
+        for x in range(n):
+            # 対角成分を1へ
+            A[y, x] = A[y, x] * gain    
+            I[y, x] = I[y, x] * gain
+        # 操作される行（消される行）
+        for yy in range(n): 
+            # 自分自身の行でないときに
+            if y != yy: 
+                # 対角成分
+                gain = A[yy, y] 
+                for x in range(n):
+                    A[yy, x] = A[yy, x] - A[y, x] * gain
+                    I[yy, x] = I[yy, x] - I[y, x] * gain
+    return I
 
 def main():
     node = 7 # 節点数
@@ -171,7 +209,7 @@ def main():
 
 
     # 二次元配列の生成(120*240)
-    st = [[0 for i in range(120)] for j in range(240)]
+    st = [[0 for i in range(3*node)] for j in range(3*node)]
     
     stf1s = []
     stf2s = []
@@ -254,11 +292,11 @@ def main():
     if ieno == 0:
         print("STF=0 stop")
     
-    stinv = calc_inv(3*node, st)
+    stinv = calc_invA(np.array(st))
 
     #print(np.linalg.inv(st))
 
-    list_to_csv(STINV_CSV_PATH, stinv)
+    list_to_csv(STINV_CSV_PATH, stinv.tolist())
     #list_to_csv(P_CSV_PATH, P)
 
 main()
