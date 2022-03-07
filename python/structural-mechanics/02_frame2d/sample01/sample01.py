@@ -292,7 +292,7 @@ def main():
     if ieno == 0:
         print("STF=0 stop")
     
-    stinv = calc_invA(np.array(st))
+    stinv = calc_invA(np.array(st, dtype='float64'))
 
     #print(np.linalg.inv(st))
 
