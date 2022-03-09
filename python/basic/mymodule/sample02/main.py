@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('/Users/github/sample/python/basic/mymodule/sample02/my')
 import my
+
 
 def main():
     # インスタンスの生成
