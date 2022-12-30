@@ -19,4 +19,4 @@ for (x, y, w, h) in face:
     cv2.rectangle(img, (x, y), (x + w, y+h), (0, 0, 200), 3)
 
 # 結果の出力
-cv2.imwrite("C:/github/sample/python/opencv/cascade/output1.png", dst)
+cv2.imwrite("C:/github/sample/python/opencv/cascade/output1.png", img)
