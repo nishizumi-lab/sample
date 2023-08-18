@@ -1,5 +1,3 @@
-<?php
-
 /*
 Plugin Name: プラグイン名
 Plugin URI: プラグインの説明と更新を示すページのURI
