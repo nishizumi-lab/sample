@@ -1,1 +1,3 @@
-print("hello world")
+a = "こんにちは"
+
+print(a)

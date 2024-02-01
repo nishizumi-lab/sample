@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>sample</string>
+  <string>example2</string>
   <key>Program</key>
   <string>/Users/shell/example.sh</string>
   <key>StartCalendarInterval</key>
@@ -14,8 +14,8 @@
       <integer>2</integer>
   </dict>
   <key>StandardOutPath</key>
-  <string>/Users/shell/sample.out</string>
+  <string>/Users/shell/example2.out</string>
   <key>StandardErrorPath</key>
-  <string>/Users/shell/sample.err</string>
+  <string>/Users/shell/example2.err</string>
 </dict>
 </plist>

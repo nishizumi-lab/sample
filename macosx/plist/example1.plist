@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>sample</string>
+  <string>example1</string>
   <key>Program</key>
-  <string>/Users/shell/example.sh</string>
+  <string>/Users/shell/example1.sh</string>
   <key>StartInterval</key>
   <integer>10</integer>
   <key>StandardOutPath</key>
-  <string>/Users/shell/sample.out</string>
+  <string>/Users/shell/example1.out</string>
   <key>StandardErrorPath</key>
-  <string>/Users/shell/sample.err</string>
+  <string>/Users/shell/example1.err</string>
 </dict>
 </plist>
