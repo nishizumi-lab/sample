@@ -4,13 +4,13 @@ import numpy as np
 
 
 # 画像の読み込み(RGB)
-img = cv2.imread("/Users/github/sample/python/opencv/basic/input.png")
+img = cv2.imread("/Users/github/sample/python/opencv/basic/input.png", cv2.IMREAD_COLOR)
 
 # 画像の読み込み(グレースケール)
-gray = cv2.imread("/Users/github/sample/python/opencv/basic/input.png", 0)
+gray = cv2.imread("/Users/github/sample/python/opencv/basic/input.png", cv2.IMREAD_GRAYSCALE)
 
 # 画像の読み込み(RGBA)
-rgba = cv2.imread("/Users/github/sample/python/opencv/basic/input.png", -1)
+rgba = cv2.imread("/Users/github/sample/python/opencv/basic/input.png", cv2.IMREAD_UNCHANGED)
 
 # 画素値の表示
 print("rgb=", img)
@@ -26,9 +26,9 @@ rgb= [[[ 36  28 237] [ 76 177  34] [204  72  63]]
 
 ------------------------
 
-gray= [[138 142  98]
-         [  0 255 195]
-         [120 138   0]]
+gray= [[ 91 122  84]
+      [  0 255 195]
+      [110  91   0]]
 
 ------------------------
 
