@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
-import cv2
+import cv2 as cv
 
 # 入力画像のロード
-img = cv2.imread('input.png')
+img = cv.imread('/Users/github/sample/python/opencv/basic/mujiko.png')
 
-cv2.imshow("input", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# 画像をウィンドウに表示
+cv.imshow("Mujiko Chan", img)
+
+# キー入力待機
+cv.waitKey(0)
+
+# ウィンドウを廃棄
+cv.destroyAllWindows()
