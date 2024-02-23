@@ -14,7 +14,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 # hist, bins = np.histogram(gray.ravel(),256,[0,256])
 
 # 方法2(OpenCVでヒストグラムの算出)
-hist = cv2.calcHist([img],[0],None,[256],[0,256])
+hist = cv2.calcHist(gray,[0],None,[256],[0,256])
 
 # ヒストグラムの中身表示
 print(hist)
