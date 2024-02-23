@@ -1,11 +1,11 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
 
 # 入力画像を読み込み
-img = cv2.imread("/Users/github/sample/python/opencv/histgram/input.jpg")
+img = cv.imread("/Users/github/sample/python/opencv/histgram/input.jpg")
 
 img_b, img_g, img_r = img[:,:,0], img[:,:,1], img[:,:,2]
 
@@ -15,9 +15,9 @@ img_b, img_g, img_r = img[:,:,0], img[:,:,1], img[:,:,2]
 # hist_b, bins = np.histogram(b.ravel(),256,[0,256])
 
 # 方法2(OpenCVでヒストグラムの算出)
-hist_r = cv2.calcHist([img_r],[0],None,[256],[0,256])
-hist_g = cv2.calcHist([img_g],[0],None,[256],[0,256])
-hist_b = cv2.calcHist([img_b],[0],None,[256],[0,256])
+hist_r = cv.calcHist([img_r],[0],None,[256],[0,256])
+hist_g = cv.calcHist([img_g],[0],None,[256],[0,256])
+hist_b = cv.calcHist([img_b],[0],None,[256],[0,256])
 
 print('hist_r=')
 print(hist_r)
