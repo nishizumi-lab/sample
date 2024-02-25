@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # 膨張処理
@@ -40,11 +40,11 @@ def erode(src, ksize=3):
 
 
 # 入力画像を読み込み
-img = cv2.imread(
-    "C:/github/sample/python/opencv/threshold/dilate_erode/input.png")
+img = cv.imread(
+    "/Users/github/sample/python/opencv/threshold/dilate_erode/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # 二値化処理
 gray[gray<127] = 0
@@ -55,7 +55,7 @@ dilate_img = dilate(gray, ksize=6)
 erode_img = erode(dilate_img, ksize=6)
 
 # 結果を出力
-cv2.imwrite(
-    "C:/github/sample/python/opencv/threshold/dilate_erode/dilate.png", dilate_img)
-cv2.imwrite(
-    "C:/github/sample/python/opencv/threshold/dilate_erode/erode.png", erode_img)
+cv.imwrite(
+    "/Users/github/sample/python/opencv/threshold/dilate_erode/dilate.png", dilate_img)
+cv.imwrite(
+    "/Users/github/sample/python/opencv/threshold/dilate_erode/erode.png", erode_img)
