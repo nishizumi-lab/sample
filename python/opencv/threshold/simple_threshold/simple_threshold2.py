@@ -11,6 +11,9 @@ img = cv.imread("/Users/github/sample/python/opencv/threshold/simple_threshold/i
 # グレースケール変換
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
+# グレースケール変換結果を出力
+cv.imwrite("/Users/github/sample/python/opencv/threshold/simple_threshold/gray.png", gray)
+
 # 方法2 （OpenCVで実装）
 ret, threshold_img = cv.threshold(gray, threshold_value, 255, cv.THRESH_BINARY)
 
