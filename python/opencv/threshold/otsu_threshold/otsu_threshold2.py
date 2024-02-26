@@ -46,7 +46,7 @@ img = cv2.imread("/Users/github/sample/python/opencv/threshold/otsu_threshold/in
 # グレースケール変換
 gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
-# 方法1（NumPyで実装）
+# 方法2（NumPyで実装）
 th = threshold_otsu(gray)
 
 # 結果を出力
