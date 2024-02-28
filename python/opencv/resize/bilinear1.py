@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # バイリニア補間法でリサイズ
-def resize_bilinear(src, hd, wd):
+def resize_bilinear(src, wd, hd):
 
     # 出力画像用の配列生成（要素は全て空）
     dst = np.empty((hd, wd))
@@ -40,13 +40,13 @@ def resize_bilinear(src, hd, wd):
 
 
 # 入力画像の読み込み
-img = cv2.imread("C:/github/sample/python/opencv/resize/input.png")
+img = cv.imread("/Users/github/sample/python/opencv/resize/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
 # 方法1(NumPy）
 dst = resize_bilinear(gray, gray.shape[1]*2, gray.shape[0]*2)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/resize/bilinear1.png", dst)
+cv.imwrite("C:/github/sample/python/opencv/resize/bilinear1.png", dst)

@@ -1,17 +1,17 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # 入力画像の読み込み
-img = cv2.imread(
+img = cv.imread(
     "/Users/github/sample/python/opencv/threshold/otsu_threshold/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # 方法1 （OpenCVで実装）
-ret, th = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU)
+ret, th = cv.threshold(gray, 0, 255, cv.THRESH_OTSU)
 
 # 結果を出力
-cv2.imwrite(
+cv.imwrite(
     "/Users/github/sample/python/opencv/threshold/otsu_threshold/output.png", th)

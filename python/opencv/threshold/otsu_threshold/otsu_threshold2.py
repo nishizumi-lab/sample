@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # 大津の手法
@@ -41,13 +41,13 @@ def threshold_otsu(gray, min_value=0, max_value=255):
 
 
 # 入力画像の読み込み
-img = cv2.imread("/Users/github/sample/python/opencv/threshold/otsu_threshold/input.png")
+img = cv.imread("/Users/github/sample/python/opencv/threshold/otsu_threshold/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # 方法2（NumPyで実装）
 th = threshold_otsu(gray)
 
 # 結果を出力
-cv2.imwrite("/Users/github/sample/python/opencv/threshold/otsu_threshold/output.png", th)
+cv.imwrite("/Users/github/sample/python/opencv/threshold/otsu_threshold/output.png", th)

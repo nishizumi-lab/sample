@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # アフィン変換で画像配列の回転
@@ -29,10 +29,10 @@ def rotate_affine(src, theta):
     return dst
 
 # 入力画像の読み込み
-img = cv2.imread("C:/github/sample/python/opencv/resize/input.png")
+img = cv.imread("/Users/github/sample/python/opencv/resize/input.png")
     
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
 theta = 45  # 回転角
 
@@ -40,4 +40,4 @@ theta = 45  # 回転角
 dst = rotate_affine(gray, theta)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/resize/affine2.png", dst)
+cv.imwrite("/Users/github/sample/python/opencv/resize/affine2.png", dst)
