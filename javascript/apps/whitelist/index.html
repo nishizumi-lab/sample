@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test</title>
+<!--外部ファイルに記述-->
+<script type="text/javascript" src="./js/main.js"></script>
+<link rel="stylesheet" href="./css/style.css" type="text/css">
+</head>
+<body>
+    <textarea id='inputArea' class="box1">入力データ
+いぬ
+ねことうさぎ
+とり
+きつねとさる
+さとる
+さとし
+たけし</textarea>
+    <textarea id='whiteListArea' class="box1">ホワイトリスト
+ねこ
+さる</textarea>
+    <br>
+<!-- ボタンを押すとmain関数を実行 -->
+<input type="button" value="ホワイトリストを除外" onclick="main();"/>
+<br>
+<textarea id='outputArea' class="box1">
+</textarea>
+</body>
+</html>
