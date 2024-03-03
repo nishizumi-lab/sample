@@ -1,10 +1,6 @@
 # -*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
-
-# Spatial filtering
-# 畳み込み処理
-
 
 def filter2d(src, kernel, fill_value=-1):
     # get kernel size
@@ -39,7 +35,7 @@ def filter2d(src, kernel, fill_value=-1):
 
 # load image (grayscale)
 # 入力画像をグレースケールで読み込み
-gray = cv2.imread("C:/github/sample/python/opencv/filter2d/blur/input.png", 0)
+gray = cv.imread("/Users/github/sample/python/opencv/filter2d/blur/input.png", 0)
 
 # kernel of blur filter
 # カーネル
@@ -53,4 +49,4 @@ dst = filter2d(gray, kernel, -1)
 
 # output
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/filter2d/blur/output.png", dst)
+cv.imwrite("/Users/github/sample/python/opencv/filter2d/blur/output.png", dst)
