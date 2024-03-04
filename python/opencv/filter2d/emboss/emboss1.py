@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 
@@ -25,8 +25,8 @@ def emboss_filter(src, kernel, offset=128):
 
 
 # 入力画像をグレースケールで読み込み
-gray = cv2.imread(
-        "C:/github/sample/python/opencv/filter2d/emboss/input.png", 0)
+gray = cv.imread(
+        "/Users/github/sample/python/opencv/filter2d/emboss/input.png", 0)
 
 # カーネル（オペレータ）
 kernel = np.array([[-2, -1, 0],
@@ -40,5 +40,5 @@ offset = 128
 dst1 = emboss_filter(gray, kernel, offset)
 
 # 結果を出力
-cv2.imwrite(
-        "C:/github/sample/python/opencv/filter2d/emboss/output.png", dst1)
+cv.imwrite(
+        "/Users/github/sample/python/opencv/filter2d/emboss/output.png", dst1)

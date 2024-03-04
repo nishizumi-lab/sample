@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # 畳み込み演算（空間フィルタリング）
@@ -121,13 +121,13 @@ def canny_edge_detecter(gray, t_min, t_max, d):
 
 
 # 入力画像を読み込み
-img = cv2.imread("C:/github/sample/python/opencv/filter2d/canny/input.png")
+img = cv.imread("/Users/github/sample/python/opencv/filter2d/canny/input.png")
 
  # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # 方法1(NumPyで実装)
 edge1 = canny_edge_detecter(gray, 100, 200, 1)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/filter2d/canny/output.png", edge1)
+cv.imwrite("/Users/github/sample/python/opencv/filter2d/canny/output.png", edge1)

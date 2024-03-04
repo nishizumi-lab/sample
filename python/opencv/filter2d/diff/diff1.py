@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 
@@ -23,10 +23,10 @@ def filter2d(src, kernel):
 
 
 # 入力画像を読み込み
-img = cv2.imread("C:/github/sample/python/opencv/filter2d/diff/input.png")
+img = cv.imread("/Users/github/sample/python/opencv/filter2d/diff/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # カーネル（水平、垂直方向の輪郭検出用）
 kernel_x = np.array([[0, -1, 0],
@@ -43,4 +43,4 @@ gray_y = filter2d(gray, kernel_y)
 dst = np.sqrt(gray_x ** 2 + gray_y ** 2)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/filter2d/diff/output.png", dst)
+cv.imwrite("/Users/github/sample/python/opencv/filter2d/diff/output.png", dst)

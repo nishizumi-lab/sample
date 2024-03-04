@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # 入力画像を読み込み
-img = cv2.imread("C:/github/sample/python/opencv/filter2d/prewitt/input.png")
+img = cv2.imread("/Users/github/sample/python/opencv/filter2d/prewitt/input.png")
 
 # グレースケール変換
 gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -24,4 +24,4 @@ gray_y = cv2.filter2D(gray, cv2.CV_64F, kernel_y)
 dst = np.sqrt(gray_x ** 2 + gray_y ** 2)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/filter2d/prewitt/output.png", dst)
+cv2.imwrite("/Users/github/sample/python/opencv/filter2d/prewitt/output.png", dst)

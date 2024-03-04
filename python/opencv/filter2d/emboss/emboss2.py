@@ -1,9 +1,9 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
     
 # 入力画像をグレースケールで読み込み
-gray = cv2.imread("input.jpg", 0)
+gray = cv.imread("/Users/github/sample/python/opencv/filter2d/emboss/input.png", 0)
     
 # カーネル（オペレータ）
 kernel = np.array([[-2, -1, 0],
@@ -15,7 +15,7 @@ offset = 128
     
     
 # 方法2       
-dst2 = cv2.filter2D(gray, -1, kernel, delta=offset)
+dst2 = cv.filter2D(gray, -1, kernel, delta=offset)
     
 # 結果を出力
-cv2.imwrite("output2.jpg", dst2)
+cv.imwrite("/Users/github/sample/python/opencv/filter2d/emboss/output2.png", dst2)
