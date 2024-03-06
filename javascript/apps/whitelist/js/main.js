@@ -30,11 +30,11 @@ function main(){
 
     var output = document.getElementById('outputArea');
     output.innerHTML = "";
-    
+
     var i = 0;
     
     while(i < inputArray.length){
-        output.innerHTML += inputArray[i] + "\n";
+        output.innerHTML += outputArray[i] + "\n";
         i = i + 1;
     }
 }

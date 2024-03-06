@@ -1,6 +1,15 @@
+body, #main{
+    background-color: #111;
+    color:#eee;
+}
 
+#main{
+    padding:10px;
+}
 
 .box1 {
-  width:300px;
+  background-color: #333;
+  color:#eee;
+  width:45%;
   height:300px;
 }
