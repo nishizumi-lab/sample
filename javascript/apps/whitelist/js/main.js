@@ -23,7 +23,8 @@ function main(){
     console.log(inputArray);
 
     // 重複要素を削除
-    var outputArray = Array.from(new Set(inputArray));
+    //var outputArray = Array.from(new Set(inputArray));
+    var outputArray = inputArray;
     
     console.log("outputArray");
     console.log(outputArray);
