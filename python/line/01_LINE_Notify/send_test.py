@@ -1,9 +1,5 @@
 #coding:UTF-8
 import requests
-import subprocess
-import time
-import sys
-import datetime
 
 token = '取得したLINEのトークン'
 
