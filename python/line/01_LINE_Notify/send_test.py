@@ -1,11 +1,12 @@
-#coding:UTF-8
 import requests
 
-token = '取得したLINEのトークン'
+LINE_NOTIFY_TOKEN= '取得したLINEのトークン'
+message = '自動通知するメッセージ'
 
 url = "https://notify-api.line.me/api/notify"
-headers = {"Authorization" : "Bearer "+ token}
-payload = {"message" :  globalIP}
+headers = {"Authorization" : "Bearer "+ LINE_NOTIFY_TOKEN}
+payload = {"message" :  message}
+
 r = requests.post(url ,headers = headers ,params=payload)
 
 print(r)
