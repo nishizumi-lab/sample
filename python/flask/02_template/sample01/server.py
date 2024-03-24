@@ -6,16 +6,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    name1 = "ユーザー1"
-    message1 = "メッセージ"
+    message_hello = "■■■■■■■■■■Hello World!■■■■■■■■■■■"
 
-    # 現在の時刻を取得
-    today = datetime.datetime.fromtimestamp(time.time())
-    message1 = today.strftime('%Y/%m/%d %H:%M:%S')
-
-    # index.htmlの変数展開(message1とname1の値がHTMLのmessage, nameに渡される)
+    # index.htmlの変数展開(message_helloの値がHTMLのmessageに渡される)
     return render_template('index.html',
-                           message=message1, name=name1)
+                           message=message_hello)
 
 
 if __name__ == '__main__':
