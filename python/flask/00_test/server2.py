@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     # クライアントに以下の文字列(HTML)を返す
-    return '<html><span style="color:#ff0000;">Hello World</span></html>'
+    return '<html><br><br><span style="color:#ff0000;">■■■■■■■■■■Hello World!■■■■■■■■■■■</span></html>'
 
 
 if __name__ == '__main__':
