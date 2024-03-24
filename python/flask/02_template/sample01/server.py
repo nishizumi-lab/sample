@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    message_hello = "■■■■■■■■■■Hello World!■■■■■■■■■■■"
+    message_hello = "トップページです"
 
     # index.htmlの変数展開(message_helloの値がHTMLのmessageに渡される)
     return render_template('index.html',
