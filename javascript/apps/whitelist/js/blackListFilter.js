@@ -1,41 +1,54 @@
-function main(){
-    var inputData = document.getElementById('inputArea').value;
-    var whiteListData = document.getElementById('whiteListArea').value;
-    var inputArray = inputData.split("\n");
-    var whiteListArray = whiteListData.split("\n");
+function blackListFilter(){
+    const startTime = Date.now();
 
-    console.log("Input Data");
-    console.log(inputArray);
-    
-    
-    for(const whiteStr of whiteListArray){
-        var i = 0;
-        for(const inputStr of inputArray){
-            if(inputStr.indexOf(whiteStr) > -1){
-                inputArray[i] = "DELETE";
+    var outputData = document.getElementById('outputArea').value;
+    var outputArray = outputData.split("\n").filter(Boolean);
+
+    var blackListData = document.getElementById('blacklistArea').value;
+    var blackListArray = blackListData.split("\n").filter(Boolean);
+    //var statusArea = doccument.getElementById("aaa");
+    let blacklistedArray = [];
+    let unblacklistedArray = [];
+    var blacklistedFlag = 0;
+
+    var j = 0;
+
+    for(const outputStr of outputArray){
+        blacklistedFlag = 0;
+        //statusArea.innerHTML = '■進捗:' + String(j) + '/' + String(whiteListLength) + '件完了';
+        for(const blackStr of blackListArray){
+            if(outputStr.indexOf(blackStr) > -1){
+                blacklistedArray.push(outputStr);
+                blacklistedFlag = 1;
             }
-            i = i + 1;
-
         }
+        if(blacklistedFlag == 0){
+            //console.log(outputStr);
+            unblacklistedArray.push(outputStr);
+        }      
     }
-    
-    console.log("Output Data");
-    console.log(inputArray);
+    //console.log(unblacklistedArray);
 
-    // 重複要素を削除
-    //var outputArray = Array.from(new Set(inputArray));
-    var outputArray = inputArray;
-    
-    console.log("outputArray");
-    console.log(outputArray);
 
-    var output = document.getElementById('outputArea');
-    output.innerHTML = "";
+    var blacklistedArea = document.getElementById('blacklistedArea');
+    blacklistedArea.innerHTML = "";
+
+    var unblacklistedArea = document.getElementById('unblacklistedArea');
+    unblacklistedArea.innerHTML = "";
 
     var i = 0;
-    
-    while(i < inputArray.length){
-        output.innerHTML += outputArray[i] + "\n";
+    var j = 0;
+
+    while(i < blacklistedArray.length){
+        blacklistedArea.innerHTML += blacklistedArray[i] + "\n";
         i = i + 1;
     }
+
+    while(j < unblacklistedArray.length){
+        unblacklistedArea.innerHTML += unblacklistedArray[j] + "\n";
+        j = j + 1;
+    }
+
+    const endTime = Date.now();
+    //statusInfo.innerHTML = statusInfo.innerHTML + '■処理時間:' + String(endTime - startTime) + "[msec]";
 }

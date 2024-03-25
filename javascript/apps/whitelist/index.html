@@ -21,9 +21,9 @@
 
 <body>
     <div id="main">
-        <h2>ホワイトリストで除外</h2>
-        <div id='statusInfo' class="statusBox">■進捗:0/0件完了 ■処理時間</div>
-        <textarea id='inputArea' class="box1">入力データ
+        <h2>①ホワイトリストで除外</h2>
+
+        <textarea id="inputArea" class="box1">入力データ
 いぬ
 ねことうさぎ
 とり
@@ -36,10 +36,20 @@
 さる</textarea>
         <br><br>
         <!-- ボタンを押すとmain関数を実行 -->
-        <input type="button" value="▼実行" class="btn btn-primary" onclick="main();" />
+        <input type="button" value="▼実行" class="btn btn-primary" onclick="whiteListFilter();" />
+        <input type="button" value="▼全て実行" class="btn btn-primary" onclick="whiteListFilter();blackListFilter();" />
         <br><br>
         <textarea id='outputArea' class="box1">
-</textarea>
+        </textarea>     
+        <textarea id='blacklistArea' class="box1">ブラックリスト
+とり
+さと
+        </textarea>
+        <br><br>
+        <textarea id='blacklistedArea' class="box1">
+        </textarea>
+            <textarea id='unblacklistedArea' class="box1">
+        </textarea>
 
         <div>
 </body>
