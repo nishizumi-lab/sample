@@ -3,9 +3,9 @@ function whiteListFilter(){
 
     var inputData = document.getElementById('inputArea').value;
     var whiteListData = document.getElementById('whiteListArea').value;
-    var inputArray = inputData.split("\n");
-    var whiteListArray = whiteListData.split("\n");
-    //var statusArea = doccument.getElementById("aaa");
+    var inputArray = inputData.split("\n").filter(Boolean);;
+    var whiteListArray = whiteListData.split("\n").filter(Boolean);;
+    var statusArea = document.getElementById("statusArea");
 
     var whiteListLength = whiteListArray.length;
 
@@ -13,7 +13,7 @@ function whiteListFilter(){
 
     for(const whiteStr of whiteListArray){
         var i = 0;
-        //statusArea.innerHTML = '■進捗:' + String(j) + '/' + String(whiteListLength) + '件完了';
+        statusArea.innerHTML = '1️⃣ホワイトリストで除外:' + String(j+1) + '/' + String(whiteListLength) + '件完了';
         for(const inputStr of inputArray){
             if(inputStr.indexOf(whiteStr) > -1){
                 inputArray[i] = "DELETE";
@@ -36,5 +36,5 @@ function whiteListFilter(){
     }
 
     const endTime = Date.now();
-    //statusInfo.innerHTML = statusInfo.innerHTML + '■処理時間:' + String(endTime - startTime) + "[msec]";
+    statusArea.innerHTML += ', 処理時間:' + String(endTime - startTime) + "[msec]\n";
 }

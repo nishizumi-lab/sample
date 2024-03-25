@@ -21,9 +21,11 @@
 
 <body>
     <div id="main">
-        <h2>①ホワイトリストで除外</h2>
-
-        <textarea id="inputArea" class="box1">入力データ
+        <h2>ホワイトリスト→ブラックリスト→類似度チェック</h2>
+        <div id='statusArea' class="box2"></div>
+        <div id='statusArea2' class="box2"></div><br>
+        <div class="box2">左:入力データの貼付欄、右:ホワイトリストの貼付欄</div>
+        <textarea id="inputArea" class="box1">入力データの貼付欄
 いぬ
 ねことうさぎ
 とり
@@ -31,7 +33,7 @@
 さとる
 さとし
 たけし</textarea>
-        <textarea id='whiteListArea' class="box1">ホワイトリスト
+        <textarea id='whiteListArea' class="box1">ホワイトリストの貼付欄
 ねこ
 さる</textarea>
         <br><br>
@@ -39,13 +41,15 @@
         <input type="button" value="▼実行" class="btn btn-primary" onclick="whiteListFilter();" />
         <input type="button" value="▼全て実行" class="btn btn-primary" onclick="whiteListFilter();blackListFilter();" />
         <br><br>
+        <div class="box2">左:実行結果①(ホワイトリストで除去されなかったデータ)、右:ブラックリストの貼付欄</div>
         <textarea id='outputArea' class="box1">
         </textarea>     
-        <textarea id='blacklistArea' class="box1">ブラックリスト
+        <textarea id='blacklistArea' class="box1">ブラックリストの貼付欄
 とり
 さと
         </textarea>
         <br><br>
+        <div class="box2">左:実行結果②(実行結果①のうち、ブラックリストと一致したデータ)、右:実行結果③(実行結果①のうち、ブラックリストと不一致のデータ)</div>
         <textarea id='blacklistedArea' class="box1">
         </textarea>
             <textarea id='unblacklistedArea' class="box1">

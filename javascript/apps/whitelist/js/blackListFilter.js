@@ -6,16 +6,15 @@ function blackListFilter(){
 
     var blackListData = document.getElementById('blacklistArea').value;
     var blackListArray = blackListData.split("\n").filter(Boolean);
-    //var statusArea = doccument.getElementById("aaa");
     let blacklistedArray = [];
     let unblacklistedArray = [];
     var blacklistedFlag = 0;
-
+    var statusArea2 = document.getElementById("statusArea2");
     var j = 0;
 
     for(const outputStr of outputArray){
         blacklistedFlag = 0;
-        //statusArea.innerHTML = '■進捗:' + String(j) + '/' + String(whiteListLength) + '件完了';
+        statusArea2.innerHTML = '2️⃣ブラックリストで抽出:' + String(j+1) + '/' + String(outputArray.length) + '件完了';
         for(const blackStr of blackListArray){
             if(outputStr.indexOf(blackStr) > -1){
                 blacklistedArray.push(outputStr);
@@ -26,6 +25,7 @@ function blackListFilter(){
             //console.log(outputStr);
             unblacklistedArray.push(outputStr);
         }      
+        j++;
     }
     //console.log(unblacklistedArray);
 
@@ -50,5 +50,4 @@ function blackListFilter(){
     }
 
     const endTime = Date.now();
-    //statusInfo.innerHTML = statusInfo.innerHTML + '■処理時間:' + String(endTime - startTime) + "[msec]";
-}
+    statusArea2.innerHTML += ', 処理時間:' + String(endTime - startTime) + "[msec]\n";}
