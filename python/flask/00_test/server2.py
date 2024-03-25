@@ -20,7 +20,7 @@ def index():
 @app.route('/login')
 def login():
     # クライアントに以下の文字列(HTML)を返す
-    return '<html><br><br>ログインページページです</html>'
+    return '<html><br><br>ログインページです</html>'
 
 if __name__ == '__main__':
     # Flaskのインスタンスを実行
