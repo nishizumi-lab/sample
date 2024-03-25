@@ -2,5 +2,8 @@
 {% block content %}
     <p>{{ message }}</p>
     <img src="{{ url_for('static', filename='/images/image.png')}}" alt="">
-    <script>main();</script> 
+    <br>
+    <button type="button" onclick="main();">
+        「こんにちは」と表示
+    </button>
 {% endblock %}
