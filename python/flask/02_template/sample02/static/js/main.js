@@ -1,1 +1,3 @@
-alert("こんにちは");
+function main(){
+    alert("こんにちは");
+}
