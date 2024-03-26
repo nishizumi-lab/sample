@@ -21,39 +21,61 @@
 
 <body>
     <div id="main">
-        <h2>ホワイトリスト→ブラックリスト→類似度チェック</h2>
-        <div id='statusArea' class="box2"></div>
-        <div id='statusArea2' class="box2"></div><br>
-        <div class="box2">左:入力データの貼付欄、右:ホワイトリストの貼付欄</div>
-        <textarea id="inputArea" class="box1">入力データの貼付欄
-いぬ
+        <h2>ホワイトリスト処理 → ブラックリスト処理 → ブラックリストとの類似度確認</h2>
+        <div class="form-group width-90">
+            <label for="text1">■入力データの貼付欄(※入力必須)</label><br>
+            <textarea id="inputArea" class="bg-light-dark width-90" rows="4">いぬ
 ねことうさぎ
 とり
 きつねとさる
 さとる
 さとし
 たけし</textarea>
-        <textarea id='whiteListArea' class="box1">ホワイトリストの貼付欄
-ねこ
+        </div>
+<br>
+        <div class="form-group width-90 height-40">
+            <label for="text1">■ホワイトリストの貼付欄(※入力必須)</label><br>
+            <textarea id='whiteListArea' class="box1 bg-light-dark width-90 height-40" rows="4">ねこ
 さる</textarea>
-        <br><br>
-        <!-- ボタンを押すとmain関数を実行 -->
-        <input type="button" value="▼実行" class="btn btn-primary" onclick="whiteListFilter();" />
-        <input type="button" value="▼全て実行" class="btn btn-primary" onclick="whiteListFilter();blackListFilter();" />
-        <br><br>
-        <div class="box2">左:実行結果①(ホワイトリストで除去されなかったデータ)、右:ブラックリストの貼付欄</div>
-        <textarea id='outputArea' class="box1">
-        </textarea>     
-        <textarea id='blacklistArea' class="box1">ブラックリストの貼付欄
-とり
-さと
-        </textarea>
-        <br><br>
-        <div class="box2">左:実行結果②(実行結果①のうち、ブラックリストと一致したデータ)、右:実行結果③(実行結果①のうち、ブラックリストと不一致のデータ)</div>
-        <textarea id='blacklistedArea' class="box1">
-        </textarea>
-            <textarea id='unblacklistedArea' class="box1">
-        </textarea>
+        </div>
+        <br>
+        <div class="form-group width-90">
+            <label for="text1">■ブラックリストの貼付欄(任意)</label><br>
+            <textarea id='blacklistArea' class="box1 width-90 bg-light-dark" rows="4">とり
+たけ
+                        </textarea>
+        </div>
+        <br>
+        <input type="button" value="ホワイトリスト処理のみ実行" class="btn btn-primary" onclick="whiteListFilter();" />
+        <input type="button" value="全ての処理を実行(制作中)" class="btn btn-danger" onclick="whiteListFilter();blackListFilter();levenFilter();" />
+        <br>  
+        <div id='statusArea' class="box2"></div>
+        <div id='statusArea2' class="box2"></div>
+        <div id='statusArea3' class="box2"></div><br>
+        <div class="form-group width-90">
+            <label for="text1">■実行結果① ホワイトリストで除去されなかったデータ</label><br>
+            <textarea id='outputArea' class="box1 bg-dark width-90" rows="4">
+            </textarea>
+        </div>
+        <div class="form-group width-90 height-40">
+            <label for="text1">■実行結果② ブラックリストと部分一致したデータ</label><br>
+            <textarea id='blacklistedArea' class="box1 bg-dark width-90" rows="4"></textarea>
+        </div>
+
+        <div class="form-group width-90 height-40">
+            <label for="text1">■実行結果③ ブラックリストと部分一致しなかったデータ</label><br>
+            <textarea id='unblacklistedArea' class="box1 bg-dark width-90" rows="4"></textarea>
+        </div>
+
+        <div class="form-group width-90 height-40">
+            <label for="text1">■実行結果④ 実行結果③のうちブラックリストとの類似度が高いデータ</label><br>
+            <textarea id='unblacklistedDangerArea' class="box1 bg-dark-red width-90" rows="4"></textarea>
+        </div>
+
+        <div class="form-group width-90 height-40">
+            <label for="text1">■実行結果⑤ 実行結果③のうちブラックリストとの類似度が低いデータ</label><br>
+            <textarea id='unblacklistedSafeArea' class="box1 bg-dark-green width-90" rows="4"></textarea>
+        </div>
 
         <div>
 </body>
