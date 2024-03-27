@@ -1,13 +1,13 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask import Blueprint # Blueprintをインポート
 
-# 関数名(index)でBlueprintオブジェクトを生成
-index_app = Blueprint('index', __name__)
+# Blueprintオブジェクトを生成
+index_page = Blueprint('index', __name__)
 
-@index_app.route('/')
+# トップページ
+@index_page.route('/')
 def index():
-    name = "トップページ"
-    message = "トップページのメッセージ"
+    message_hello= "ようこそ"
 
     return render_template('index.html',
-                           message=message, name=name)
+                           message=message_hello)
