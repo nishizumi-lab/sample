@@ -32,13 +32,13 @@
 さとし
 たけし</textarea>
         </div>
-<br>
+
         <div class="form-group width-90 height-40">
             <label for="text1">■ホワイトリストの貼付欄(※入力必須)</label><br>
             <textarea id='whiteListArea' class="box1 bg-light-dark width-90 height-40" rows="4">ねこ
 さる</textarea>
         </div>
-        <br>
+
         <div class="form-group width-90">
             <label for="text1">■ブラックリストの貼付欄(任意)</label><br>
             <textarea id='blacklistArea' class="box1 width-90 bg-light-dark" rows="4">とり
@@ -47,13 +47,14 @@
         </div>
         <br>
         <input type="button" value="ホワイトリスト処理のみ実行" class="btn btn-primary" onclick="whiteListFilter();" />
-        <input type="button" value="全ての処理を実行(制作中)" class="btn btn-danger" onclick="whiteListFilter();blackListFilter();levenFilter();" />
+        <input type="button" value="ホワイト+ブラックリスト処理を実行" class="btn btn-primary" onclick="whiteListFilter();blackListFilter();" />
+        <input type="button" value="全ての処理を実行" class="btn btn-danger" onclick="whiteListFilter();blackListFilter();levenFilter();" />
         <br>  
         <div id='statusArea' class="box2"></div>
         <div id='statusArea2' class="box2"></div>
         <div id='statusArea3' class="box2"></div><br>
         <div class="form-group width-90">
-            <label for="text1">■実行結果① ホワイトリストで除去されなかったデータ</label><br>
+            <label for="text1">■実行結果① ホワイトリストと部分一致しなかったデータ</label><br>
             <textarea id='outputArea' class="box1 bg-dark width-90" rows="4">
             </textarea>
         </div>
@@ -69,12 +70,12 @@
 
         <div class="form-group width-90 height-40">
             <label for="text1">■実行結果④ 実行結果③のうちブラックリストとの類似度が高いデータ</label><br>
-            <textarea id='unblacklistedDangerArea' class="box1 bg-dark-red width-90" rows="4"></textarea>
+            <textarea id='dangerArea' class="box1 bg-dark-red width-90" rows="4"></textarea>
         </div>
 
         <div class="form-group width-90 height-40">
             <label for="text1">■実行結果⑤ 実行結果③のうちブラックリストとの類似度が低いデータ</label><br>
-            <textarea id='unblacklistedSafeArea' class="box1 bg-dark-green width-90" rows="4"></textarea>
+            <textarea id='safetyArea' class="box1 bg-dark-green width-90" rows="4"></textarea>
         </div>
 
         <div>

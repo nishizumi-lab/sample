@@ -50,4 +50,5 @@ function blackListFilter(){
     }
 
     const endTime = Date.now();
-    statusArea2.innerHTML += ', 処理時間:' + String(endTime - startTime) + "[msec]\n";}
+    statusArea2.innerHTML += ', 処理時間:' + String(endTime - startTime) + "[msec]\n";
+}
