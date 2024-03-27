@@ -39,7 +39,7 @@ function levenFilter(){
         statusArea3.innerHTML = '3️⃣ブラックリストとの類似度計算:' + String(j+1) + '/' + String(unblacklistedArray.length) + '件完了';
         for(const blackStr of blackListArray){
             var score = levenshteinDistance(blackStr, unblacklistedStr);
-            if(score <= 2){
+            if(score <= 4){
                 dangerFlag = 0;
             }
             else{
