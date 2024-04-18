@@ -17,7 +17,7 @@ def calc_hist(img):
 def main():
     target_path = "/Users/images/"
     move_path = "/Users/images2/"
-    target_img_path = "/Users/images/00000-1095803260.png"
+    target_img_path = "/Users/images/00000-2245703755.png"
 
     img_paths = sorted(str(x) for x in Path(target_path).glob("*.png"))
     #print(img_paths)
@@ -34,7 +34,7 @@ def main():
 
         score = cv.compareHist(hist, target_hist, cv.HISTCMP_CORREL)
         
-        if(score > 0.8):
+        if(score > 0.6):
             shutil.move(img_path, move_path)
             
 
