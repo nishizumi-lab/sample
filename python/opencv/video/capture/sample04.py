@@ -1,18 +1,17 @@
 #-*- coding:utf-8 -*-
-import cv2
-import numpy as np
+import cv2 as cv
 
 # 動画ファイルのパス
 filepath = "/Users/github/sample/python/opencv/video/input.mp4"
 
 # 動画のキャプチャ
-cap = cv2.VideoCapture(filepath)
+cap = cv.VideoCapture(filepath)
 
 # 動画のプロパティを取得
-width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-fps = cap.get(cv2.CAP_PROP_FPS)
-frame_num = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+width = cap.get(cv.CAP_PROP_FRAME_WIDTH)
+height = cap.get(cv.CAP_PROP_FRAME_HEIGHT)
+fps = cap.get(cv.CAP_PROP_FPS)
+frame_num = cap.get(cv.CAP_PROP_FRAME_COUNT)
 play_time = frame_num / fps
 
 # 動画のプロパティを表示
