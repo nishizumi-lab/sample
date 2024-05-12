@@ -17,7 +17,7 @@ def calc_hist(img):
 def main():
     target_path = "/Users/images/"
     move_path = "/Users/images2/"
-    target_img_path = "/Users/images/00000-19562695.png"
+    target_img_path = "/Users/images/00000-3226781875.png"
 
     img_paths = sorted(str(x) for x in Path(target_path).glob("*.png"))
     #print(img_paths)
