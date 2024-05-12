@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def main():
     # CSVのロード
     data = np.genfromtxt(
-        "C:/github/sample/python/opencv/video/color_tracking/data.csv", delimiter=",", dtype='float')
+        "/Users/github/sample/python/opencv/video/color_tracking/data.csv", delimiter=",", dtype='float')
 
     # 2次元配列を分割（経過時間t, x座標, y座標の1次元配列)
     t = data[:,0]

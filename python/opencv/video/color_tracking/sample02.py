@@ -49,7 +49,7 @@ def analysis_blob(binary_img):
 
 
 def main():
-    videofile_path = "C:/github/sample/python/opencv/video/color_tracking/red_pendulum.mp4"
+    videofile_path = "/Users/github/sample/python/opencv/video/color_tracking/red_pendulum.mp4"
 
     # カメラのキャプチャ
     cap = cv2.VideoCapture(videofile_path)
