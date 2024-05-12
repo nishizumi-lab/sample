@@ -2,20 +2,22 @@
 import pandas as pd
 
 # リスト作成
-data1 = [158, 157, 157]
+data = [158, 157, 157]
 
 # インデックスラベル
 index_data = ['miho','saori','yukari']
 
 # リストをSeriesに変換
-data2 = pd.Series(data1, index=index_data)
-print(data2)
+series = pd.Series(data, index=index_data)
+print(series)
 
 """
-【実行結果】
-
 miho      158
 saori     157
 yukari    157
+
 dtype: int64
 """
+
+# ラベルを指定して値を取り出し
+print(series["miho"]) # 158
