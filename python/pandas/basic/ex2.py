@@ -11,7 +11,11 @@ data = {
 # データフレームの作成
 df = pd.DataFrame(data)
 print(df)
+
+
 """
+【実行結果】
+
     miho  saori  yukari
 0   158    157     157
 1    82     85      78

@@ -8,6 +8,8 @@ date = pd.date_range("20170201", periods=21)
 print(date)
 
 """
+【実行結果】
+
 class 'pandas.tseries.index.DatetimeIndex'
 [2017-02-01 00:00:00, ..., 2017-02-21 00:00:00]
 Length: 21, Freq: D, Timezone: None

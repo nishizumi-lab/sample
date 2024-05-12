@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 
-# -*- coding: utf-8 -*-
-import pandas as pd
-
 # 辞書の作成
 data = {
     'miho'  : [158, 82, 56, 84],
@@ -21,6 +18,8 @@ df = pd.DataFrame(data, index = index_data)
 print(df)
 
 """
+【実行結果】
+
      miho  yukari  saori
 身長    158     157    157
 バスト    82      78     85

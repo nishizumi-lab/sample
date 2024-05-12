@@ -15,6 +15,8 @@ df = pd.DataFrame(data,index = date)
 print(df)
 
 """
+【実行結果】
+
             miho  saori  yukari
 2017-02-01   158    157     157
 2017-02-02    82     85      78

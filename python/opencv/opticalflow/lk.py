@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # ビデオキャプチャー
-cap = cv2.VideoCapture("C:/github/sample/python/opencv/video/input2.mp4")
+cap = cv2.VideoCapture("/Users/github/sample/python/opencv/video/input2.mp4")
 
 # Shi-Tomasi法のパラメータ（コーナー：物体の角を特徴点として検出）
 ft_params = dict(maxCorners=100,  # 特徴点の最大数
