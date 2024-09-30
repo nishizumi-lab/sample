@@ -14,7 +14,7 @@ def main():
     screen = pygame.display.set_mode(SCREEN_SIZE)
 
     # # タイトルバーの設定（表示する文字を「ゲーム」に変更）
-    pygame.display.set_caption("GAME")  
+    pygame.display.set_caption("GAME TITLE")  
 
     while True:
         # 画面を黒色(#000000)に塗りつぶし

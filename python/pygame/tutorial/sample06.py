@@ -32,6 +32,12 @@ def main():
                 pygame.quit()       # Pygameの終了(画面閉じられる)
                 sys.exit()
 
+            # キーイベント（何かキーが押されたときに発生するイベント処理）
+            if event.type == KEYDOWN:
+                # ESCキーが押されたら終了
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
 if __name__ == "__main__":
     main()
