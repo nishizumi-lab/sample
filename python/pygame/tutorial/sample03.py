@@ -13,8 +13,8 @@ def main():
     # タイトルバーの設定（大きさ600*500）
     screen = pygame.display.set_mode(SCREEN_SIZE)
 
-    # # タイトルバーの設定（表示する文字を指定）
-    pygame.display.set_caption("Test")  
+    # # タイトルバーの設定（表示する文字を「ゲーム」に変更）
+    pygame.display.set_caption("GAME")  
 
     while True:
         # 画面を黒色(#000000)に塗りつぶし
@@ -22,7 +22,7 @@ def main():
 
         # 画面を更新
         pygame.display.update()  
-        
+
         # イベント処理
         for event in pygame.event.get():
             # 閉じるボタンが押されたら終了

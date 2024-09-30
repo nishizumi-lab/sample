@@ -17,8 +17,8 @@ def main():
     pygame.display.set_caption("GAME")              
 
     while True:
-        # 画面を黒色(#000000)に塗りつぶし
-        screen.fill((0,0,0))
+        # 画面を緑色(#R=0, G=255, B=0)で塗りつぶし
+        screen.fill((0,255,0))
 
         # 画面を更新    
         pygame.display.update()     
