@@ -28,7 +28,7 @@ def main():
     rect_player = player.get_rect()
 
     # プレイヤー画像の初期位置
-    rect_player.center = (330, 300) 
+    rect_player.center = (230, 200) 
 
     while True:
         # 画面更新
