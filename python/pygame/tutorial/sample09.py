@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
 import pygame
 from pygame.locals import *
-import sys
 
 # 画面サイズ 600×500
 SCREEN_SIZE = (600, 378)
