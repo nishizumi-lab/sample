@@ -31,7 +31,9 @@ def main():
     # プレイヤー画像の初期位置
     player_rect.center = (330, 300) 
 
-    while True:
+    running = True  # ループ処理の実行を継続するフラグ
+
+    while running:
         # 画面更新
         pygame.display.update()  
         # 更新間隔（30msec）           
@@ -62,14 +64,12 @@ def main():
         for event in pygame.event.get():
             # 閉じるボタンが押されたら終了
             if event.type == QUIT: 
-                pygame.quit()
-                sys.exit()
+                running = False
             # キーイベント
             if event.type == KEYDOWN:
                 # Escキーが押されたら終了
                 if event.key == K_ESCAPE:   
-                    pygame.quit()
-                    sys.exit()
+                    running = False
                 # 矢印キーなら円の中心座標を矢印の方向に移動
                 if event.key == K_LEFT:
                     player_rect.centerx -= 15
@@ -79,6 +79,10 @@ def main():
                     player_rect.centery -= 15
                 if event.key == K_DOWN:
                     player_rect.centery += 15
+
+    # Pygameとプログラムの実行を終了
+    pygame.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     main()
