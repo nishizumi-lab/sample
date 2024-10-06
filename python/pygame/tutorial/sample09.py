@@ -16,7 +16,7 @@ def main():
     # Pygameの初期化
     pygame.init()
     # 画面設定
-    pygame.display.set_mode(SCREEN_SIZE, 0, 32)  
+    pygame.display.set_mode(SCREEN_SIZE)  
     screen = pygame.display.get_surface()
 
     # 背景画像の取得
