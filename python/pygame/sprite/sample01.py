@@ -98,7 +98,9 @@ def main():
                 # Escキーが押されたら終了
                 if event.key == K_ESCAPE:   
                     running = False
-
+    # 終了処理
+    pygame.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     main()
