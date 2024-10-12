@@ -18,7 +18,8 @@ class Girl(pygame.sprite.Sprite):
     # スプライトの初期化(画像ファイル名, 位置pos(x, y), 速さvxy(vx, vy), 回転angle)
     def __init__(self, filepath, pos, vxy, angle=0):
 
-        pygame.sprite.Sprite.__init__(self)
+        # デフォルトグループをセット
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.image.load(filepath).convert_alpha()
         if angle != 0: 
             self.image = pygame.transform.rotate(self.image, angle)
@@ -53,22 +54,19 @@ class Girl(pygame.sprite.Sprite):
 def main():
     pygame.init()
     screen = pygame.display.set_mode(SCREEN.size)
+
+    # スプライトグループの作成
+    group = pygame.sprite.RenderUpdates()
+
+    # Girlクラスにスプライトグループを割り当てる
+    Girl.containers = group
+    
     # スプライトを作成(画像ファイル名, 位置(x, y), 速さ(vx, vy), 回転angle)
     girl1 = Girl(GIRL1_IMG_PATH,(200, 200), (2, 0), 0)
     girl2 = Girl(GIRL2_IMG_PATH,(200, 200), (0, 2), -20)
     girl3 = Girl(GIRL3_IMG_PATH,(200, 200), (2, 3), 0)
     girl4 = Girl(GIRL4_IMG_PATH,(200, 200), (1, 2), 20)
     girl5 = Girl(GIRL5_IMG_PATH,(200, 200), (2, 1), 0)
-
-    # スプライトグループの作成
-    group = pygame.sprite.RenderUpdates()
-
-    # スプライトの追加
-    group.add(girl1)
-    group.add(girl2)
-    group.add(girl3)
-    group.add(girl4)
-    group.add(girl5)
 
     clock = pygame.time.Clock()
 
