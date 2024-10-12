@@ -122,7 +122,7 @@ class Ball(pygame.sprite.Sprite):
                     self.rect.top = block.rect.bottom
                     self.dy = -self.dy
                 self.block_sound.play()     # 効果音を鳴らす
-                self.hit += 1               # 衝突回数
+                self.hit += 1               # 衝突回数をカウント
                 self.score.add_score(self.hit * 10)   # 衝突回数に応じてスコア加点
 
 # ブロック
@@ -165,7 +165,7 @@ def main():
     # スプライトグループに追加    
     Paddle.containers = group
     Ball.containers = group
-    Block.containers = group, blocks
+    Block.containers = group
 
     # パドルの作成
     paddle = Paddle(PADDLE_IMG_PATH)
