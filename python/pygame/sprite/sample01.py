@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
 import pygame
 from pygame.locals import *
-import sys
 
 # 画面サイズ
 SCREEN = Rect(0, 0, 600, 400)   # 画面サイズ

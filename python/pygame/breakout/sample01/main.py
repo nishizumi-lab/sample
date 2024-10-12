@@ -8,7 +8,17 @@ import pygame.mixer
 # 画面サイズ
 SCREEN = Rect(0, 0, 400, 400)
 
-# バドルのクラス
+# 画像ファイルのパス
+PADDLE_IMG_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/img/paddle.png"
+BLOCK_IMG_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/img/block.png"
+BALL_IMG_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/img/ball.png"
+
+# 音声ファイルのパス
+PADDLE_SOUND_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/mp3/paddle_sound.mp3"
+BLOCK_SOUND_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/mp3/block_sound.mp3"
+GAMEOVER_SOUND_PATH = "/Users/github/sample/python/pygame/breakout/sample01/assets/mp3/gameover_sound.mp3"
+
+# バドルのスプライトクラス
 class Paddle(pygame.sprite.Sprite):
     # コンストラクタ（初期化メソッド）
     def __init__(self, filename):
@@ -21,7 +31,7 @@ class Paddle(pygame.sprite.Sprite):
         self.rect.centerx = pygame.mouse.get_pos()[0]  # マウスのx座標をパドルのx座標に
         self.rect.clamp_ip(SCREEN)                     # ゲーム画面内のみで移動
 
-# ボールのクラス
+# ボールのスプライトクラス
 class Ball(pygame.sprite.Sprite):
     # コンストラクタ（初期化メソッド）
     def __init__(self, filename, paddle, blocks, score, speed, angle_left, angle_right):
@@ -84,7 +94,8 @@ class Ball(pygame.sprite.Sprite):
             self.update = self.start                    # ボールを初期状態に
             self.gameover_sound.play()
             self.hit = 0
-            self.score.add_score(-100)                  # スコア減点-100点
+            self.score.set_score(0)                               # スコアを0点にする
+            #self.score.add_score(-100)                  # スコア減点-100点
 
         # ボールと衝突したブロックリストを取得（Groupが格納しているSprite中から、指定したSpriteと接触しているものを探索）
         blocks_collided = pygame.sprite.spritecollide(self, self.blocks, True)
@@ -114,7 +125,7 @@ class Ball(pygame.sprite.Sprite):
                 self.hit += 1               # 衝突回数
                 self.score.add_score(self.hit * 10)   # 衝突回数に応じてスコア加点
 
-# ブロックのクラス
+# ブロック
 class Block(pygame.sprite.Sprite):
     def __init__(self, filename, x, y):
         pygame.sprite.Sprite.__init__(self, self.containers)
@@ -124,27 +135,27 @@ class Block(pygame.sprite.Sprite):
         self.rect.left = SCREEN.left + x * self.rect.width
         self.rect.top = SCREEN.top + y * self.rect.height
 
-# スコアのクラス
+# スコア
 class Score():
     def __init__(self, x, y):
         self.sysfont = pygame.font.SysFont(None, 20)
         self.score = 0
         (self.x, self.y) = (x, y)
     def draw(self, screen):
-        img = self.sysfont.render("SCORE:"+str(self.score), True, (255,255,250))
+        img = self.sysfont.render("SCORE:" + str(self.score), True, (255,255,250))
         screen.blit(img, (self.x, self.y))
     def add_score(self, x):
         self.score += x
+    def set_score(self, score):
+        self.score = score
 
 def main():
+
     pygame.init()
     screen = pygame.display.set_mode(SCREEN.size)
-    Ball.paddle_sound = pygame.mixer.Sound(
-        "C:/github/sample/python/pygame/breakout/flashing.wav")    # パドルにボールが衝突した時の効果音取得
-    Ball.block_sound = pygame.mixer.Sound(
-        "C:/github/sample/python/pygame/breakout/flying_pan.wav")    # ブロックにボールが衝突した時の効果音取得
-    Ball.gameover_sound = pygame.mixer.Sound(
-        "C:/github/sample/python/pygame/breakout/badend1.wav")    # ゲームオーバー時の効果音取得
+    Ball.paddle_sound = pygame.mixer.Sound(PADDLE_SOUND_PATH)    # パドルにボールが衝突した時の効果音取得
+    Ball.block_sound = pygame.mixer.Sound(BLOCK_SOUND_PATH)    # ブロックにボールが衝突した時の効果音取得
+    Ball.gameover_sound = pygame.mixer.Sound(GAMEOVER_SOUND_PATH)    # ゲームオーバー時の効果音取得
     # 描画用のスプライトグループ
     group = pygame.sprite.RenderUpdates()  
 
@@ -157,23 +168,24 @@ def main():
     Block.containers = group, blocks
 
     # パドルの作成
-    paddle = Paddle("C:/github/sample/python/pygame/breakout/paddle.png")
+    paddle = Paddle(PADDLE_IMG_PATH)
 
     # ブロックの作成(14*10)
     for x in range(1, 15):
         for y in range(1, 11):
-            Block("C:/github/sample/python/pygame/breakout/block.png", x, y)
+            Block(BLOCK_IMG_PATH, x, y)
 
     # スコアを画面(10, 10)に表示
     score = Score(10, 10)    
 
     # ボールを作成
-    Ball("/Users/github/sample/python/pygame/breakout/ball.png",
-         paddle, blocks, score, 5, 135, 45)
+    Ball(BALL_IMG_PATH, paddle, blocks, score, 5, 135, 45)
     
     clock = pygame.time.Clock()
 
-    while (1):
+    running = True  # ループ処理の実行を継続するフラグ
+
+    while running:
         clock.tick(60)      # フレームレート(60fps)
         screen.fill((0,20,0))
         # 全てのスプライトグループを更新
@@ -185,14 +197,19 @@ def main():
         # 画面更新 
         pygame.display.update()
 
-        # キーイベント（終了）
+        # イベント処理
         for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
-                pygame.quit()
-                sys.exit()
+            # 閉じるボタンが押されたら終了
+            if event.type == QUIT: 
+                running = False
+            # キーイベント
+            if event.type == KEYDOWN:
+                # Escキーが押されたら終了
+                if event.key == K_ESCAPE:   
+                    running = False
+    # 終了処理
+    pygame.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     main()
