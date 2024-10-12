@@ -56,10 +56,10 @@ def main():
     screen = pygame.display.set_mode(SCREEN.size)
 
     # スプライトグループの作成
-    group = pygame.sprite.RenderUpdates()
+    girl_group = pygame.sprite.RenderUpdates()
 
     # Girlクラスにスプライトグループを割り当てる
-    Girl.containers = group
+    Girl.containers = girl_group
     
     # スプライトを作成(画像ファイル名, 位置(x, y), 速さ(vx, vy), 回転angle)
     girl1 = Girl(GIRL1_IMG_PATH,(200, 200), (2, 0), 0)
@@ -80,10 +80,10 @@ def main():
         screen.fill((0, 60, 0)) 
 
         # スプライトグループを更新
-        group.update()
+        girl_group.update()
 
         # スプライトグループを描画
-        dirty_rects = group.draw(screen)
+        dirty_rects = girl_group.draw(screen)
 
         # 画面更新
         pygame.display.update(dirty_rects)
