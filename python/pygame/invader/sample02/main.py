@@ -144,7 +144,7 @@ def main():
         if game_over:
             game_over_text = font.render("GAME OVER - Press 'R' to Restart", True, WHITE)
             screen.blit(game_over_text, (150, 250))
-            # 古いスプライトグループの削除
+            # スプライトグループを空にする
             all_sprites.empty()
             aliens.empty()
             bullets.empty()

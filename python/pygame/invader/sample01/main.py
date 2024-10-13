@@ -125,7 +125,7 @@ def main():
             screen.blit(game_over_text, (300, 250))
             restart_text = font.render("Press 'R' to Restart", True, WHITE)
             screen.blit(restart_text, (250, 300))
-            # 古いスプライトグループの削除
+            # スプライトグループを空にする
             all_sprites.empty()
             aliens.empty()
             bullets.empty()
