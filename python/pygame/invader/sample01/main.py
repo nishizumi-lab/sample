@@ -1,5 +1,4 @@
 import pygame
-import random
 import sys
 
 # 色の定義
@@ -12,7 +11,7 @@ GREEN = (0, 255, 0)
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface((50, 50))
+        self.image = pygame.Surface((30, 30))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
         self.rect.center = (400, 550)
@@ -121,7 +120,7 @@ def main():
 
         # ゲームクリア表示
         if game_over:
-            game_over_text = font.render("YOU WIN!", True, WHITE)
+            game_over_text = font.render("GAME CLEAR", True, WHITE)
             screen.blit(game_over_text, (300, 250))
 
         # 画面更新
