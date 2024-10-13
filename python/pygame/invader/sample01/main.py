@@ -1,11 +1,14 @@
-import pygame
+# -*- coding: utf-8 -*-
 import sys
+import pygame
+from pygame.locals import *
 
 # 色の定義
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+DARK_GREEN = (0, 40, 0)
 
 # プレイヤークラス
 class Player(pygame.sprite.Sprite):
@@ -83,9 +86,11 @@ def main():
     # スコアの初期化
     score = 0
 
-    # メインループ
-    running = True
+    # フラグ
+    running = True # ゲーム++t
     game_over = False
+    # ゲーム開始フラグ
+    game_started = False
 
     while running:
         for event in pygame.event.get():
@@ -96,8 +101,10 @@ def main():
                     bullet = Bullet(player.rect.centerx, player.rect.top)
                     all_sprites.add(bullet)
                     bullets.add(bullet)
+                if event.key == pygame.K_s:
+                    game_started = True
 
-        if not game_over:
+        if not game_over and game_started:
             # 更新
             all_sprites.update()
 
@@ -111,7 +118,7 @@ def main():
                 game_over = True
 
         # 描画
-        screen.fill(BLACK)
+        screen.fill(DARK_GREEN)
         all_sprites.draw(screen)
 
         # スコア表示

@@ -1,5 +1,6 @@
-import pygame
 import sys
+import pygame
+from pygame.locals import *
 import random
 
 # 色の定義
@@ -41,9 +42,8 @@ class Alien(pygame.sprite.Sprite):
         if self.rect.right >= 800 or self.rect.left <= 0:
             self.speed = -self.speed
             self.rect.y += 40
-        if random.randint(1, 100) == 1:  # 1%の確率で弾を発射
+        if random.randint(1, 100) == 10:  # 10%の確率で弾を発射
             alien_bullet = AlienBullet(self.rect.centerx, self.rect.bottom)
-
 
 class AlienBullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
