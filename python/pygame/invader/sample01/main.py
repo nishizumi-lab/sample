@@ -99,7 +99,7 @@ def main():
                 if event.key == pygame.K_r and game_over:
                     main()  # リスタート
 
-        if not game_over and game_started:
+        if not game_over and not game_clear and game_started:
             # 更新
             all_sprites.update()
             # 衝突判定
@@ -109,7 +109,10 @@ def main():
             # ゲームクリア判定
             if not aliens:
                 game_clear = True
-
+            # ゲームオーバー判定（エイリアンがプレイヤーの位置まで到達した場合）
+            for alien in aliens:
+                if alien.rect.bottom >= player.rect.top:
+                    game_over = True
         # 描画
         screen.fill(DARK_GREEN)
         all_sprites.draw(screen)
