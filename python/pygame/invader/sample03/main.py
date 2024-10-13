@@ -13,6 +13,11 @@ DARK_GREEN = (0, 40, 0)
 PLAYER_IMG_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/img/player.png"
 ALIEN_IMG_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/img/alien.png"
 
+SHOOT_SOUND_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/sound/shoot.mp3"
+HIT_SOUND_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/sound/hit.mp3"
+CLEAR_SOUND_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/sound/clear.mp3"
+GAMEOVER_SOUND_PATH = "/Users/github/sample/python/pygame/invader/sample03/assets/sound/gameover.mp3"
+
 # プレイヤークラス
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -97,7 +102,10 @@ def main():
     game_over = False
     game_clear = False
     game_started = False
-
+    shoot_sound = pygame.mixer.Sound(SHOOT_SOUND_PATH)
+    hit_sound = pygame.mixer.Sound(HIT_SOUND_PATH)
+    clear_sound = pygame.mixer.Sound(CLEAR_SOUND_PATH)
+    gameover_sound = pygame.mixer.Sound(GAMEOVER_SOUND_PATH)
     for i in range(10):
         for j in range(3):
             alien = Alien(50 + i * 50, 70 + j * 80, all_sprites, alien_bullets)
@@ -110,6 +118,7 @@ def main():
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and not game_over:
+                    shoot_sound.play()
                     bullet = Bullet(player.rect.centerx, player.rect.top)
                     all_sprites.add(bullet)
                     bullets.add(bullet)
@@ -122,14 +131,18 @@ def main():
             all_sprites.update()
             hits = pygame.sprite.groupcollide(bullets, aliens, True, True)
             if hits:
+                hit_sound.play()
                 score += 10
             player_hits = pygame.sprite.spritecollide(player, alien_bullets, True)
             if player_hits:
+                gameover_sound.play()
                 game_over = True
             for alien in aliens:
                 if alien.rect.bottom >= player.rect.top:
+                    gameover_sound.play()
                     game_over = True
             if not aliens:
+                clear_sound.play()
                 game_clear = True
 
         screen.fill(DARK_GREEN)
@@ -146,6 +159,10 @@ def main():
         if game_clear:
             game_clear_text = font.render("GAME CLEAR", True, WHITE)
             screen.blit(game_clear_text, (300, 250))
+            all_sprites.empty()
+            aliens.empty()
+            bullets.empty()
+            alien_bullets.empty()
 
         pygame.display.flip()
         pygame.time.Clock().tick(60)
