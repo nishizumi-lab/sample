@@ -127,8 +127,8 @@ def main():
             screen.blit(restart_text, (250, 300))
         # ゲームクリア表示
         if game_clear:
-            game_clear = font.render("GAME CLEAR", True, WHITE)
-            screen.blit(game_over_text, (300, 250))
+            game_clear_text = font.render("GAME CLEAR", True, WHITE)
+            screen.blit(game_clear_text, (300, 250))
 
         # 画面更新
         pygame.display.flip()
