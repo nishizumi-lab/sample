@@ -61,78 +61,74 @@ class Bullet(pygame.sprite.Sprite):
 def main():
     # 初期化
     pygame.init()
-
     # 画面サイズ
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Space Invaders")
-
     # フォントの設定
     font = pygame.font.SysFont(None, 55)
-
     # スプライトグループの作成
     all_sprites = pygame.sprite.Group()
     aliens = pygame.sprite.Group()
     bullets = pygame.sprite.Group()
-
     player = Player()
     all_sprites.add(player)
-
     for i in range(10):
         for j in range(3):
             alien = Alien(50 + i * 50, 70 + j * 80)
             all_sprites.add(alien)
             aliens.add(alien)
-
     # スコアの初期化
     score = 0
-
     # フラグ
-    running = True # ゲームループ用
-    game_over = False # ゲームオーバー判定用
-    game_started = False    # ゲーム開始用
+    running = True
+    game_over = False
+    game_clear = False
+    game_started = False
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                # スペースキーが押されてゲームオーバーでない場合
-                if event.key == pygame.K_SPACE and not game_over:
+                if event.key == pygame.K_SPACE and not game_over and not game_clear:
                     bullet = Bullet(player.rect.centerx, player.rect.top)
                     all_sprites.add(bullet)
                     bullets.add(bullet)
                 if event.key == pygame.K_s:
                     game_started = True
+                if event.key == pygame.K_r and game_over:
+                    main()  # リスタート
 
         if not game_over and game_started:
             # 更新
             all_sprites.update()
-
             # 衝突判定
             hits = pygame.sprite.groupcollide(bullets, aliens, True, True)
             if hits:
                 score += 10
-
             # ゲームクリア判定
             if not aliens:
-                game_over = True
+                game_clear = True
 
         # 描画
         screen.fill(DARK_GREEN)
         all_sprites.draw(screen)
-
         # スコア表示
         score_text = font.render(f"Score: {score}", True, WHITE)
         screen.blit(score_text, (10, 10))
-
-        # ゲームクリア表示
+        # ゲームオーバー表示
         if game_over:
-            game_over_text = font.render("GAME CLEAR", True, WHITE)
+            game_over_text = font.render("GAME OVER", True, WHITE)
+            screen.blit(game_over_text, (300, 250))
+            restart_text = font.render("Press 'R' to Restart", True, WHITE)
+            screen.blit(restart_text, (250, 300))
+        # ゲームクリア表示
+        if game_clear:
+            game_clear = font.render("GAME CLEAR", True, WHITE)
             screen.blit(game_over_text, (300, 250))
 
         # 画面更新
         pygame.display.flip()
-
         # フレームレート
         pygame.time.Clock().tick(60)
 
