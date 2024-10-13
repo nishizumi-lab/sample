@@ -77,7 +77,7 @@ def main():
 
     for i in range(10):
         for j in range(3):
-            alien = Alien(50 + i * 50, 40 + j * 50)
+            alien = Alien(50 + i * 50, 70 + j * 80)
             all_sprites.add(alien)
             aliens.add(alien)
 
