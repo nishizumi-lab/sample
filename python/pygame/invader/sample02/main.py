@@ -80,7 +80,7 @@ class AlienBullet(pygame.sprite.Sprite):
 
 # リスタート関数
 def restart_game():
-    global all_sprites, aliens, bullets, alien_bullets, player, score, game_over, game_started
+    global all_sprites, aliens, bullets, alien_bullets, player, score, game_over, game_clear, game_started
     all_sprites = pygame.sprite.Group()
     aliens = pygame.sprite.Group()
     bullets = pygame.sprite.Group()
@@ -98,10 +98,11 @@ def restart_game():
     score = 0
     game_over = False
     game_started = False
+    game_clear = False
 
 # メインループ
 def main():
-    global all_sprites, aliens, bullets, alien_bullets, player, score, game_over, game_started
+    global all_sprites, aliens, bullets, alien_bullets, player, score, game_over, game_clear, game_started
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Space Invaders")
@@ -132,12 +133,16 @@ def main():
             if hits:
                 score += 10
 
+            # エイリアンの弾がプレイヤーに当たるとゲームオーバー
             player_hits = pygame.sprite.spritecollide(player, alien_bullets, True)
             if player_hits:
                 game_over = True
-
+            # ゲームオーバー判定（エイリアンがプレイヤーの位置まで到達した場合）
+            for alien in aliens:
+                if alien.rect.bottom >= player.rect.top:
+                    game_over = True
             if not aliens:
-                game_over = True
+                game_clear = True
 
         screen.fill(DARK_GREEN)
         all_sprites.draw(screen)
@@ -147,6 +152,11 @@ def main():
         if game_over:
             game_over_text = font.render("GAME OVER - Press 'R' to Restart", True, WHITE)
             screen.blit(game_over_text, (150, 250))
+
+        # ゲームクリア表示
+        if game_clear:
+            game_clear_text = font.render("GAME CLEAR", True, WHITE)
+            screen.blit(game_clear_text, (300, 250))
 
         pygame.display.flip()
         pygame.time.Clock().tick(60)
