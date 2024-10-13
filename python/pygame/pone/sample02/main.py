@@ -3,143 +3,114 @@ import sys
 import pygame
 from pygame.locals import *
 
-# ボールの動きを計算
-def calc_ball(ball_x, ball_y, ball_vx, ball_vy, bar1_x, bar1_y, bar2_x, bar2_y):
-        if ball_x <= bar1_x + 10.:
-            if ball_y >= bar1_y - 7.5 and ball_y <= bar1_y + 42.5:
-                ball_x = 20.
-                ball_vx = -ball_vx
-        if ball_x >= bar2_x - 15.:
-            if ball_y >= bar2_y - 7.5 and ball_y <= bar2_y + 42.5:
-                ball_x = 605.
-                ball_vx = -ball_vx
-        if ball_x < 5.:
-            ball_x, ball_y = 320., 232.5
-        elif ball_x > 620.:
-            ball_x, ball_y = 307.5, 232.5
-        if ball_y <= 10.:
-            ball_vy = -ball_vy
-            ball_y = 10.
-        elif ball_y >= 457.5:
-            ball_vy = -ball_vy
-            ball_y = 457.5
+# パーのスプライトクラス
+class Bar(pygame.sprite.Sprite):
+    def __init__(self, x, y, alpha=0):
+        super().__init__()
+        self.image = pygame.Surface((10, 50 + 50*alpha))
+        self.image.fill((255, 255, 255))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
 
-        return ball_x, ball_y, ball_vx, ball_vy
+    def update(self, dy):
+        self.rect.y += dy
+        if self.rect.y < 10:
+            self.rect.y = 10
+        elif self.rect.y > 420:
+            self.rect.y = 420
 
-# AIの動きを計算
-def calc_ai(ball_x, ball_y, bar2_x, bar2_y):
-    dy = ball_y - bar2_y
-    if dy > 80: bar2_y += 20
-    elif dy > 50: bar2_y += 15
-    elif dy > 30: bar2_y += 12
-    elif dy > 10: bar2_y += 8
-    elif dy < -80: bar2_y -= 20
-    elif dy < -50: bar2_y -= 15
-    elif dy < -30: bar2_y -= 12
-    elif dy < -10: bar2_y -= 8
+# ボールのスプライトクラス
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y, vx, vy):
+        super().__init__()
+        self.image = pygame.Surface((20, 20), pygame.SRCALPHA)
+        pygame.draw.circle(self.image, (255, 255, 255), (10, 10), 10)
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.vx = vx
+        self.vy = vy
 
-    if bar2_y >= 420.: bar2_y = 420.
-    elif bar2_y <= 10.: bar2_y = 10.
-    return bar2_y
-
-# プレイヤーの動き
-def calc_player(bar1_y, bar1_dy):
-    bar1_y += bar1_dy
-    if bar1_y >= 420.: bar1_y = 420.
-    elif bar1_y <= 10. : bar1_y = 10.
-    return bar1_y
-
-# 得点の計算
-def calc_score(ball_x, score1, score2):
-    if ball_x < 5.:
-        score2 += 1
-    if ball_x > 620.:
-        score1 += 1
-    return score1, score2
-
-# イベント処理
-def event(bar1_dy):
-    for event in pygame.event.get():
-        if event.type == QUIT:          # 閉じるボタンが押されたら終了
-            pygame.quit()
-            sys.exit()
-        if event.type == KEYDOWN:       # キーを押したら
-            if event.key == K_UP:
-                bar1_dy = -10
-            elif event.key == K_DOWN:
-                bar1_dy = 10
-        elif event.type == KEYUP:       # キーを押し終わったら
-            if event.key == K_UP:
-                bar1_dy = 0.
-            elif event.key == K_DOWN:
-                bar1_dy = 0.
-    return bar1_dy
+    def update(self):
+        self.rect.x += self.vx
+        self.rect.y += self.vy
+        if self.rect.y <= 10 or self.rect.y >= 457.5:
+            self.vy = -self.vy
 
 def main():
-    # 各パラメータ
-    bar1_x, bar1_y = 10. , 215.
-    bar2_x, bar2_y = 620., 215.
-    ball_x, ball_y = 307.5, 232.5
-    bar1_dy, bar2_dy = 0. , 0.
-    ball_vx, ball_vy = 250., 250.
-    score1, score2 = 0,0
-    ball_r = 7
-
-    # pygameの設定
-    pygame.init()                                       # Pygameの初期化
-    screen = pygame.display.set_mode((640,480),0,32)    # 画面の大きさ
-    pygame.display.set_caption("PONG")                  # 画面タイトル
+    # Pygamenの初期設定
+    pygame.init()
+    screen = pygame.display.set_mode((640, 480), 0, 32)
+    pygame.display.set_caption("PONG")
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont(None,40)                 # 画面文字の設定
+    font = pygame.font.SysFont(None, 40)
 
-    # 背景の設定
-    back = pygame.Surface((640,480))
-    background = back.convert()
-    screen.fill((0,0,0))
+    # スコア
+    score1, score2 = 0, 0
 
-    # ボールを打つバーの設定
-    bar = pygame.Surface((10,50))
-    bar1 = bar.convert()
-    bar1.fill((255,255,255))
-    bar2 = bar.convert()
-    bar2.fill((255,255,255))
+    # ゲームレベル（値が大きくなるほど、バーとボールが早く動き、敵のバーサイズが大きくなる）
+    game_level = 2
 
-    # ボールの設定
-    circ_sur = pygame.Surface((20,20))
-    pygame.draw.circle(circ_sur,(255,255,255),(ball_r, ball_r), ball_r)
-    ball = circ_sur
-    ball.set_colorkey((0,0,0))
+    # ボールスピード
+    ball_speed = 5
 
-    while (1):
-        # 各オブジェクトの描画
-        screen.blit(background,(0,0))
-        pygame.draw.aaline(screen,(255,255,255),(330,5),(330,475))  # 中央線の描画
-        screen.blit(bar1,(bar1_x,bar1_y))                           # プレイヤー側バーの描画
-        screen.blit(bar2,(bar2_x,bar2_y))                           # CPU側バーの描画
-        screen.blit(ball,(ball_x, ball_y))                          # ボールの描画
-        screen.blit(font.render(str(score1), True,(255,255,255)),(250.,10.))
-        screen.blit(font.render(str(score2), True,(255,255,255)),(400.,10.))
+    # スプライト作成
+    bar1 = Bar(10, 215)
+    bar2 = Bar(620, 215, game_level*0.2)
+    ball = Ball(320, 240, ball_speed + game_level, ball_speed + game_level)
+    
+    # スプライトグループに追加
+    all_sprites = pygame.sprite.Group()
+    all_sprites.add(bar1, bar2, ball)
 
-        # プレイヤー側バーの位置
-        bar1_dy = event(bar1_dy)
-        bar1_y = calc_player(bar1_y,bar1_dy)
+    bar1_dy = 0
 
-        # ボールの移動
-        time_passed = clock.tick(30)
-        time_sec = time_passed / 1000.0
-        ball_x += ball_vx * time_sec
-        ball_y += ball_vy * time_sec
+    running = True  # ループ処理の実行を継続するフラグ
 
-        # 得点の計算
-        score1, score2 = calc_score(ball_x, score1, score2)
+    while running:
+        # キーイベント処理
+        for event in pygame.event.get():
+            # 閉じるボタンが押されたらループ終了（ゲーム終了）
+            if event.type == QUIT:
+                running = False
+            # ↑もしくは↓矢印キーが押されたらバーを10px動かす
+            if event.type == KEYDOWN:
+                if event.key == K_UP:
+                    bar1_dy = -10
+                elif event.key == K_DOWN:
+                    bar1_dy = 10
+            if event.type == KEYUP:
+                if event.key in (K_UP, K_DOWN):
+                    bar1_dy = 0
 
-        # CPUのバー速度を計算
-        bar2_y = calc_ai(ball_x, ball_y, bar2_x, bar2_y)
+        # バーとボールの更新
+        bar1.update(bar1_dy)
+        bar2.update((ball.rect.y - bar2.rect.y) * 0.1 * game_level)
+        ball.update()
+        
+        # バーとボールの衝突判定と跳ね返り処理
+        if pygame.sprite.collide_rect(ball, bar1) or pygame.sprite.collide_rect(ball, bar2):
+            ball.vx = - ball.vx
 
-        # ボールの速度・位置を計算
-        ball_x, ball_y, ball_vx, ball_vy = calc_ball(ball_x, ball_y, ball_vx, ball_vy, bar1_x, bar1_y, bar2_x, bar2_y)
-        pygame.display.update()                                     # 画面を更新
+        # スコアの加点とボールの位置をリセット
+        if ball.rect.x < 5:
+            score2 += 1
+            ball.rect.center = (320, 240)
+        elif ball.rect.x > 620:
+            score1 += 1
+            ball.rect.center = (320, 240)
+        
+        # 画面の描画と更新
+        screen.fill((0, 0, 0))
+        pygame.draw.aaline(screen, (255, 255, 255), (330, 5), (330, 475))
+        all_sprites.draw(screen)
+        screen.blit(font.render(str(score1), True, (255, 255, 255)), (250, 10))
+        screen.blit(font.render(str(score2), True, (255, 255, 255)), (400, 10))
+        pygame.display.update()
+        clock.tick(30)
 
+    # 終了処理
+    pygame.quit()
+    sys.exit()
 
 if __name__ == "__main__":
     main()
