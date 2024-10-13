@@ -2,21 +2,11 @@ import pygame
 import random
 import sys
 
-# 初期化
-pygame.init()
-
-# 画面サイズ
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Space Invaders")
-
 # 色の定義
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-
-# フォントの設定
-font = pygame.font.SysFont(None, 55)
 
 # プレイヤークラス
 class Player(pygame.sprite.Sprite):
@@ -39,7 +29,7 @@ class Player(pygame.sprite.Sprite):
 class Alien(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.Surface((40, 40))
+        self.image = pygame.Surface((30, 30))
         self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
@@ -66,67 +56,82 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
-# スプライトグループの作成
-all_sprites = pygame.sprite.Group()
-aliens = pygame.sprite.Group()
-bullets = pygame.sprite.Group()
+def main():
+    # 初期化
+    pygame.init()
 
-player = Player()
-all_sprites.add(player)
+    # 画面サイズ
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Space Invaders")
 
-for i in range(5):
-    for j in range(3):
-        alien = Alien(100 + i * 100, 50 + j * 50)
-        all_sprites.add(alien)
-        aliens.add(alien)
+    # フォントの設定
+    font = pygame.font.SysFont(None, 55)
 
-# スコアの初期化
-score = 0
+    # スプライトグループの作成
+    all_sprites = pygame.sprite.Group()
+    aliens = pygame.sprite.Group()
+    bullets = pygame.sprite.Group()
 
-# メインループ
-running = True
-game_over = False
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not game_over:
-                bullet = Bullet(player.rect.centerx, player.rect.top)
-                all_sprites.add(bullet)
-                bullets.add(bullet)
+    player = Player()
+    all_sprites.add(player)
 
-    if not game_over:
-        # 更新
-        all_sprites.update()
+    for i in range(10):
+        for j in range(3):
+            alien = Alien(50 + i * 50, 40 + j * 50)
+            all_sprites.add(alien)
+            aliens.add(alien)
 
-        # 衝突判定
-        hits = pygame.sprite.groupcollide(bullets, aliens, True, True)
-        if hits:
-            score += 10
+    # スコアの初期化
+    score = 0
 
-        # ゲームクリア判定
-        if not aliens:
-            game_over = True
+    # メインループ
+    running = True
+    game_over = False
 
-    # 描画
-    screen.fill(BLACK)
-    all_sprites.draw(screen)
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and not game_over:
+                    bullet = Bullet(player.rect.centerx, player.rect.top)
+                    all_sprites.add(bullet)
+                    bullets.add(bullet)
 
-    # スコア表示
-    score_text = font.render(f"Score: {score}", True, WHITE)
-    screen.blit(score_text, (10, 10))
+        if not game_over:
+            # 更新
+            all_sprites.update()
 
-    # ゲームクリア表示
-    if game_over:
-        game_over_text = font.render("YOU WIN!", True, WHITE)
-        screen.blit(game_over_text, (300, 250))
+            # 衝突判定
+            hits = pygame.sprite.groupcollide(bullets, aliens, True, True)
+            if hits:
+                score += 10
 
-    # 画面更新
-    pygame.display.flip()
+            # ゲームクリア判定
+            if not aliens:
+                game_over = True
 
-    # フレームレート
-    pygame.time.Clock().tick(60)
+        # 描画
+        screen.fill(BLACK)
+        all_sprites.draw(screen)
 
-pygame.quit()
-sys.exit()
+        # スコア表示
+        score_text = font.render(f"Score: {score}", True, WHITE)
+        screen.blit(score_text, (10, 10))
+
+        # ゲームクリア表示
+        if game_over:
+            game_over_text = font.render("YOU WIN!", True, WHITE)
+            screen.blit(game_over_text, (300, 250))
+
+        # 画面更新
+        pygame.display.flip()
+
+        # フレームレート
+        pygame.time.Clock().tick(60)
+
+    pygame.quit()
+    sys.exit()
+
+if __name__ == "__main__":
+    main()

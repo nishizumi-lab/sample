@@ -37,7 +37,7 @@ class Ball(pygame.sprite.Sprite):
             self.vy = -self.vy
 
 def main():
-    # Pygamenの初期設定
+    # Pygameの初期設定
     pygame.init()
     screen = pygame.display.set_mode((640, 480), 0, 32)
     pygame.display.set_caption("PONG")
@@ -100,7 +100,7 @@ def main():
             ball.rect.center = (320, 240)
         
         # 画面の描画と更新
-        screen.fill((0, 0, 0))
+        screen.fill((0, 50, 0))
         pygame.draw.aaline(screen, (255, 255, 255), (330, 5), (330, 475))
         all_sprites.draw(screen)
         screen.blit(font.render(str(score1), True, (255, 255, 255)), (250, 10))
