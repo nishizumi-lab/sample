@@ -87,16 +87,16 @@ def main():
     score = 0
 
     # フラグ
-    running = True # ゲーム++t
-    game_over = False
-    # ゲーム開始フラグ
-    game_started = False
+    running = True # ゲームループ用
+    game_over = False # ゲームオーバー判定用
+    game_started = False    # ゲーム開始用
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
+                # スペースキーが押されてゲームオーバーでない場合
                 if event.key == pygame.K_SPACE and not game_over:
                     bullet = Bullet(player.rect.centerx, player.rect.top)
                     all_sprites.add(bullet)
