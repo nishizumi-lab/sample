@@ -165,7 +165,7 @@ def main():
     # スプライトグループに追加    
     Paddle.containers = group
     Ball.containers = group
-    Block.containers = group
+    Block.containers = group, blocks
 
     # パドルの作成
     paddle = Paddle(PADDLE_IMG_PATH)

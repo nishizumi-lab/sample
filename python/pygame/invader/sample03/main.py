@@ -110,6 +110,7 @@ def main():
     clear_sound = pygame.mixer.Sound(CLEAR_SOUND_PATH)
     gameover_sound = pygame.mixer.Sound(GAMEOVER_SOUND_PATH)
     gameplay_sound = pygame.mixer.Sound(GAMEPLAY_SOUND_PATH)
+    
     shoot_sound.set_volume(0.2)
     hit_sound.set_volume(0.2)
     for i in range(10):
