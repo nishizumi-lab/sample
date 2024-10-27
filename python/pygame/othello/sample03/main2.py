@@ -7,7 +7,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 128, 0)
 SIZE = 600
-BOARD_SIZE = 8
+BOARD_SIZE = 12
 GRID_SIZE = SIZE // BOARD_SIZE
 
 # Pygameの初期化
