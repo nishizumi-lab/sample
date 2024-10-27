@@ -6,8 +6,9 @@ import random
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 128, 0)
+YELLOW = (255, 155, 0)
 SIZE = 600
-BOARD_SIZE = 12
+BOARD_SIZE = 6
 GRID_SIZE = SIZE // BOARD_SIZE
 
 # Pygameの初期化
@@ -57,6 +58,12 @@ class Othello:
                         break
         return valid
 
+    def is_board_full(self):
+        for row in self.board:
+            if None in row:
+                return False
+        return True
+    
     def flip_stones(self, x, y):
         opponent = WHITE if self.turn == BLACK else BLACK
         for dx, dy in [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]:
@@ -81,23 +88,41 @@ class Othello:
         black_count = sum(row.count(BLACK) for row in self.board)
         white_count = sum(row.count(WHITE) for row in self.board)
         if black_count > white_count:
-            return "黒側の勝利"
+            return "Winner black"
         elif white_count > black_count:
-            return "白側の勝利"
+            return "Winner white"
         else:
-            return "引き分け"
+            return "Draw"
 
     def next_move(self, x, y):
-        if self.is_valid_move(x, y):
+        if self.is_board_full():
+            result = self.game_end()
+            self.display_result(result)
+        elif self.is_valid_move(x, y):
             self.board[x][y] = self.turn
             self.flip_stones(x, y)
             self.turn = WHITE if self.turn == BLACK else BLACK
+            if not self.has_valid_move() or self.is_board_full():
+                self.turn = WHITE if self.turn == BLACK else BLACK
+                if not self.has_valid_move():
+                    result = self.game_end()
+                    self.display_result(result)
 
     def cpu_move(self):
         valid_moves = [(x, y) for x in range(BOARD_SIZE) for y in range(BOARD_SIZE) if self.is_valid_move(x, y)]
         if valid_moves:
             x, y = random.choice(valid_moves)
             self.next_move(x, y)
+
+    def display_result(self, result):
+        font = pygame.font.Font(None, 74)
+        text = font.render(result, True, YELLOW)
+        text_rect = text.get_rect(center=(SIZE // 2, SIZE // 2))
+        screen.blit(text, text_rect)
+        pygame.display.flip()
+        pygame.time.wait(10000)
+        pygame.quit()
+        sys.exit()
 
 def main():
     game = Othello()
