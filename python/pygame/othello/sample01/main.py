@@ -5,8 +5,9 @@ import sys
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 128, 0)
+YELLOW = (255, 155, 0)
 SIZE = 600
-BOARD_SIZE = 12  # ボードのサイズを変数で管理
+BOARD_SIZE = 6
 GRID_SIZE = SIZE // BOARD_SIZE
 
 # Pygameの初期化
@@ -16,18 +17,14 @@ pygame.display.set_caption("オセロゲーム")
 
 class Othello:
     def __init__(self):
-        # BOARD_SIZE x BOARD_SIZEのボードを初期化
         self.board = [[None] * BOARD_SIZE for _ in range(BOARD_SIZE)]
-        # 初期配置
         mid = BOARD_SIZE // 2
         self.board[mid - 1][mid - 1] = WHITE
         self.board[mid - 1][mid] = BLACK
         self.board[mid][mid - 1] = BLACK
         self.board[mid][mid] = WHITE
-        # 最初のターンは黒
         self.turn = BLACK
 
-    # ボードを描画
     def draw_board(self):
         screen.fill(GREEN)
         for x in range(BOARD_SIZE):
@@ -37,11 +34,9 @@ class Othello:
                 if self.board[x][y] is not None:
                     self.draw_stone(x, y, self.board[x][y])
 
-    # 石を描画
     def draw_stone(self, x, y, color):
         pygame.draw.circle(screen, color, (x * GRID_SIZE + GRID_SIZE // 2, y * GRID_SIZE + GRID_SIZE // 2), GRID_SIZE // 2 - 4)
 
-    # 有効な手かチェック
     def is_valid_move(self, x, y):
         if self.board[x][y] is not None:
             return False
@@ -62,7 +57,12 @@ class Othello:
                         break
         return valid
 
-    # 石の色を反転
+    def is_board_full(self):
+        for row in self.board:
+            if None in row:
+                return False
+        return True
+    
     def flip_stones(self, x, y):
         opponent = WHITE if self.turn == BLACK else BLACK
         for dx, dy in [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]:
@@ -76,7 +76,6 @@ class Othello:
                 for px, py in pieces_to_flip:
                     self.board[px][py] = self.turn
 
-    # 次の一手が存在するかチェック
     def has_valid_move(self):
         for x in range(BOARD_SIZE):
             for y in range(BOARD_SIZE):
@@ -84,25 +83,39 @@ class Othello:
                     return True
         return False
 
-    # ゲーム終了
     def game_end(self):
-        # ゲーム終了時の結果を表示
         black_count = sum(row.count(BLACK) for row in self.board)
         white_count = sum(row.count(WHITE) for row in self.board)
-        # 石の数を比較して勝利判定
         if black_count > white_count:
-            return "黒側の勝利"
+            return "Winner black"
         elif white_count > black_count:
-            return "白側の勝利"
+            return "Winner white"
         else:
-            return "引き分け"
+            return "Draw"
 
-    # 次の一手を反映
     def next_move(self, x, y):
-        if self.is_valid_move(x, y):
+        if self.is_board_full():
+            result = self.game_end()
+            self.display_result(result)
+        elif self.is_valid_move(x, y):
             self.board[x][y] = self.turn
             self.flip_stones(x, y)
             self.turn = WHITE if self.turn == BLACK else BLACK
+            if not self.has_valid_move() or self.is_board_full():
+                self.turn = WHITE if self.turn == BLACK else BLACK
+                if not self.has_valid_move():
+                    result = self.game_end()
+                    self.display_result(result)
+
+    def display_result(self, result):
+        font = pygame.font.Font(None, 74)
+        text = font.render(result, True, YELLOW)
+        text_rect = text.get_rect(center=(SIZE // 2, SIZE // 2))
+        screen.blit(text, text_rect)
+        pygame.display.flip()
+        pygame.time.wait(10000)
+        pygame.quit()
+        sys.exit()
 
 def main():
     game = Othello()
