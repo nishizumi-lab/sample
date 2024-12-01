@@ -26,18 +26,14 @@ def template_matching_zncc(src, temp):
             # 窓画像の平均画素値
             mu_r = np.mean(roi)
             # 窓画像 - 窓画像の平均
-            roi = roi - mu_r
-            # テンプレート画像 - 窓画像の平均
-            temp = temp - mu_t
+            roi2 = roi - mu_r
+            # テンプレート画像 - テンプレート画像の平均
+            temp2 = temp - mu_t
 
             # ZNCCの計算式
-            num = np.sum(roi * temp)
-            den = np.sqrt(np.sum(roi ** 2)) * np.sqrt(np.sum(temp ** 2))
+            num = np.sum(roi2 * temp2)
 
-            if den == 0:
-                score[dy, dx] = 0
-                
-            score[dy, dx] = num / den
+            score[dy, dx] = num
 
     # スコアが最大(1に最も近い)の走査位置を返す
     pt = np.unravel_index(score.argmin(), score.shape)
@@ -45,8 +41,8 @@ def template_matching_zncc(src, temp):
     return (pt[1], pt[0])
 
 # 入力画像の読み込み
-img = cv2.imread("C:/github/sample/python/opencv/template-matching/input.png")
-temp = cv2.imread("C:/github/sample/python/opencv/template-matching/temp.png")
+img = cv2.imread("D:/github/sample/python/opencv/template-matching/input.png")
+temp = cv2.imread("D:/github/sample/python/opencv/template-matching/temp.png")
 
 # グレースケール変換
 gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -62,4 +58,4 @@ pt = template_matching_zncc(gray, temp)
 cv2.rectangle(img, (pt[0], pt[1]), (pt[0] + w, pt[1] + h), (0, 0, 200), 3)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/template-matching/zncc2.png", img)
+cv2.imwrite("D:/github/sample/python/opencv/template-matching/zncc2.png", img)
