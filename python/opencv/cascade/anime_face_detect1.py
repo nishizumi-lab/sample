@@ -2,7 +2,7 @@
 import cv2
 
 # 入力画像の読み込み
-img = cv2.imread("C:/github/sample/python/opencv/cascade/mina.png")
+img = cv2.imread("C:/github/sample/python/opencv/cascade/mina.jpg")
 
 # カスケード型識別器の読み込み
 cascade = cv2.CascadeClassifier(
