@@ -7,7 +7,7 @@ def rgb_to_gray(src):
      b, g, r = src[:,:,0], src[:,:,1], src[:,:,2]
 
      # R, G, Bの値からGrayの値に変換（float型 → 符号なし8bit整数型に変換）
-     return np.array(0.2989 * r + 0.5870 * g + 0.1140 * b, dtype='uint8')
+     return np.array(0.3 * r + 0.59 * g + 0.11 * b, dtype='uint8')
 
 # 入力画像の読み込み
 img = cv2.imread("C:\prog\python\input.png")
