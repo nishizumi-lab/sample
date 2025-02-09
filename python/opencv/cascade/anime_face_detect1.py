@@ -2,7 +2,7 @@
 import cv2
 
 # 入力画像の読み込み
-img = cv2.imread("C:/github/sample/python/opencv/cascade/input.png")
+img = cv2.imread("C:/github/sample/python/opencv/cascade/mina.jpg")
 
 # カスケード型識別器の読み込み
 cascade = cv2.CascadeClassifier(
@@ -16,7 +16,8 @@ face = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(
 
 # 顔領域を赤色の矩形で囲む
 for (x, y, w, h) in face:
-    cv2.rectangle(img, (x, y), (x + w, y+h), (0, 0, 200), 3)
+    cv2.rectangle(img, (x, y), (x + w, y+h), (0, 0, 200), 5)
 
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/cascade/output.png", img)
+cv2.imwrite("C:/github/sample/python/opencv/cascade/output1.png", gray)
+cv2.imwrite("C:/github/sample/python/opencv/cascade/output2.png", img)
