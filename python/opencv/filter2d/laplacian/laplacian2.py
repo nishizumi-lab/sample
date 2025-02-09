@@ -13,7 +13,7 @@ kernel = np.array([[1, 1,  1],
                    [1, -8, 1],
                    [1, 1,  1]])
 
-# 方法2
+# フィルタ処理
 dst = cv.filter2D(gray, cv.CV_64F, kernel)
 
 # 結果を出力

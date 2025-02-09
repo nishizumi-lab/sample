@@ -36,7 +36,7 @@ kernel = np.array([[-2, -1, 0],
 # オフセット値
 offset = 128
 
-# 方法1
+# フィルタ処理
 dst1 = emboss_filter(gray, kernel, offset)
 
 # 結果を出力

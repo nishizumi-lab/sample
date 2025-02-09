@@ -14,7 +14,7 @@ kernel = np.array([[-2, -1, 0],
 offset = 128
     
     
-# 方法2       
+# フィルタ処理     
 dst2 = cv.filter2D(gray, -1, kernel, delta=offset)
     
 # 結果を出力

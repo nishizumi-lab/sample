@@ -33,7 +33,7 @@ kernel = np.array([[1, 1,  1],
                    [1, -8, 1],
                    [1, 1,  1]])
 
-# 方法1
+# フィルタ処理
 dst = filter2d(gray, kernel)
 
 # 結果を出力

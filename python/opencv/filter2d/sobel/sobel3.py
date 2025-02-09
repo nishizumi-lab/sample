@@ -8,7 +8,7 @@ img = cv.imread("/Users/github/sample/python/opencv/filter2d/sobel/input.png")
 # グレースケール変換
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
-# 方法3
+# フィルタ処理
 gray_x = cv.Sobel(gray, cv.CV_32F, 1, 0, ksize=3)
 gray_y = cv.Sobel(gray, cv.CV_32F, 0, 1, ksize=3)
 dst = np.sqrt(gray_x ** 2 + gray_y ** 2)

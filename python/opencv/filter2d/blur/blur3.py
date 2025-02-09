@@ -7,7 +7,7 @@ import numpy as np
 gray = cv.imread("/Users/github/sample/python/opencv/filter2d/blur/input.png", 0)
 
 # Spatial filtering
-# 方法3(OpenCVで実装)
+# フィルタ処理
 dst = cv.blur(gray, ksize=(3, 3))
 
 # output

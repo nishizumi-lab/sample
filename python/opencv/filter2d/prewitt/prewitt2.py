@@ -17,7 +17,7 @@ kernel_y = np.array([[-1, -1, -1],
                      [0, 0, 0],
                      [1, 1, 1]])
 
-# 方法2
+# フィルタ処理
 gray_x = cv2.filter2D(gray, cv2.CV_64F, kernel_x)
 gray_y = cv2.filter2D(gray, cv2.CV_64F, kernel_y)
 

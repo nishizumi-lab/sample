@@ -39,7 +39,7 @@ kernel = np.array([[1/16, 1/8, 1/16],
                    [1/16, 1/8, 1/16]])
 
 # Spatial filtering
-# 方法1
+# フィルタ処理
 dst = gaussian_filter(gray, kernel)
     
 # output

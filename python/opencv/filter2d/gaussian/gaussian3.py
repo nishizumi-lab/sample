@@ -10,7 +10,7 @@ img = cv.imread("/Users/github/sample/python/opencv/filter2d/gaussian/input.png"
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # Spatial filtering
-# 方法3
+# フィルタ処理
 dst = cv.GaussianBlur(gray, ksize=(3, 3), sigmaX=1.3)
 
 # output

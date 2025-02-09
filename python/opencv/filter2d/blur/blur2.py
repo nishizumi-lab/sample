@@ -13,7 +13,7 @@ kernel = np.array([[1/9, 1/9, 1/9],
                    [1/9, 1/9, 1/9]])
 
 # Spatial filtering
-# 方法2(OpenCVで実装)
+# フィルタ処理
 dst = cv.filter2D(gray, -1, kernel)
 
 # output

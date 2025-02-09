@@ -37,7 +37,7 @@ kernel_y = np.array([[-1, -1, -1],
                      [0, 0, 0],
                      [1, 1, 1]])
 
-# 方法1
+# フィルタ処理
 gray_x = filter2d(gray, kernel_x)
 gray_y = filter2d(gray, kernel_y)
 dst = np.sqrt(gray_x ** 2 + gray_y ** 2)

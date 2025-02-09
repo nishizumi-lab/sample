@@ -17,7 +17,7 @@ kernel = np.array([[1/16, 1/8, 1/16],
                    [1/16, 1/8, 1/16]])
 
 # Spatial filtering
-# 方法2
+# フィルタ処理
 dst = cv.filter2D(gray, -1, kernel)
 
 # output

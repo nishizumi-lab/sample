@@ -44,7 +44,7 @@ kernel = np.array([[1/9, 1/9, 1/9],
                    [1/9, 1/9, 1/9]])
 
 # Spatial filtering
-# 方法1(NumPyで実装)
+# フィルタ処理
 dst = filter2d(gray, kernel, -1)
 
 # output
