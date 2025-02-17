@@ -10,9 +10,8 @@ def LoG(gray, ksize, sigma, threshold):
 
     # 二値化処理
     _, binary = cv.threshold(log, threshold, 255, cv.THRESH_BINARY)
+    
     return binary
-
-    return log
 
 # 入力画像を読み込み
 img = cv.imread('C:/github/sample/python/opencv/filter2d/LoG/input.png')
