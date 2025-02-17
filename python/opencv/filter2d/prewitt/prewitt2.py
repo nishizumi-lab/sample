@@ -1,12 +1,12 @@
 #-*- coding:utf-8 -*-
-import cv2
+import cv2 as cv
 import numpy as np
 
 # 入力画像を読み込み
-img = cv2.imread("/Users/github/sample/python/opencv/filter2d/prewitt/input.png")
+img = cv.imread("C:/github/sample/python/opencv/filter2d/prewitt/input.png")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # カーネル（水平、垂直方向の輪郭検出用）
 kernel_x = np.array([[-1, 0, 1],
@@ -18,10 +18,10 @@ kernel_y = np.array([[-1, -1, -1],
                      [1, 1, 1]])
 
 # フィルタ処理
-gray_x = cv2.filter2D(gray, cv2.CV_64F, kernel_x)
-gray_y = cv2.filter2D(gray, cv2.CV_64F, kernel_y)
+gray_x = cv.filter2D(gray, cv.CV_64F, kernel_x)
+gray_y = cv.filter2D(gray, cv.CV_64F, kernel_y)
 
 dst = np.sqrt(gray_x ** 2 + gray_y ** 2)
 
 # 結果を出力
-cv2.imwrite("/Users/github/sample/python/opencv/filter2d/prewitt/output.png", dst)
+cv.imwrite("C:/github/sample/python/opencv/filter2d/prewitt/output.png", dst)
