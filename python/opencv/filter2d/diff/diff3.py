@@ -3,7 +3,7 @@ import cv2 as cv
 import numpy as np
 
 # 入力画像を読み込み
-img = cv.imread("/Users/github/sample/python/opencv/filter2d/diff/input.png")
+img = cv.imread("C:/github/sample/python/opencv/filter2d/diff/input.png")
 
 # グレースケール変換
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
@@ -25,7 +25,7 @@ print("\n\n")
 print("dst2=\n", dst2)
 
 # 結果を出力
-cv.imwrite("/Users/github/sample/python/opencv/filter2d/diff/output1.jpg", dst1)
-cv.imwrite("/Users/github/sample/python/opencv/filter2d/diff/output2.jpg", np.uint8(np.abs(dst2)))
+cv.imwrite("C:/github/sample/python/opencv/filter2d/diff/output1.jpg", dst1)
+cv.imwrite("C:/github/sample/python/opencv/filter2d/diff/output2.jpg", np.uint8(np.abs(dst2)))
 
 

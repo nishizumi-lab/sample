@@ -23,7 +23,7 @@ def filter2d(src, kernel):
 
 
 # 入力画像を読み込み
-img = cv.imread("/Users/github/sample/python/opencv/filter2d/diff/input.png")
+img = cv.imread("C:/github/sample/python/opencv/filter2d/diff/input.png")
 
 # グレースケール変換
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
@@ -37,5 +37,5 @@ kernel = np.array([[0, 0, 0],
 dst1 = filter2d(gray, kernel)
 
 # 結果を出力
-cv.imwrite("/Users/github/sample/python/opencv/filter2d/diff/output1.jpg",
+cv.imwrite("C:/github/sample/python/opencv/filter2d/diff/output1.jpg",
             np.uint8(np.abs(dst1)))
