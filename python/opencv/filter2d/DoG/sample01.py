@@ -16,7 +16,7 @@ img = cv.imread('C:/github/sample/python/opencv/filter2d/DoG/input.png')
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # LoGフィルタの適用
-log_img = DoG(gray, (3,3), 1.3, 2.6)
+log_img = DoG(gray, (3,3), 3.2, 2.0)
 
 # 結果を保存
 cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output.png', log_img)
