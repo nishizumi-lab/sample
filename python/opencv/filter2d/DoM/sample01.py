@@ -14,7 +14,8 @@ img = cv.imread('C:/github/sample/python/opencv/filter2d/DoM/input.png')
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 
 # DoMフィルタの適用
-dom_img = DoM(gray,3, 5)
+dom_img = DoM(gray,11, 9)
+
 
 # 結果を保存
 cv.imwrite('C:/github/sample/python/opencv/filter2d/DoM/output.png', dom_img)
