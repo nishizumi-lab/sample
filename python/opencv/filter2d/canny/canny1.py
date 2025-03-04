@@ -121,7 +121,7 @@ def canny_edge_detecter(gray, t_min, t_max, d):
 
 
 # 入力画像を読み込み
-img = cv.imread("/Users/github/sample/python/opencv/filter2d/canny/input.png")
+img = cv.imread("C:/github/sample/python/opencv/filter2d/canny/input.png")
 
  # グレースケール変換
 gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
@@ -130,4 +130,4 @@ gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 edge1 = canny_edge_detecter(gray, 100, 200, 1)
 
 # 結果を出力
-cv.imwrite("/Users/github/sample/python/opencv/filter2d/canny/output.png", edge1)
+cv.imwrite("C:/github/sample/python/opencv/filter2d/canny/output1.png", edge1)
