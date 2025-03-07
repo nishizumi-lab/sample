@@ -33,8 +33,8 @@ kernel_x = np.array([[0, 0, 0],
                    [0, 0, -1]])
 
 kernel_y = np.array([[0, 0, 0],
-                   [0, 1, 0],
-                   [0, 0, -1]])
+                   [0, 0, 1],
+                   [0, -1, 0]])
 # フィルタ処理
 gray_x = filter2d(gray, kernel_x)
 gray_y = filter2d(gray, kernel_y)
