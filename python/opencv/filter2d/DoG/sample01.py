@@ -36,4 +36,4 @@ cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output.png', dog_img)
 
 # 処理時間の表示
 print("Processing Time: {:.6f} seconds".format(end_time - start_time))
-# Processing Time: 0.005688 seconds
+# Processing Time: 0.001862 seconds
