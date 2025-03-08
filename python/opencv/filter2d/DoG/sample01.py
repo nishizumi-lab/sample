@@ -32,7 +32,7 @@ dog_img = DoG(gray, (3,3), 1.0, 1.07, threshold=5)
 end_time = time.perf_counter()
 
 # 結果を保存
-cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output.png', dog_img)
+cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output1.png', dog_img)
 
 # 処理時間の表示
 print("Processing Time: {:.6f} seconds".format(end_time - start_time))
