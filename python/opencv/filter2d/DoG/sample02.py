@@ -9,9 +9,15 @@ def DoG_filter(img, sigma=1, k =1.05, threshold = 30, ksize=5):
     # DoGフィルターのカーネルを計算
     # x と y のグリッドを作成
     x, y = np.meshgrid(np.arange(-ksize//2+1, ksize//2+1), np.arange(-ksize//2+1, ksize//2+1))
+
+    # 1つめのガウシアンフィルタのカーネル
     kernel1 = np.exp(-(x**2 + y**2) / (2 * sigma**2))/(2 * np.pi * sigma**2)
     sigma2 = k*sigma
+
+    # 2つめのガウシアンフィルタのカーネル
     kernel2 = np.exp(-(x**2 + y**2) / (2 * sigma2**2))/(2 * np.pi * sigma2**2)
+
+    # 異なる2つのガウシアンフィルタのカーネルの差分
     kernel = kernel2 - kernel1
 
     # 絶対値の総和で割って正規化
@@ -34,14 +40,14 @@ gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
 # 処理時間の計測開始
 start_time = time.perf_counter()
 
-# LoGフィルタ
-log_img = DoG_filter(gray, sigma=1.0, k=1.09, threshold = 5, ksize=5)
+# DoGフィルタ
+dog_img = DoG_filter(gray, sigma=1.0, k=1.09, threshold = 5, ksize=5)
 
 # 処理時間の計測終了
 end_time = time.perf_counter()
 
 # 結果を保存
-cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output2.png', log_img)
+cv.imwrite('C:/github/sample/python/opencv/filter2d/DoG/output2.png', dog_img)
 
 # 処理時間の表示
 print("Processing Time: {:.6f} seconds".format(end_time - start_time))
