@@ -2,12 +2,13 @@
 import time
 import cv2 as cv
 
-def DoM(gray, ksize1, ksize2, threshold=50):
+def DoM(gray, ksize1=5, ksize2=3, threshold=50):
     # カーネルサイズの異なる2つのメディアンフィルタ処理
-    median1 = cv.medianBlur(gray, ksize1)
-    median2 = cv.medianBlur(gray, ksize2)
+    blur1 = cv.blur(gray, (ksize1, ksize1))
+    blur2 = cv.blur(gray, (ksize2, ksize2))
+
     # 二値化処理
-    _, binary = cv.threshold(median2 - median1, threshold, 255, cv.THRESH_BINARY)
+    _, binary = cv.threshold(blur2 - blur1, threshold, 255, cv.THRESH_BINARY)
 
     return binary
 
@@ -31,4 +32,4 @@ cv.imwrite('C:/github/sample/python/opencv/filter2d/DoM/output1.png', dom_img)
 
 # 処理時間の表示
 print("Processing Time: {:.6f} seconds".format(end_time - start_time))
-# Processing Time: 0.005940 seconds
+# Processing Time: 0.002670 seconds
