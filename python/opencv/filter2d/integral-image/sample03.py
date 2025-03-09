@@ -3,34 +3,29 @@ import cv2 as cv
 import numpy as np
 import time
 
-def integral_image_median_filter(src, ksize):
+def mean_filter(src, ksize=5):
     h, w = src.shape[:2]
     d = ksize // 2
     dst = np.zeros_like(src, dtype=np.float32)
 
-    # 各チャネルごとに処理
-    for c in range(3):
-        channel = src[:, :, c]
-        # 積分画像を計算
-        integral = cv.integral(channel, sdepth=cv.CV_64F)
 
-        for y in range(d, h - d):
-            for x in range(d, w - d):
-                # ウィンドウの境界を計算
-                x1 = x - d
-                x2 = x + d + 1
-                y1 = y - d
-                y2 = y + d + 1
+    # 積分画像を計算
+    integral = cv.integral(src, sdepth=cv.CV_64F)
 
-                # ウィンドウ内のピクセル数
-                window_size = (x2 - x1) * (y2 - y1)
+    for y in range(d, h - d):
+        for x in range(d, w - d):
+            # ウィンドウの境界を計算
+            x1 = x - d
+            x2 = x + d + 1
+            y1 = y - d
+            y2 = y + d + 1
 
-                # 積分画像を使ってウィンドウ内のピクセルの合計を計算
-                sum_pixels = integral[y2, x2] - integral[y1, x2] - integral[y2, x1] + integral[y1, x1]
-                mean_pixels = sum_pixels / window_size
+            # ウィンドウ内のピクセル数
+            window_size = (x2 - x1) * (y2 - y1)
 
-                # 中央値を簡易的に近似（平均値を使用）
-                dst[y, x, c] = mean_pixels
+            # 積分画像を使ってウィンドウ内のピクセルの合計を計算
+            sum_pixels = integral[y2, x2] - integral[y1, x2] - integral[y2, x1] + integral[y1, x1]
+            dst[y, x] = sum_pixels / window_size
 
     return np.uint8(dst)
 
@@ -40,8 +35,9 @@ img = cv.imread("C:/github/sample/python/opencv/filter2d/integral-image/input.jp
 # 処理時間の計測開始
 start_time = time.time()
 
-# 積分画像を用いた高速メディアンフィルタの適用
-dst = integral_image_median_filter(img, ksize=5)
+# チャンネル分割して、各チャンネルに積分画像を用いた平均値フィルタを適用し、結合
+blue, green, red = cv.split(img)
+dst = cv.merge((mean_filter(blue), mean_filter(green), mean_filter(red)))
 
 # 処理時間の計測終了
 end_time = time.time()
@@ -50,6 +46,6 @@ end_time = time.time()
 print("Processing Time: {:.6f} seconds".format(end_time - start_time))
 
 # 結果を出力
-cv.imwrite("C:/github/sample/python/opencv/filter2d/integral-image/output.jpg", dst)
+cv.imwrite("C:/github/sample/python/opencv/filter2d/integral-image/output3.jpg", dst)
 
-# Processing Time: 1.422434 seconds
+# Processing Time: 1.464988 seconds
