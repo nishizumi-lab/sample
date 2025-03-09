@@ -3,7 +3,7 @@ import cv2 as cv
 import numpy as np
 import time
 
-def mean_filter(src, ksize=5):
+def mean_filter(src, ksize=3):
     h, w = src.shape[:2]
     d = ksize // 2
     dst = np.zeros_like(src, dtype=np.float32)
@@ -20,12 +20,10 @@ def mean_filter(src, ksize=5):
             y1 = y - d
             y2 = y + d + 1
 
-            # ウィンドウ内のピクセル数
-            window_size = (x2 - x1) * (y2 - y1)
-
-            # 積分画像を使ってウィンドウ内のピクセルの合計を計算
+            # 積分画像を使って注目画素+近傍の画素値の合計を計算
             sum_pixels = integral[y2, x2] - integral[y1, x2] - integral[y2, x1] + integral[y1, x1]
-            dst[y, x] = sum_pixels / window_size
+            # 合計を画素数で割った平均値を出力画像の画素値にする(平均値フィルタ)
+            dst[y, x] = sum_pixels / (ksize**2)
 
     return np.uint8(dst)
 
