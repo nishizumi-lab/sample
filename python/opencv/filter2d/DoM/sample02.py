@@ -5,7 +5,7 @@ import numpy as np
 
 def DoM(gray, ksize1=5, ksize2=3, ksize3=6, threshold=50):
     
-    # カーネルサイズの異なる2つのメディアンフィルタ処理
+    # カーネルサイズの異なる2つの平均値フィルタ処理
     blur1 = cv.blur(gray, (ksize1, ksize1))
     blur2 = cv.blur(gray, (ksize2, ksize2))
 
