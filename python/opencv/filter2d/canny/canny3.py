@@ -10,7 +10,6 @@ def update_edges(val):
     max_thresh = cv.getTrackbarPos('Max Threshold', 'Edges')
     # Cannyアルゴリズムの適用
     edges = cv.Canny(gray, min_thresh, max_thresh)
-
     # 輪郭画像の表示
     cv.imshow('Edges', edges)
 
