@@ -11,6 +11,10 @@ def update_edges(val):
     # Cannyアルゴリズムの適用
     edges = cv.Canny(gray, min_thresh, max_thresh)
 
+    # 輪郭画像の表示
+    cv.imshow('Edges', edges)
+
+
 # 入力画像を読み込み
 img = cv.imread("C:/github/sample/python/opencv/filter2d/canny/input.png")
 
