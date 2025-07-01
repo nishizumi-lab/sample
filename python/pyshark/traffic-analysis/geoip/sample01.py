@@ -36,5 +36,11 @@ for country, total_bytes in sorted(country_traffic.items(), key=lambda x: -x[1])
         print(f"{country}: {total_bytes:,} bytes")
 
     
-    
+"""
+■実行結果
+
+Japan: 644 bytes
+United States: 110 bytes
+Germany: 82 bytes
+"""
     
