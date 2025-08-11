@@ -9,7 +9,16 @@ y = np.array([50, 60, 65, 72, 80])  # 体重
 model = LinearRegression()
 model.fit(X, y)
 
-# 予測したい身長（例：175cm）
+# 作成したモデルのパラメータを取得
+[w] = model.coef_
+b = model.intercept_
+
+# パラメータの表示
+print("傾き:", w)  # 傾き: 0.7200000000000001
+print("切片:", b)  # 切片: -57.000000000000014
+print("決定係数:", model.score(X, y))  # 決定係数: 0.9908256880733944
+
+# 体重を予測（身長が175cmの場合）
 new_height = np.array([[175]])
 predicted_weight = model.predict(new_height)
 
