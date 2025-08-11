@@ -1,0 +1,1 @@
+javascript:(function(){  var text = window.getSelection().toString().trim();  var url = text    ? %27https://www.amazon.co.jp/s?k=%27 + encodeURIComponent(text)    : %27https://www.amazon.co.jp/%27;  window.open(url, %27_blank%27);})();
