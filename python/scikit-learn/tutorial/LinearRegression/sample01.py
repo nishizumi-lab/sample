@@ -14,4 +14,4 @@ new_height = np.array([[175]])
 predicted_weight = model.predict(new_height)
 
 # 結果表示
-print(f"予測体重: {predicted_weight[0]:.1f} kg")
+print(f"予測体重: {predicted_weight[0]:.1f} kg")  # 予測体重: 69.0 kg
