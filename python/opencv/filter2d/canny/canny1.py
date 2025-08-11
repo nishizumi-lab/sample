@@ -131,3 +131,5 @@ edge1 = canny_edge_detecter(gray, 100, 200, 1)
 
 # 結果を出力
 cv.imwrite("C:/github/sample/python/opencv/filter2d/canny/output1.png", edge1)
+
+print("hello world")

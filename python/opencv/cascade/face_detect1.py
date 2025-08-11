@@ -9,7 +9,8 @@ img = cv2.imread("C:/github/sample/python/opencv/cascade/input1.png")
 cascade = cv2.CascadeClassifier("C:/github/sample/python/opencv/cascade/haarcascade_frontalface_default.xml")
 
 # グレースケール変換
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # 顔領域の探索
 face = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
