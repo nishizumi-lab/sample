@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
 
 """
 VTuberのチャンネル登録者数と平均同時視聴者数の関係を線形回帰モデルで分析・予測するスクリプト。
@@ -28,6 +29,24 @@ new_subscriber = np.array([[200000]])
 # 予測された平均同時視聴者数を表示
 predicted_viewers = model.predict(new_subscriber)
 print("予測視聴者数:", predicted_viewers[0])
+
+# グラフで可視化
+plt.rcParams["font.family"] = "MS Gothic"  # 日本語フォントの設定（Windows環境向け）
+plt.gca().xaxis.set_major_formatter(
+    StrMethodFormatter("{x:,.0f}")
+)  # x軸ラベルの数値にカンマを入れる
+plt.gca().yaxis.set_major_formatter(
+    StrMethodFormatter("{x:,.0f}")
+)  # y軸ラベルの数値にカンマを入れる
+plt.scatter(X, y, color="blue", label="実測値")
+plt.plot(X, model.predict(X), color="red", label="回帰直線")
+plt.xlabel("チャンネル登録者数")
+plt.ylabel("平均同時視聴者数")
+plt.title("視聴者数の単回帰分析")
+plt.legend()
+plt.grid(True)
+plt.show()
+
 
 """
 【実行結果】
