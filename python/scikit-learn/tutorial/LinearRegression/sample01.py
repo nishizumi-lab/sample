@@ -1,15 +1,14 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
-import matplotlib.pyplot as plt
 
 """
-VTuberのチャンネル登録者数と平均同時視聴者数の関係を線形回帰モデルで分析・予測するスクリプト。
+VTuberのチャンネル登録者数と視聴者数の関係を線形回帰モデルで分析・予測するスクリプト。
 """
 
 # 特徴量（説明変数）: VTuberのチャンネル登録者数
 X = np.array([[150000], [120000], [100000], [80000]])
 
-# ターゲット変数（目的変数）: 平均同時視聴者数
+# ターゲット変数（目的変数）: 視聴者数
 y = np.array([4000, 3100, 2500, 1700])
 
 # 線形回帰モデルを用いて、登録者数と視聴者数の関係を学習
@@ -25,7 +24,7 @@ print("切片 b:", model.intercept_)
 # チャンネル登録者数20万人のときの視聴者数を予測
 new_subscriber = np.array([[200000]])
 
-# 予測された平均同時視聴者数を表示
+# 予測された視聴者数を表示
 predicted_viewers = model.predict(new_subscriber)
 print("予測視聴者数:", predicted_viewers[0])
 

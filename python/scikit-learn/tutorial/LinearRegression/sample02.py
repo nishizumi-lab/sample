@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import StrMethodFormatter
 
 """
-VTuberのチャンネル登録者数と平均同時視聴者数の関係を線形回帰モデルで分析・予測するスクリプト。
+VTuberのチャンネル登録者数と視聴者数の関係を線形回帰モデルで分析・予測するスクリプト。
 """
 
 # 特徴量（説明変数）: VTuberのチャンネル登録者数
 X = np.array([[150000], [120000], [100000], [80000]])
 
-# ターゲット変数（目的変数）: 平均同時視聴者数
+# ターゲット変数（目的変数）: 視聴者数
 y = np.array([4000, 3100, 2500, 1700])
 
 # 線形回帰モデルを用いて、登録者数と視聴者数の関係を学習
@@ -26,7 +26,7 @@ print("切片 b:", model.intercept_)
 # チャンネル登録者数20万人のときの視聴者数を予測
 new_subscriber = np.array([[200000]])
 
-# 予測された平均同時視聴者数を表示
+# 予測された視聴者数を表示
 predicted_viewers = model.predict(new_subscriber)
 print("予測視聴者数:", predicted_viewers[0])
 
@@ -41,7 +41,7 @@ plt.gca().yaxis.set_major_formatter(
 plt.scatter(X, y, color="blue", label="実測値")
 plt.plot(X, model.predict(X), color="red", label="回帰直線")
 plt.xlabel("チャンネル登録者数")
-plt.ylabel("平均同時視聴者数")
+plt.ylabel("視聴者数")
 plt.title("視聴者数の単回帰分析")
 plt.legend()
 plt.grid(True)
