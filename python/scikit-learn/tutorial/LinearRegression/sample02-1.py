@@ -2,11 +2,13 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import joblib
 
-# 学習データ（身長[cm]と体重[kg]のペア）
-X = np.array([[150], [160], [170], [180], [190]])  # 身長
-y = np.array([50, 60, 65, 72, 80])  # 体重
+# 特徴量（説明変数）: VTuberのチャンネル登録者数
+X = np.array([[150000], [120000], [100000], [80000]])
 
-# 線形回帰モデルを作成・学習
+# ターゲット変数（目的変数）: 視聴者数
+y = np.array([4000, 3100, 2500, 1700])
+
+# 線形回帰モデルを用いて、登録者数と視聴者数の関係を学習
 model = LinearRegression()
 model.fit(X, y)
 
@@ -15,3 +17,15 @@ joblib.dump(
     model,
     "C:/github/sample/python/scikit-learn/tutorial/LinearRegression/sample02-1.learn",
 )
+
+# 回帰直線の傾き（登録者数が1人増えるごとの視聴者数の増加量）を出力
+print("傾き a:", model.coef_[0])
+
+# 回帰直線の切片（登録者数が0人のときの理論的な視聴者数）を出力
+print("切片 b:", model.intercept_)
+
+"""
+【実行結果】
+傾き a: 0.03242990654205607
+切片 b: -823.3644859813076
+"""
