@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.metrics import r2_score
 
 
 """
@@ -22,48 +21,36 @@ y = dataset["視聴者数"].to_numpy()
 
 # 相関係数を算出
 correlation = np.corrcoef(dataset["チャンネル登録者数"], dataset["視聴者数"])[0, 1]
-print("\n■学習済みモデル")
 print("相関係数 r:", correlation)
 
-# データを訓練用とテスト用に分割（8:2）
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.2, random_state=42
-)
-
-# 線形回帰モデルの学習
+# 線形回帰モデルを用いて、登録者数と視聴者数の関係を学習
 model = LinearRegression()
-model.fit(x_train, y_train)
+model.fit(x, y)
 
-# 回帰係数と切片の表示
+# 回帰直線の傾き（登録者数が1人増えるごとの視聴者数の増加量）を出力
 print("傾き a:", model.coef_[0])
+
+# 回帰直線の切片（登録者数が0人のときの理論的な視聴者数）を出力
 print("切片 b:", model.intercept_)
 
-# テストデータに対する予測
-y_pred = model.predict(x_test)
+# チャンネル登録者数20万人のときの視聴者数を予測
+new_subscriber = np.array([[200000]])
 
-# 汎化性能の評価指標を算出
-mae = mean_absolute_error(y_test, y_pred)
-mse = mean_squared_error(y_test, y_pred)
-rmse = np.sqrt(mse)
-r2 = r2_score(y_test, y_pred)
+# 予測された視聴者数を表示
+predicted_viewers = model.predict(new_subscriber)
+print("予測視聴者数:", predicted_viewers[0])
 
-print("\n■汎化性能の評価")
-print("MAE（平均絶対誤差）:", mae)
-print("MSE（平均二乗誤差）:", mse)
-print("RMSE（平方平均誤差）:", rmse)
-print("R²（決定係数）:", r2)
+# ✅ 訓練データに対する決定係数（R²）を算出
+y_train_pred = model.predict(x)
+r2_train = r2_score(y, y_train_pred)
+print("訓練データに対する R²（決定係数）:", r2_train)
 
 
 """
 【実行結果】
-■学習済みモデル
 相関係数 r: 0.9887097324786042
-傾き a: 0.03011362186012872
-切片 b: -652.2530190777752
-
-■汎化性能の評価
-MAE（平均絶対誤差）: 116.70108243130717
-MSE（平均二乗誤差）: 15087.648459286724
-RMSE（平方平均誤差）: 122.83178928635178
-R²（決定係数）: 0.9762996411258456
+傾き a: 0.030231000679413776
+切片 b: -660.6820828884806
+予測視聴者数: 5385.518052994275
+訓練データに対する R²（決定係数）: 0.977546935097913　←　訓練データによく適合している
 """
