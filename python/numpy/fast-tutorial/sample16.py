@@ -23,19 +23,13 @@ one_year_ago = datetime.now() - timedelta(days=365)
 # 条件式 df["Date"] >= one_year_ago を満たす行だけを残している
 df_recent = df[df["Date"] >= one_year_ago]
 
-# ============================
 # 1. 基本統計量の表示
-# ============================
-
-# 「Close（終値）」列について、平均・標準偏差・最小値・最大値などの基本統計量を計算して表示する
+# 「Close（終値）」列について、平均・標準偏差・最小値・最大値などの基本統計量を計算
 # これにより、「この1年でどのくらいの価格帯で動いていたのか」がざっくり把握できる
 print("▼ 直近1年の基本統計量")
 print(df_recent["Close"].describe())
 
-# ============================
 # 2. 年初来リターン（最初の終値 → 最新の終値）
-# ============================
-
 # 直近1年のうち、最初の日の終値（スタートの価格）を取り出す
 start_price = df_recent["Close"].iloc[0]
 
@@ -49,21 +43,22 @@ return_rate = (end_price - start_price) / start_price * 100
 print("\n▼ 年初来リターン")
 print(f"{return_rate:.2f}%")  # 小数点以下2桁まで表示
 
-# ============================
 # 3. 移動平均線（SMA）を追加
-# ============================
-
-# 「20日移動平均」を計算する
-# 直近20日間の終値の平均を、1日ずつずらしながら計算していく
+# 「20日移動平均」を直近20日間の終値の平均を1日ずつずらしながら計算
 df_recent["SMA_20"] = df_recent["Close"].rolling(window=20).mean()  # 20日移動平均
 
 # 「60日移動平均」を計算する（より長い期間のトレンドを見る指標）
 df_recent["SMA_60"] = df_recent["Close"].rolling(window=60).mean()  # 60日移動平均
 
-# ============================
-# グラフ描画
-# ============================
+# 4. ボリンジャーバンド（Bollinger Bands）を追加
+# 20日の標準偏差
+df_recent["STD_20"] = df_recent["Close"].rolling(window=20).std()
 
+# ボリンジャーバンド（±2σ）
+df_recent["BB_upper"] = df_recent["SMA_20"] + 2 * df_recent["STD_20"]
+df_recent["BB_lower"] = df_recent["SMA_20"] - 2 * df_recent["STD_20"]
+                                                            
+# 5. グラフ描画
 # グラフ全体のサイズを指定（横12インチ × 縦5インチ）
 plt.figure(figsize=(12, 5))
 
@@ -75,6 +70,14 @@ plt.plot(df_recent["Date"], df_recent["SMA_20"], label="SMA 20", color="blue", a
 
 # 60日移動平均線を赤色で描画
 plt.plot(df_recent["Date"], df_recent["SMA_60"], label="SMA 60", color="red", alpha=0.7)
+
+# ボリンジャーバンド（上限・下限）
+plt.plot(df_recent["Date"], df_recent["BB_upper"], label="BB Upper", color="green", alpha=0.5)
+plt.plot(df_recent["Date"], df_recent["BB_lower"], label="BB Lower", color="green", alpha=0.5)
+
+# バンドの塗りつぶし（視覚的にわかりやすくなる）
+plt.fill_between(df_recent["Date"], df_recent["BB_upper"], df_recent["BB_lower"],
+                 color="green", alpha=0.1)
 
 plt.title("Gold Price Trend (Stooq XAUUSD) - Last 1 Year") # グラフのタイトル
 plt.xlabel("Date") # 横軸（x軸）のラベル
