@@ -1,40 +1,39 @@
 import time
+import math
 import numpy as np
 
-# ============================================
-#  比較用データの準備
-#  N は処理する要素数（ここでは 1,000万）
-#  大きな値にするほど速度差が分かりやすい
-# ============================================
-N = 10000000
+N = 10_000_000
 
 # ============================================
-#  Pythonリストでの処理
-#  ・list(range(N)) で 0〜N-1 の整数リストを作成
-#  ・リスト内包表記で各要素を2倍にする
-#  ・Pythonレベルのループが走るため遅くなりやすい
+# Pythonリストでの処理
 # ============================================
 print("=== Pythonリストでの処理 ===")
-lst = list(range(N)) # 0〜N-1 の整数を順番に格納したリストを生成
 
-start = time.time()  # 計測開始
-lst_result = [x * 2 for x in lst]  # 各要素を2倍にする処理
-end = time.time()    # 計測終了
+lst = list(range(N))  # 0〜N-1 の整数を格納したリスト
 
+start = time.time()
+
+# 各要素に対して複数の数学処理を順番に実行
+lst_result = [
+    math.sin((math.sqrt(x) + 3) * 2)
+    for x in lst
+]
+
+end = time.time()
 print(f"処理時間: {end - start:.4f} 秒")
 
 
 # ============================================
-#  NumPy配列での処理
-#  ・np.arange(N) で NumPy の配列を作成
-#  ・arr * 2 のように「ベクトル化」された演算が可能
-#  ・内部は C/Fortran で高速に処理されるため非常に速い
+# NumPy配列での処理
 # ============================================
 print("\n=== NumPy配列での処理 ===")
-arr = np.arange(N) # # 0〜N-1 の整数を順番に格納したNumPy配列を生成
 
-start = time.time()  # 計測開始
-arr_result = arr * 2  # ベクトル化された一括処理
-end = time.time()    # 計測終了
+arr = np.arange(N)  # 0〜N-1 の整数を格納したNumPy配列
 
+start = time.time()
+
+# NumPy の ufunc によるベクトル化処理
+arr_result = np.sin((np.sqrt(arr) + 3) * 2)
+
+end = time.time()
 print(f"処理時間: {end - start:.4f} 秒")
