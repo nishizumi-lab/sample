@@ -14,3 +14,5 @@ prices_2d = np.array([[100, 102, 101],   # 銘柄A
 
 print(prices_2d.dtype)  # float32
 print(prices_2d)
+# [[100. 102. 101.]
+#  [ 98. 103.  99.]]
