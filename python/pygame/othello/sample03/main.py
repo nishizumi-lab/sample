@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import copy
 
 # 定数の定義
 BLACK = (0, 0, 0)
@@ -13,7 +14,7 @@ GRID_SIZE = SIZE // BOARD_SIZE
 # Pygameの初期化
 pygame.init()
 screen = pygame.display.set_mode((SIZE, SIZE))
-pygame.display.set_caption("オセロゲーム")
+pygame.display.set_caption("オセロゲーム（ミニマックス法）")
 
 class Othello:
     def __init__(self):
@@ -99,9 +100,11 @@ class Othello:
         for x in range(BOARD_SIZE):
             for y in range(BOARD_SIZE):
                 if self.is_valid_move(x, y):
+                    board_backup = copy.deepcopy(self.board)
                     self.board[x][y] = WHITE
-                    score = self.minimax(0, False)
-                    self.board[x][y] = None
+                    self.flip_stones(x, y) # 実際にひっくり返す
+                    score = self.minimax(1, False)
+                    self.board = board_backup
                     if score > best_score:
                         best_score = score
                         best_move = (x, y)
